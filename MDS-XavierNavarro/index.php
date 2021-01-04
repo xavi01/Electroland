@@ -47,22 +47,16 @@ if(isset($_SESSION["user"])){
 <?php
 
 
-if (isset($_REQUEST["zona"])){
-
+if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     header('Location: mizona.php');
-
 } 
 
-if (isset($_REQUEST["iniciar"])){
+if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
 
     header('Location: iniciar_sesion_reg.php');
-
 } 
 
 ?>
-
-
-
 
 </header>
 
@@ -86,7 +80,7 @@ Correo: contactoelectroland@gmail.com
 
 </footer>
 
-
+</form>
 
     <script>
         var zona = document.getElementById('zona');
@@ -102,11 +96,6 @@ Correo: contactoelectroland@gmail.com
             iniciar.style.display = 'none';
         }
     </script>
-
-
-
-</form>
-
 
 </body>
 </html>
