@@ -229,19 +229,17 @@ Correo: contactoelectroland@gmail.com
 
 
 <script type="text/javascript">
-    function showContent() {
-        iniciar = document.getElementById("ins");
-        registrar = document.getElementById("reg");
-        olv = document.getElementById("olv");
+  function showContent() {
+    iniciar = document.getElementById("ins");
+    registrar = document.getElementById("reg");
+    olv = document.getElementById("olv");
 
-            iniciar.style.display='none';
-            registrar.style.display='none';
-            olv.style.display='inline';
-        
-        
-    }
+   iniciar.style.display='none';
+   registrar.style.display='none';
+   olv.style.display='inline';        
+  }
 </script>
-</script>
+
 
 
 
