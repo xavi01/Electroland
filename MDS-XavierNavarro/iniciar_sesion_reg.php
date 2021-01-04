@@ -6,31 +6,25 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <form action="iniciar_sesion_reg.php">
-
-
-
+<form action="iniciar_sesion_reg.php">
 
 <header id="headins">
     
-    <input type="submit" name="atras" value="Atras" id="atras">
+ <input type="submit" name="atras" value="Atras" id="atras">
 
-    <img src="assets/img/1.JPG" alt="" width="150" height="150">
+ <img src="assets/img/1.JPG" alt="" width="150" height="150">
 
 </header>
 
 
-
 <?php
 if (isset($_REQUEST["atras"])){
-    header('Location: index.php');
+    header('Location: index.php'); 
 }
 ?>
 
 
-
-
-<div id="ins">   
+<div id="ins">    <!--INICIAR SESION-->
 <h1>Inicia Sesión</h1> <br>
 Email: <br>
 <input type="email" name="email1" id="" class="bordeRodo"> <br><br>
@@ -42,8 +36,7 @@ Contraseña: <br>
 </div>
 
 
-
-<div id="olv" style="display: none;">   
+<div id="olv" style="display: none;">     <!--RECUPERAR CONTRASEÑA-->
 <h1>Recuperar Acceso</h1> <br>
 Email: <br>
 <input type="email" name="recupemail" id="" class="bordeRodo"> <br><br>
@@ -116,7 +109,7 @@ $newpass2 = $_REQUEST["recuppass2"];
 ?>
 
 
-<div id="reg">
+<div id="reg">  <!--REGISTRAR-SE-->
 <h1>Registrate</h1> <br>
 Nombre: <br>
 <input type="text" name="nombre" id="" class="bordeRodo"><br><br>
