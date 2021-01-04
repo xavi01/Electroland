@@ -17,10 +17,11 @@ if(isset($_SESSION["user"])){
 }else{
     echo '<BODY onLoad="mostrarBoton2()">';
 }
-
+echo "hola"; 
 ?>
 
-echo ·hola;
+ 
+
 <header>
 <img src="assets/img/1.JPG" alt="" width="120" height="120">
 
