@@ -132,7 +132,7 @@ Contraseña: <br>
 
 <?php
 
-if (isset($_REQUEST["iniciar"])){
+if (isset($_REQUEST["iniciar"])){ 
 
     $email1 = $_REQUEST["email1"];
     $contraseña1 = $_REQUEST["contraseña1"];
@@ -198,25 +198,6 @@ if (isset($_REQUEST["registrar"])){
 
 ?>
 
-<script>
-function myFunction() {
-  alert("El email o la contraseña son incorrectos.");
-}
-
-function myFunction1() {
-  alert("El email y el usuario no coinciden.");
-}
-
-function myFunction2() {
-  alert("Las contraseñas tienes que ser iguales.");
-}
-
-function myFunction3() {
-  alert("La contraseña se ha actualizado correctamente.");
-}
-</script>
-
-
 
 <footer id="f2">
 
@@ -227,6 +208,7 @@ Correo: contactoelectroland@gmail.com
 
 </footer>
 
+</form>
 
 <script type="text/javascript">
   function showContent() {
@@ -238,11 +220,25 @@ Correo: contactoelectroland@gmail.com
    registrar.style.display='none';
    olv.style.display='inline';        
   }
+
+  function myFunction() {
+  alert("El email o la contraseña son incorrectos.");
+
+
+  function myFunction1() {
+  alert("El email y el usuario no coinciden.");
+  }
+
+  function myFunction2() {
+  alert("Las contraseñas tienes que ser iguales.");
+  }
+
+  function myFunction3() {
+  alert("La contraseña se ha actualizado correctamente.");
+  }
+
+}
 </script>
 
-
-
-
-</form>
 </body>
 </html>
