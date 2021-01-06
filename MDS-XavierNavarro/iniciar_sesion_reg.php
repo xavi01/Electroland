@@ -36,7 +36,7 @@ Contraseña: <br>
 </div>
 
 
-<div id="olv" style="display: none;">     <!--RECUPERAR CONTRASEÑA-->
+<div id="olv">     <!--RECUPERAR CONTRASEÑA-->
 <h1>Recuperar Acceso</h1> <br>
 Email: <br>
 <input type="email" name="recupemail" id="" class="bordeRodo"> <br><br>

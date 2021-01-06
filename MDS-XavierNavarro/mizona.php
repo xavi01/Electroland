@@ -62,7 +62,6 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <header id="headins">
     
     <input type="submit" name="atras" value="Atras" id="atras">
-
     <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
     <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
 

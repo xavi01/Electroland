@@ -39,6 +39,7 @@ if(isset($_SESSION["user"])){
 
 <input type="submit" name="zona" value="Mi zona" id="zona">
 <input type="submit" name="iniciar" value="Inicia sesión o Registrate" id="iniciar">
+<input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">
 
 <input type="text" name="buscador" id="buscador" placeholder="Que quieres buscar" >
 
@@ -56,6 +57,10 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
     header('Location: iniciar_sesion_reg.php');
 } 
 
+if (isset($_REQUEST["subirproducto"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
+
+    header('Location: subirproducto.php');
+} 
 ?>
 
 </header>
@@ -85,14 +90,17 @@ Correo: contactoelectroland@gmail.com
     <script>
         var zona = document.getElementById('zona');
         var iniciar = document.getElementById('iniciar');
+        var subirproducto = document.getElementById('subirproducto');
         
         function mostrarBoton2 () {
             zona.style.display = 'none';
+            subirproducto.style.display = 'none';
             iniciar.style.display = 'inline';
         }
 
         function mostrarBoton1 () {
             zona.style.display = 'inline';
+            subirproducto.style.display = 'inline';
             iniciar.style.display = 'none';
         }
     </script>
