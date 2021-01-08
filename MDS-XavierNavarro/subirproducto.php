@@ -17,6 +17,9 @@
    
    
    <?php
+   session_start();
+   $n_usuario = $_SESSION["nombre_usuario"];
+
    if (isset($_REQUEST["atras"])){
        header('Location: index.php'); 
    }
@@ -31,20 +34,19 @@
 <input type="number" name="precio" id="" class="borderodo" width="10"><br><br>
 <b>Categoria:</b> <br>
 <select name="categorias" class="borderodo">
-   <option value="1">Windows Vista</option> 
-   <option value="2">Windows 7</option> 
-   <option value="3">Windows XP</option>
-   <option value="10">Fedora</option> 
-   <option value="11">Debian</option> 
-   <option value="12">Suse</option> 
+   <option value="Moviles">Moviles</option> 
+   <option value="Videojuegos">Videojuegos</option> 
+   <option value="Ordenadores">Ordenadores</option>
+   <option value="Hogar">Hogar</option> 
+
 </select> <br><br>
 <b>Estado:</b> <br>
 <select name="estado" class="borderodo" >
-   <option value="1">Nuevo</option> 
-   <option value="2">Como nuevo</option> 
-   <option value="3">Bueno</option>
-   <option value="10">Aceptable</option> 
-   <option value="11">Dañado</option> 
+   <option value="Nuevo">Nuevo</option> 
+   <option value="Como nuevo">Como nuevo</option> 
+   <option value="Bueno">Bueno</option>
+   <option value="Aceptable">Aceptable</option> 
+   <option value="Dañado">Dañado</option> 
 </select> <br><br>
 <b>Descripcion:</b> <br>
 <input type="text" name="descripcion" id="" class="borderodo"><br><br>
@@ -55,6 +57,8 @@
 </div>
 
 <?php
+    
+
 if (isset($_REQUEST["botonsubirprod"])){
     
     $mysql = new mysqli ("localhost","root","","electroland");
@@ -71,12 +75,11 @@ if (isset($_REQUEST["botonsubirprod"])){
     $categoria=$_REQUEST["categorias"];
     $estado=$_REQUEST["estado"];
     $imagen=$_REQUEST["imagenproducto"];
-    $usuario=$_REQUEST["contraseña2"];
     $data= date("Y-m-d H:i:s");
 
 
     $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion)
-     VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imagen', '$usuario', '$data')";
+     VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imagen', '$n_usuario', '$data')";
     $mysql->query($sql) or die ($mysql->error);
     $mysql->close();
 }

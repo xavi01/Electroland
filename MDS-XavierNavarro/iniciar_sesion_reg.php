@@ -145,10 +145,11 @@ if (isset($_REQUEST["iniciar"])){
      
     }
 
-    $consulta = mysqli_query($mysql,"SELECT contraseña FROM usuarios WHERE email = '$email1'");
+    $consulta = mysqli_query($mysql,"SELECT contraseña, n_usuario FROM usuarios WHERE email = '$email1'");
 
     while($valores = $consulta->fetch_array()){
       $hashcontraseña = $valores["contraseña"];
+      $nombr_usuario = $valores["n_usuario"];
       
     }
 
@@ -156,6 +157,7 @@ if (isset($_REQUEST["iniciar"])){
    
     session_start();
     $_SESSION["user"]=$email1;
+    $_SESSION["nombre_usuario"]=$nombr_usuario;
     $_SESSION["contraseña"]=$contraseña1;
 
     header('Location: mizona.php');
