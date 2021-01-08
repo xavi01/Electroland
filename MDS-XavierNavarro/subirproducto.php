@@ -86,7 +86,14 @@ if (isset($_REQUEST["botonsubirprod"])){
 
 ?>
 
+<footer id="f1">
 
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+
+</footer>
 
 
 
