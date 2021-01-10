@@ -10,9 +10,10 @@
 
 <header id="headins">
     
- <input type="submit" name="atras" value="Atras" id="atras">
 
- <img src="assets/img/1.JPG" alt="" width="150" height="150">
+ <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="120" height="120"></button>
+
+ <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
 
 </header>
 
