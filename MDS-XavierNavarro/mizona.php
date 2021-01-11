@@ -26,6 +26,11 @@ if (isset($_REQUEST["cerrar"])){
   header('Location: index.php');
 }
 
+
+if (isset($_REQUEST["misproductos"])){
+  header('Location: misproductos.php');
+}
+
 $mysql = new mysqli ("localhost","root","","electroland");
 
     if($mysql->connect_error){
@@ -63,7 +68,9 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="120" height="120"></button>
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
+    <input type="submit" name="misproductos" value="Mis productos" id="misproductos">
     <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
+
 
 </header>
 
