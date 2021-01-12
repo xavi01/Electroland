@@ -11,9 +11,9 @@
 <header id="headins">
     
 
- <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="120" height="120"></button>
+ <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
 
- <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
+
 
 </header>
 

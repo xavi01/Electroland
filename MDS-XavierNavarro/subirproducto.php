@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body  background="assets/img/fondo.png">
-<form action="subirproducto.php">
+<form action="subirproducto.php" method="post" enctype="multipart/form-data">
 
 <header id="headsubir">
 
-    <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="120" height="120"></button>
+    <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/logosinfondo.png" alt="" width="180" height="180">-->
    
