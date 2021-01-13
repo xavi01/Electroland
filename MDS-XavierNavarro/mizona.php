@@ -79,46 +79,50 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 
 
 <div class="editar" id="edit1" style="display:none" >
-Nombre: <br>
+<b>Nombre:</b> <br>
 <input type="text" name="nombre" value="<?php echo $nombre; ?>" id="" class="bordeRodo"><br><br>
-Apellidos: <br>
+<b>Apellidos:</b> <br>
 <input type="text" name="apellidos"value="<?php echo $apellidos; ?>"  id="" class="bordeRodo"><br><br>
-Direccion: <br>
+<b>Direccion:</b> <br>
 <input type="text" name="direccion" value="<?php echo $direccion; ?>" id="" class="bordeRodo"><br><br>
-Data de nacimiento: <br> 
+<b>Data de nacimiento:</b> <br> 
 <input type="date" name="data"  value="<?php echo $data_n; ?>" class="bordeRodo"><br><br>
 </div>
 
 
 
 <div class="editar" id="edit2" style="display:none">
-Usuario: <br>
+<b>Usuario:</b> <br>
 <?php echo $n_usuario; ?> <br><br>
-Email: <br>
+<b>Email:</b> <br>
 <?php echo $email; ?> <br><br>
-Contraseña: <br>
+<b>Contraseña:</b> <br>
 <input type="password" name="contraseña"  value="<?php echo $_SESSION["contraseña"]; ?>"  class="bordeRodo"><br><br>
-Foto de perfil: <br>
+<b>Foto de perfil:</b> <br>
 <input type="file"  name="imageperfil"/>
 <input type="submit" name="guardar" value="Guardar" class="botons" id="guardar">
 </div>
 
 
 <div class="editar" id ="edit3" style="display:inline-block">
-Nombre: <br>
+<b>Nombre:</b> <br>
 <?php echo $nombre; ?> <br><br>
-Apellidos: <br>
+<b>Apellidos:</b> <br>
 <?php echo $apellidos; ?> <br><br>
-Direccion: <br>
-<?php echo $direccion; ?> <br><br>
+<b>Direccion:</b> <br>
+<!--<?php echo $direccion; ?> <br><br>-->
+<div>
+<iframe width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+</iframe>
+</div>
 </div>
 
 <div class="editar" id ="edit4" style="display:inline-block">
-Data de nacimiento: <br>
+<b>Data de nacimiento:</b> <br>
 <?php echo $data_n; ?> <br><br>
-Usuario: <br>
+<b>Usuario:</b> <br>
 <?php echo $n_usuario; ?> <br><br>
-Email: <br>
+<b>Email:</b> <br>
 <?php echo $email; ?> <br><br>
 </div>
 
@@ -158,8 +162,9 @@ Email: <br>
     if($check !== false){
         $image = $_FILES['imageperfil']['tmp_name'];
         $imgContent = addslashes(file_get_contents($image));
-    }
     
+    }
+
     $mysql = new mysqli ("localhost","root","","electroland");
     
     if($mysql->connect_error){
@@ -174,6 +179,7 @@ Email: <br>
       echo "Error updating record: " . $mysql->error;
     }
  
+
 
    $mysql->close();
 
