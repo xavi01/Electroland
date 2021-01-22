@@ -226,7 +226,7 @@ Correo: contactoelectroland@gmail.com
 
   function myFunction() {
   alert("El email o la contraseña son incorrectos.");
-
+  }
 
   function myFunction1() {
   alert("El email y el usuario no coinciden.");
@@ -240,7 +240,6 @@ Correo: contactoelectroland@gmail.com
   alert("La contraseña se ha actualizado correctamente.");
   }
 
-}
 </script>
 
 </body>
