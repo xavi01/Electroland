@@ -14,9 +14,8 @@
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/logosinfondo.png" alt="" width="180" height="180">-->
    
- </header>
-   
-   
+</header>
+     
    <?php
    session_start();
    $n_usuario = $_SESSION["nombre_usuario"];
@@ -52,7 +51,7 @@
 <b>Descripcion:</b> <br>
 <input type="text" name="descripcion" id="" class="borderodo"><br><br>
 <b>Imagen:</b> <br>
-<input type="file"  name="imagenproducto"/><br><br><br>
+<input type="file"  name="imageperfil"/>  <br><br><br>
 <input type="submit" name="botonsubirprod" id="botonsubirprod" value="Subir producto" class="botons">
 
 </div>
@@ -75,7 +74,7 @@ if (isset($_REQUEST["botonsubirprod"])){
     $precio=$_REQUEST["precio"];
     $categoria=$_REQUEST["categorias"];
     $estado=$_REQUEST["estado"];
-    $imagen=$_REQUEST["imagenproducto"];
+    $imagen=$_REQUEST["imageperfil"];
     $data= date("Y-m-d H:i:s");
 
 
