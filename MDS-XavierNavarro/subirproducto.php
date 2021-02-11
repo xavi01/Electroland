@@ -56,6 +56,16 @@
 
 </div>
 
+<footer id="f1">
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+
+</footer>
+
+</form>
 <?php
     
 
@@ -74,32 +84,25 @@ if (isset($_REQUEST["botonsubirprod"])){
     $precio=$_REQUEST["precio"];
     $categoria=$_REQUEST["categorias"];
     $estado=$_REQUEST["estado"];
-    $imagen=$_REQUEST["imageperfil"];
+    //$imagen=$_REQUEST["imageperfil"];
     $data= date("Y-m-d H:i:s");
+
+    $check = getimagesize($_FILES["imageperfil"]["tmp_name"]);
+
+    if($check !== false){
+        $image = $_FILES['imageperfil']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));  
+    }
 
 
     $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion)
-     VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imagen', '$n_usuario', '$data')";
+     VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imgContent', '$n_usuario', '$data')";
     $mysql->query($sql) or die ($mysql->error);
     $mysql->close();
 }
 
 ?>
 
-<footer id="f1">
 
-<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
-<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
-<br>
-Correo: contactoelectroland@gmail.com
-
-</footer>
-
-
-
-
-
-
-</form>
 </body>
 </html>

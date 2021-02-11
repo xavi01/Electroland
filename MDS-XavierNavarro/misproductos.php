@@ -61,7 +61,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
       
         
-        echo '<img src="data:image/jpeg;base64,'.base64_encode($fila["imagen"]) .' "/>';
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'>";
  
         echo "</div>";
     }

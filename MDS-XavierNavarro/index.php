@@ -7,6 +7,29 @@
 </head>
 <body>
 
+<style>
+.flex-container {
+  display: flex;
+
+}
+
+.flex-container > div {
+  padding: 20;
+  width: 10%;
+  margin-right: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 400px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+</style>
 <form action="index.php">
 
 <?php
@@ -67,11 +90,41 @@ if (isset($_REQUEST["subirproducto"])){   //BOTO PARA INICIAR SESION O REGISTRAR
 
 
 
+<div class="flex-container">
 
-<div>
+<?php
 
+$mysql = new mysqli ("localhost","root","","electroland");
 
+    if($mysql->connect_error){
+        die("Conexio fallida");
+    }
 
+    $consulta= "SELECT nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos";
+    $resultatstaula= $mysql->query($consulta);
+
+    while($fila = $resultatstaula->fetch_array()){
+    
+        
+        echo "<div onclick='alert('Clicked');'> ";
+        
+        
+        /*echo "Nombre: " . $fila["nombre"] . "<br>";
+        echo "Descripcion: " . $fila["descripcion"] . "<br>";
+        echo "Precio: " . $fila["precio"] . "<br>";
+        echo "Categoria: " . $fila["categoria"] . "<br>";
+        echo "Estado: " . $fila["estado"] . "<br>";
+        echo "Data publicacion: " . $fila["data_publicacion"]."<br>";*/
+        
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'>";
+ 
+        echo "</div>";
+    }
+   
+
+    $mysql->close();
+
+?>
 
 </div>
 
