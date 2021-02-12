@@ -84,6 +84,17 @@ if (isset($_REQUEST["subirproducto"])){   //BOTO PARA INICIAR SESION O REGISTRAR
 
     header('Location: subirproducto.php');
 } 
+
+if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
+    $_SESSION["producto"]=$_REQUEST["producto"];
+    header('Location: producto.php');
+} 
+
+function product(){
+    $_SESSION["producto"]=$_REQUEST["producto"];
+    header('Location: producto.php');
+}
+
 ?>
 
 </header>
@@ -100,15 +111,16 @@ $mysql = new mysqli ("localhost","root","","electroland");
         die("Conexio fallida");
     }
 
-    $consulta= "SELECT nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos";
+    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos";
     $resultatstaula= $mysql->query($consulta);
 
     while($fila = $resultatstaula->fetch_array()){
     
         
-        echo "<div onclick='alert('Clicked');'> ";
+        echo "<div>";
         
-        
+        echo "<input type='submit' name='producto' value='". $fila["id"] ."'>";
+    
         /*echo "Nombre: " . $fila["nombre"] . "<br>";
         echo "Descripcion: " . $fila["descripcion"] . "<br>";
         echo "Precio: " . $fila["precio"] . "<br>";
@@ -116,15 +128,22 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "Estado: " . $fila["estado"] . "<br>";
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";*/
         
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'>";
- 
+    
+    
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'>";
+    
+     
         echo "</div>";
     }
    
 
     $mysql->close();
 
+
+
 ?>
+
+     
 
 </div>
 
