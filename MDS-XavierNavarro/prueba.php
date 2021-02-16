@@ -1,23 +1,32 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<title>ProApoyo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="Spanish">
+ 
+<style type="text/css">
+    body {
+        background-image: url(images/fondocontacto_700.jpg);
+        background-repeat: repeat-y;
+    }
+    #wrapper {
+        background:url('contacto.jpg');
+        width:859px;height:231px;
+    }
+    #button {
+        position:relative;
+        left:787px;
+        top:191px;
+    }
+</style>
 </head>
+ 
 <body>
-
-<form action="prueba.php" method="post" enctype="multipart/form-data">
-
-<?php
-$poblacio= "fondarela";
-
-?>
-
-
-<div>
-<iframe width="850" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $poblacio; ?>+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-</iframe>
+ 
+<div id='wrapper'>
+    <input type='button' value=' aplicar ' id="button">
+    
 </div>
-
+ 
 </body>
 </html>

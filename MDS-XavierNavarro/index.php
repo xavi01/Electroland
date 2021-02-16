@@ -10,7 +10,6 @@
 <style>
 .flex-container {
   display: flex;
-
 }
 
 .flex-container > div {
@@ -19,8 +18,21 @@
   margin-right: 40px;
   text-align: center;
   line-height: 40px;
-  font-size: 20px;
+  font-size: 20px; 
+  position: relative;
+  display: inline-block;
+
 }
+
+.prodid{
+    position: absolute;
+    width: 200;
+    height: 200;
+    background: transparent;
+    border: 0;
+    color: transparent;
+}
+
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 400px) {
@@ -36,9 +48,9 @@
 
 session_start();
 if(isset($_SESSION["user"])){
-    echo '<BODY onLoad="mostrarBoton1()">';
+    echo '<BODY onLoad="mostrarBoton1()">'; //MI ZONA - SUBIR PRODUCTOS
 }else{
-    echo '<BODY onLoad="mostrarBoton2()">';
+    echo '<BODY onLoad="mostrarBoton2()">';  //INICIAR SESION
 }
 
 ?>
@@ -47,7 +59,7 @@ if(isset($_SESSION["user"])){
 <header>
 <img src="assets/img/1.JPG" alt="" width="95" height="95">
 
-<nav id="cat">
+<nav id="cat" >
 <ul>
     <li><a href="#">Categorias</a>
         <ul>
@@ -87,13 +99,14 @@ if (isset($_REQUEST["subirproducto"])){   //BOTO PARA INICIAR SESION O REGISTRAR
 
 if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
     $_SESSION["producto"]=$_REQUEST["producto"];
+    
     header('Location: producto.php');
 } 
 
-function product(){
+/*function mostrarProducto(){
     $_SESSION["producto"]=$_REQUEST["producto"];
     header('Location: producto.php');
-}
+}*/
 
 ?>
 
@@ -117,10 +130,9 @@ $mysql = new mysqli ("localhost","root","","electroland");
     while($fila = $resultatstaula->fetch_array()){
     
         
-        echo "<div>";
-        
-        echo "<input type='submit' name='producto' value='". $fila["id"] ."'>";
-    
+        echo "<div id='prod'>";
+         
+     
         /*echo "Nombre: " . $fila["nombre"] . "<br>";
         echo "Descripcion: " . $fila["descripcion"] . "<br>";
         echo "Precio: " . $fila["precio"] . "<br>";
@@ -129,7 +141,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";*/
         
     
-    
+        echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='200' width='200' class='prodid'>"; 
         echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'>";
     
      
@@ -143,7 +155,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
 
 ?>
 
-     
+
 
 </div>
 
@@ -159,7 +171,7 @@ Correo: contactoelectroland@gmail.com
 
 </form>
 
-    <script>
+<script>
         var zona = document.getElementById('zona');
         var iniciar = document.getElementById('iniciar');
         var subirproducto = document.getElementById('subirproducto');
@@ -175,7 +187,8 @@ Correo: contactoelectroland@gmail.com
             subirproducto.style.display = 'inline';
             iniciar.style.display = 'none';
         }
-    </script>
+
+</script>
 
 </body>
 </html>
