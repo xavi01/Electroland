@@ -56,16 +56,6 @@
 
 </div>
 
-<footer id="f1">
-
-<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
-<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
-<br>
-Correo: contactoelectroland@gmail.com
-
-</footer>
-
-</form>
 <?php
     
 
@@ -84,7 +74,6 @@ if (isset($_REQUEST["botonsubirprod"])){
     $precio=$_REQUEST["precio"];
     $categoria=$_REQUEST["categorias"];
     $estado=$_REQUEST["estado"];
-    //$imagen=$_REQUEST["imageperfil"];
     $data= date("Y-m-d H:i:s");
 
     $check = getimagesize($_FILES["imageperfil"]["tmp_name"]);
@@ -103,6 +92,16 @@ if (isset($_REQUEST["botonsubirprod"])){
 
 ?>
 
+<footer id="f1">
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+
+</footer>
+
+</form>
 
 </body>
 </html>

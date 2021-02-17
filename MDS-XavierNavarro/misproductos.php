@@ -21,11 +21,23 @@
   line-height: 40px;
   font-size: 20px;
 }
+
+#misprod{
+
+position: absolute;
+left: 8%;
+top: 2%;
+font-size: 30px;
+font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
 </style>
 <form action="misproductos.php">
 
 <header>
-<button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
+<button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button> 
+<h1 id="misprod">MIS PRODUCTOS</h1>
 </header>
 
 <?php

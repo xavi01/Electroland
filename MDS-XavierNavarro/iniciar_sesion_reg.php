@@ -151,7 +151,6 @@ if (isset($_REQUEST["iniciar"])){
     while($valores = $consulta->fetch_array()){
       $hashcontraseña = $valores["contraseña"];
       $nombr_usuario = $valores["n_usuario"];
-      
     }
 
     if (password_verify($contraseña1, $hashcontraseña)){

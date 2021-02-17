@@ -21,7 +21,6 @@ session_start();
 $useractivo =  $_SESSION["user"];
 
 if (isset($_REQUEST["cerrar"])){
-
   session_destroy();
   header('Location: index.php');
 }
@@ -54,7 +53,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
     $mysql->close();
 
     if($fotoperfil != null){
-echo "<img src='data:image/jpeg; base64," . base64_encode($fotoperfil) . "' height='150' width='150' id='fotoperfil'>";
+      echo "<img src='data:image/jpeg; base64," . base64_encode($fotoperfil) . "' height='150' width='150' id='fotoperfil'>";
     }
 
   
@@ -112,8 +111,11 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <b>Direccion:</b> <br>
 <!--<?php echo $direccion; ?> <br><br>-->
 <div>
-<iframe width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+
+<iframe width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>
++(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
 </iframe>
+
 </div>
 </div>
 
@@ -144,8 +146,6 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
     echo '<BODY onLoad="ActivarCampoOtroTema()">';
   }
 
-
-
   if (isset($_REQUEST["guardar"])){
 
     $nombre = $_REQUEST["nombre"];
@@ -162,7 +162,6 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
     if($check !== false){
         $image = $_FILES['imageperfil']['tmp_name'];
         $imgContent = addslashes(file_get_contents($image));
-    
     }
 
     $mysql = new mysqli ("localhost","root","","electroland");

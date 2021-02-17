@@ -237,7 +237,7 @@ nav li:hover>ul{
     width: 98.97%;
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 100%;
 }
 
 #f2{  /*footer iniciar sesion*/
