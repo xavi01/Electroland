@@ -6,6 +6,20 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+<style>
+
+#corazon{
+    width: 90;
+    height: 90;
+    background-image: url(assets/img/facebook.png);
+    background-color: white;
+    border: 0;
+}
+
+
+
+
+</style>
 <body>
     <form action="producto.php">
     
@@ -51,16 +65,16 @@
         echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'>";
     
      
-        echo "</div>";
+        //echo "</div>";
     }
-   
 
     $mysql->close();
 
-
-
-    
     ?>
+
+    <input type="button" name="corazon" value="">
+
+</div>
     
     </form>
 </body>
