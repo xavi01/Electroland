@@ -6,22 +6,31 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+<body>
 <style>
 
 #corazon{
-    width: 90;
-    height: 90;
-    background-image: url(assets/img/facebook.png);
+    width: 60px;
+    height: 60px;
+    background-image: url(assets/img/corazzonn.png);
     background-color: white;
     border: 0;
+    border-radius: 15px;
+  
+}
+
+.corazon :focus {
+    border: 1px black;
+    background-color: yellow;
 }
 
 
 
 
 </style>
-<body>
-    <form action="producto.php">
+
+
+<form action="producto.php">
     
     <header>
           <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
@@ -62,7 +71,7 @@
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
         
     
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'>";
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'> ";
     
      
         //echo "</div>";
@@ -72,10 +81,12 @@
 
     ?>
 
-    <input type="button" name="corazon" value="">
+    <input type="submit" id="corazon" name="corazon" value="">
 
-</div>
+    </div>
     
-    </form>
+</form>
+
+
 </body>
 </html>
