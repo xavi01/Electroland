@@ -84,7 +84,7 @@
         echo "Usuario: " . $fila["usuario"] . "<br>";
         echo "Nombre: " . $fila["nombre"] . "<br>";
         echo "Descripcion: " . $fila["descripcion"] . "<br>";
-        echo "Precio: " . $fila["precio"] . "<br>";
+        echo "Precio: " . $fila["precio"] . "€ <br>";
         echo "Categoria: " . $fila["categoria"] . "<br>";
         echo "Estado: " . $fila["estado"] . "<br>";
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
@@ -92,17 +92,34 @@
     }
 
     if(isset($_SESSION["user"])){
-      echo "<input type='submit' id='corazon' name='corazon' value=''>";
+        $n_usuario = $_SESSION["nombre_usuario"];
+        $query= mysqli_query ($mysql,"SELECT * FROM productos_megusta WHERE n_usuario = '$n_usuario' AND id_prod = '$id_producto' ");
+        $row_cnt = $query->num_rows;
+
+
+        if ($row_cnt > 0) {
+            echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
+        } else {
+            echo "<input type='submit' id='corazon' name='corazon' value=''>";
+        }
+
+
     }
 
     if(isset($_REQUEST['corazon'])){
       echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
       echo '<BODY onLoad="mostrarCorazonRojo()">';
+
+      $sql = "INSERT INTO productos_megusta (n_usuario, id_prod) VALUES ('$n_usuario', $id_producto) ";
+      $mysql->query($sql) or die ($mysql->error);
     }
 
     if(isset($_REQUEST['corazonrojo'])){
-      echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
+      echo "<input type='submit' id='corazon' name='corazon' value=''>";
       echo '<BODY onLoad="mostrarCorazonNegro()">';
+
+      $sql = "DELETE FROM productos_megusta WHERE n_usuario = '$n_usuario' AND id_prod = '$id_producto' ";
+      $mysql->query($sql) or die ($mysql->error);
     }
 
 
@@ -120,12 +137,12 @@
         
     function mostrarCorazonRojo() {
         corazon_negro.style.display = 'none';
-        corazon_rojo.style.display = 'inline';
+        //corazon_rojo.style.display = 'inline';
     }
 
     function mostrarCorazonNegro() {
         corazon_rojo.style.display = 'none';
-        corazon_negro.style.display = 'inline';
+        //corazon_negro.style.display = 'inline';
     }
 
 
