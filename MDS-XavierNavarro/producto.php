@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body style="background-color: #cccccc">
 <style>
 
 #corazon{
@@ -16,15 +16,34 @@
     background-color: white;
     border: 0;
     border-radius: 15px;
-  
 }
 
+#corazonrojo{
+    width: 60px;
+    height: 60px;
+    background-image: url(assets/img/corazzon.png);
+    background-color: white;
+    border: 0;
+    border-radius: 15px;
+}
 .corazon :focus {
     border: 1px black;
     background-color: yellow;
 }
 
-
+#producto{
+    position: relative;
+    left: 35%;
+    margin-top: 25px;
+    padding: 30;
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    background-color: white;
+    border-radius: 10%;
+    width: 400px;
+    height: 600px;
+}
 
 
 </style>
@@ -32,7 +51,7 @@
 
 <form action="producto.php">
     
-    <header>
+    <header style="background-color: #cccccc">
           <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
     </header>
 
@@ -58,10 +77,10 @@
     $resultatstaula= $mysql->query($consulta);
 
     while($fila = $resultatstaula->fetch_array()){
-    
-        
-        echo "<div>";
-         
+           
+        echo "<div id='producto'>";
+
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='350' width='350'> . <br> ";        
         echo "Usuario: " . $fila["usuario"] . "<br>";
         echo "Nombre: " . $fila["nombre"] . "<br>";
         echo "Descripcion: " . $fila["descripcion"] . "<br>";
@@ -70,23 +89,49 @@
         echo "Estado: " . $fila["estado"] . "<br>";
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
         
-    
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'> ";
-    
-     
-        //echo "</div>";
     }
+
+    if(isset($_SESSION["user"])){
+      echo "<input type='submit' id='corazon' name='corazon' value=''>";
+    }
+
+    if(isset($_REQUEST['corazon'])){
+      echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
+      echo '<BODY onLoad="mostrarCorazonRojo()">';
+    }
+
+    if(isset($_REQUEST['corazonrojo'])){
+      echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
+      echo '<BODY onLoad="mostrarCorazonNegro()">';
+    }
+
+
+
 
     $mysql->close();
 
     ?>
-
-    <input type="submit" id="corazon" name="corazon" value="">
-
     </div>
-    
+
+<script>
+
+    var corazon_negro = document.getElementById('corazon');
+    var corazon_rojo = document.getElementById('corazonrojo');
+        
+    function mostrarCorazonRojo() {
+        corazon_negro.style.display = 'none';
+        corazon_rojo.style.display = 'inline';
+    }
+
+    function mostrarCorazonNegro() {
+        corazon_rojo.style.display = 'none';
+        corazon_negro.style.display = 'inline';
+    }
+
+
+
+</script>
+
 </form>
-
-
 </body>
 </html>

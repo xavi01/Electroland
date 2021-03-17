@@ -5,12 +5,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body style="background-color: #cccccc">
 <style>
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
-  /*background-color: DodgerBlue;*/
 }
 
 .flex-container > div {
@@ -23,13 +22,23 @@
 }
 
 #misprod{
-
 position: absolute;
 left: 8%;
 top: 2%;
 font-size: 30px;
 font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
+#producto{
+    padding: 15px;
+    margin: 20;
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    background-color: white;
+    border-radius: 10%;
+    width: 20%;
+    height: 100%;
 }
 
 </style>
@@ -64,7 +73,9 @@ $mysql = new mysqli ("localhost","root","","electroland");
 
     while($fila = $resultatstaula->fetch_array()){
 
-        echo "<div>";
+        echo "<div id='producto'>";
+
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'> . <br>";
         echo "Nombre: " . $fila["nombre"] . "<br>";
         echo "Descripcion: " . $fila["descripcion"] . "<br>";
         echo "Precio: " . $fila["precio"] . "<br>";
@@ -72,9 +83,6 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "Estado: " . $fila["estado"] . "<br>";
         echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
       
-        
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'>";
- 
         echo "</div>";
     }
    

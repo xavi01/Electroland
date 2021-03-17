@@ -5,9 +5,19 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body style="background-color: #cccccc">
 
 <style>
+
+
+    
+#prod{
+    margin: 25;
+    padding: 10;
+    background-color: white;
+    border-radius: 8%;
+}
+
 .flex-container {
   display: flex;
 }
@@ -26,8 +36,8 @@
 
 .prodid{
     position: absolute;
-    width: 200;
-    height: 200;
+    width: 180;
+    height: 180;
     background: transparent;
     border: 0;
     color: transparent;
@@ -35,7 +45,7 @@
 
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
-@media (max-width: 400px) {
+@media (max-width: 800px) {
   .flex-container {
     flex-direction: column;
   }
@@ -137,8 +147,8 @@ $mysql = new mysqli ("localhost","root","","electroland");
     while($fila = $resultatstaula->fetch_array()){
         echo "<div id='prod'>";
          
-        echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='200' width='200' class='prodid'>"; 
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='200' width='200'>";
+        echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='180' width='180' class='prodid'>"; 
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='180'>";
         echo $fila["nombre"];
      
         echo "</div>";
