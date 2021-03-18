@@ -16,7 +16,7 @@
     background-color: white;
     border: 0;
     border-radius: 15px;
-    
+
 }
 
 #corazonrojo{
@@ -130,20 +130,21 @@
             echo "<input type='submit' id='corazon' name='corazon' value=''>";
         }
 
-
     }
 
     if(isset($_REQUEST['corazon'])){
+        echo '<BODY onLoad="mostrarCorazonRojo()">';
       echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
-      echo '<BODY onLoad="mostrarCorazonRojo()">';
+   
 
       $sql = "INSERT INTO productos_megusta (n_usuario, id_prod) VALUES ('$n_usuario', $id_producto) ";
       $mysql->query($sql) or die ($mysql->error);
     }
 
     if(isset($_REQUEST['corazonrojo'])){
+    echo '<BODY onLoad="mostrarCorazonNegro()">';
       echo "<input type='submit' id='corazon' name='corazon' value=''>";
-      echo '<BODY onLoad="mostrarCorazonNegro()">';
+  
 
       $sql = "DELETE FROM productos_megusta WHERE n_usuario = '$n_usuario' AND id_prod = '$id_producto' ";
       $mysql->query($sql) or die ($mysql->error);
