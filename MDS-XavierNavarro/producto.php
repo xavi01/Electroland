@@ -16,6 +16,7 @@
     background-color: white;
     border: 0;
     border-radius: 15px;
+    
 }
 
 #corazonrojo{
