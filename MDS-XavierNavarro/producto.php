@@ -42,7 +42,15 @@
     background-color: white;
     border-radius: 10%;
     width: 400px;
-    height: 600px;
+    height: 100%;
+}
+
+#button_usuario{
+    border: 0;
+    font-size: 20;
+    background-color: transparent;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: grey;
 }
 
 
@@ -58,14 +66,17 @@
 
     <?php
 
-        if (isset($_REQUEST["atras"])){   //BOTO PARA IR A MI ZONA
-           header('Location: index.php');
-           
-        } 
-
     session_start();
     $id_producto = $_SESSION["producto"];
 
+        if (isset($_REQUEST["atras"])){   //BOTO PARA IR A MI ZONA
+           header('Location: index.php');      
+        } 
+
+        if (isset($_REQUEST["nombre_usuario"])){      //BUTTON VER USUARIO
+            $_SESSION["usuario_elegido"] = $_REQUEST["nombre_usuario"];   
+            header('Location: usuario.php');  
+        } 
 
     $mysql = new mysqli ("localhost","root","","electroland");
 
@@ -74,22 +85,37 @@
     }
 
     $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion FROM productos where ID = $id_producto";
+    $consulta2= "SELECT u.direccion FROM usuarios u INNER JOIN productos p ON u.n_usuario = p.usuario where p.ID = $id_producto";
     $resultatstaula= $mysql->query($consulta);
+
+    $resultatdireccio= $mysql->query($consulta2);
 
     while($fila = $resultatstaula->fetch_array()){
            
         echo "<div id='producto'>";
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='350' width='350'> . <br>";   
+        echo "<b>Usuario: </b><input type='submit' value='". $fila['usuario'] ."' name='nombre_usuario' id='button_usuario'> <br>";       
+        echo "<b>Nombre: </b>" . $fila["nombre"] . "<br>";
+        echo "<b>Descripcion: </b>" . $fila["descripcion"] . "<br>";
+        echo "<b>Precio: </b>" . $fila["precio"] . "€ <br>";
+        echo "<b>Categoria: </b>" . $fila["categoria"] . "<br>";
+        echo "<b>Estado: </b>" . $fila["estado"] . "<br>";
+        echo "<b>Data publicacion: </b>" . $fila["data_publicacion"]."<br>";
+        echo "<b>Direccion: </b><br>";
+    } 
 
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='350' width='350'> . <br> ";        
-        echo "Usuario: " . $fila["usuario"] . "<br>";
-        echo "Nombre: " . $fila["nombre"] . "<br>";
-        echo "Descripcion: " . $fila["descripcion"] . "<br>";
-        echo "Precio: " . $fila["precio"] . "€ <br>";
-        echo "Categoria: " . $fila["categoria"] . "<br>";
-        echo "Estado: " . $fila["estado"] . "<br>";
-        echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
-        
-    }
+    while($fila = $resultatdireccio->fetch_array()){
+        $direccio = $fila["direccion"];
+      }
+
+    ?>
+
+    
+    <iframe width="400" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccio; ?>
+        +(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">";
+    </iframe> <br><br>
+    
+    <?php
 
     if(isset($_SESSION["user"])){
         $n_usuario = $_SESSION["nombre_usuario"];
@@ -122,11 +148,9 @@
       $mysql->query($sql) or die ($mysql->error);
     }
 
-
-
+    echo "</div>";
 
     $mysql->close();
-
     ?>
     </div>
 
