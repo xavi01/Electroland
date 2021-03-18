@@ -154,14 +154,9 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "</div>";
     }
    
-
     $mysql->close();
 
-
-
 ?>
-
-
 
 </div>
 
