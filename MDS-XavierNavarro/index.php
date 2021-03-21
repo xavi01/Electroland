@@ -16,6 +16,7 @@
     padding: 10;
     background-color: white;
     border-radius: 8%;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .flex-container {
@@ -67,7 +68,9 @@ if(isset($_SESSION["user"])){
 
 
 <header>
-<img src="assets/img/1.JPG" alt="" width="95" height="95">
+
+<button id="atras" name="recargar"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
+
 
 <nav id="cat" >
 <ul>
@@ -92,6 +95,9 @@ if(isset($_SESSION["user"])){
 
 <?php
 
+if (isset($_REQUEST["recargar"])){   //BOTO RECARGAR
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=index.php'>";
+} 
 
 if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     header('Location: mizona.php');
