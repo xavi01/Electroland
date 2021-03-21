@@ -49,6 +49,12 @@
 
 </style>
 
+<?php
+session_start();
+$usuario=$_SESSION["usuario_elegido"];
+
+?>
+
 
   <header>
     <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
@@ -57,11 +63,17 @@
 
     
   <?php
-      session_start();
-      $usuario=$_SESSION["usuario_elegido"];
-
+      
     if (isset($_REQUEST["atras"])){   //BOTO PARA IR ATRAS
       header('Location: index.php');
+    } 
+
+    if (isset($_REQUEST["producto1"])){   //BOTO PARA ABRIR PRODUCTO
+      $productoelegido = $_REQUEST["producto1"];
+      echo $productoelegido;
+      $_SESSION["producto"]=$_REQUEST["producto1"];
+      echo $_SESSION["producto"];
+      header('Location: producto.php');
     } 
 
     $mysql = new mysqli ("localhost","root","","electroland");
@@ -118,13 +130,6 @@ echo "<b2>". $n_usuario ."</b2>";
 
   <div>
 
-  <?php
-    if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
-      $_SESSION["producto"]=$_REQUEST["producto1"];
-      header('Location: producto.php');
-    } 
-
-  ?>
 
     
     
