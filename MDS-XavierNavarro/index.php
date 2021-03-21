@@ -12,6 +12,7 @@
 
     
 #prod{
+    width: 10%;
     margin: 25;
     padding: 10;
     background-color: white;
@@ -151,7 +152,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
     
 
     while($fila = $resultatstaula->fetch_array()){
-        echo "<div id='prod'>";
+        echo "<div id='prod' height='200' width='200'>";
          
         echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='180' width='180' class='prodid'>"; 
         echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='180'>";
