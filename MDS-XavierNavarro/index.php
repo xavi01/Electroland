@@ -12,6 +12,7 @@
 
     
 #prod{
+    display:inline-flexbox;
     width: 10%;
     margin: 25;
     padding: 10;
@@ -22,9 +23,13 @@
 
 .flex-container {
   display: flex;
+  flex-wrap: wrap;
+
+  padding-left: 62;
 }
 
 .flex-container > div {
+
   padding: 20;
   width: 10%;
   margin-right: 40px;
