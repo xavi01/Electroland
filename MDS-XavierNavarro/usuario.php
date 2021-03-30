@@ -52,7 +52,9 @@
 <?php
 session_start();
 $usuario=$_SESSION["usuario_elegido"];
+if(isset($_SESSION["nombre_usuario"])){
 $usuario_activo = $_SESSION["nombre_usuario"];
+}
 
 
 ?>
@@ -126,7 +128,12 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
     </iframe> 
 
-    <input type="submit" name="enviarmensaje" value="Enviar mensaje">
+    <?php
+      if(isset($_SESSION["nombre_usuario"])){
+         echo"<input type='submit' name='enviarmensaje' value='Enviar mensaje'>";
+      }
+
+    ?>
     
     <br><br>
 

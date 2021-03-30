@@ -30,7 +30,7 @@
 
 
 </style>
-    <form action="">
+    <form action="chat.php">
     
     <?php
         session_start();
@@ -40,10 +40,29 @@
             header('Location: index.php');
         } 
 
-        if(isset($_REQUEST["escogerchat"])){
-            $chatcon = $_REQUEST["escogerchat"];
-            $_SESSION["chat"] = $chatcon;
+        if(isset($_REQUEST["escogerchat"])){ //BOTON PARA ESCOGER CHAT
+            $_SESSION["chat"] = $_REQUEST["escogerchat"];          
         }
+
+        if(isset($_REQUEST["enviar"])){ //BOTON PARA ENVIAR MENSAJE
+            $chatcon = $_SESSION["chat"];
+            $texto = $_REQUEST["textoenviar"];
+            $fecha = $data= date("Y-m-d H:i:s");
+
+            $mysql = new mysqli ("localhost","root","","electroland");
+ 
+            if($mysql->connect_error){
+                die("Conexio fallida");
+            }else{
+             
+            }
+        
+            $sql = "INSERT INTO chat (id_de, id_para, mensaje, fecha) VALUES ('$usuario_activo','$chatcon', '$texto', '$fecha')";
+            $mysql->query($sql) or die ($mysql->error);
+            $mysql->close();
+
+        }
+
 
     ?>
 
@@ -80,6 +99,8 @@
               echo "<input type='submit' name='escogerchat' value='$fila[usuario1]'> <br><br>";
               
             }
+
+            $mysql->close();
         
         ?>
 
@@ -95,9 +116,30 @@
            echo "<label for=''>Selecciona un chat para poder hablar.</label>";
         }else{
             $chat= $_SESSION["chat"];
-            echo "Este es el chat con " . $chat ;
+            echo "Este es el chat con " . $chat ."<br><br>";
+
+            $mysql = new mysqli ("localhost","root","","electroland");
+
+            if($mysql->connect_error){
+              die("Conexio fallida");
+            }  
+
+            $consulta= "SELECT * FROM chat WHERE (id_de = '$usuario_activo' AND id_para = '$chat')  OR  (id_para = '$usuario_activo' AND id_de = '$chat')";
+            $resultatstaula= $mysql->query($consulta);
+        
+            while($fila = $resultatstaula->fetch_array()){
+        
+              echo $fila['id_de'] .": " . $fila['mensaje'] . ", " . $fila['fecha'] . "<br><br>";
+              
+            }
+
+            $mysql->close();
+            
+            echo"<input type='text' name='textoenviar' id=''>";
+            echo "<input type='submit' name='enviar' value='ENVIAR' id=''>";
         }
-        ?>   
+
+       ?>   
     </div>
 
     
@@ -105,7 +147,7 @@
     
     
     
-    
+ 
     
     
     
