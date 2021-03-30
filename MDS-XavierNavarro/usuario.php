@@ -76,6 +76,12 @@ $usuario=$_SESSION["usuario_elegido"];
       header('Location: producto.php');
     } 
 
+    if (isset($_REQUEST["enviarmensaje"])){   //BOTO PARA ENVIAR MENSAJE
+      
+
+      header('Location: chat.php');
+    }
+
     $mysql = new mysqli ("localhost","root","","electroland");
 
     if($mysql->connect_error){
@@ -104,7 +110,11 @@ echo "<b2>". $n_usuario ."</b2>";
     <iframe width="400" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>
       +(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">";
 
-    </iframe> <br><br>
+    </iframe> 
+
+    <input type="submit" name="enviarmensaje" value="Enviar mensaje">
+    
+    <br><br>
 
 
     <div class="flex-container">

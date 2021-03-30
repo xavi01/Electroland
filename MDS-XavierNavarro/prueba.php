@@ -23,10 +23,9 @@
  
 <body>
  
-<div id='wrapper'>
-    <input type='button' value=' aplicar ' id="button">
-    
-</div>
- 
+
+
+
+
 </body>
 </html>

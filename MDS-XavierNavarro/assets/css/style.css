@@ -193,6 +193,17 @@ nav li:hover>ul{
     border-radius: 10px;
 }
 
+#mensajes{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    left: 1350;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
+
 
 
 #ins{

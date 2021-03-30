@@ -11,6 +11,10 @@
 
 
 <?php
+
+session_start();
+$useractivo =  $_SESSION["user"];
+
 if (isset($_REQUEST["atras"])){
 
   header('Location: index.php');
@@ -21,9 +25,12 @@ if (isset($_REQUEST["favoritos"])){
   header('Location: favoritos.php');
 }
 
+if (isset($_REQUEST["mensajes"])){
 
-session_start();
-$useractivo =  $_SESSION["user"];
+  header('Location: chat.php');
+}
+
+
 
 if (isset($_REQUEST["cerrar"])){
   session_destroy();
@@ -72,6 +79,7 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
+    <input type="submit" name="mensajes" value="Mensajes" id="mensajes">
     <input type="submit" name="favoritos" value="Favoritos" id="favoritos">
     <input type="submit" name="misproductos" value="Mis productos" id="misproductos">
     <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
