@@ -52,6 +52,8 @@
 <?php
 session_start();
 $usuario=$_SESSION["usuario_elegido"];
+$usuario_activo = $_SESSION["nombre_usuario"];
+
 
 ?>
 
@@ -63,6 +65,12 @@ $usuario=$_SESSION["usuario_elegido"];
 
     
   <?php
+
+    $mysql = new mysqli ("localhost","root","","electroland");
+
+    if($mysql->connect_error){
+      die("Conexio fallida");
+    }
       
     if (isset($_REQUEST["atras"])){   //BOTO PARA IR ATRAS
       header('Location: index.php');
@@ -77,16 +85,22 @@ $usuario=$_SESSION["usuario_elegido"];
     } 
 
     if (isset($_REQUEST["enviarmensaje"])){   //BOTO PARA ENVIAR MENSAJE
-      
 
-      header('Location: chat.php');
+      $query= mysqli_query ($mysql,"SELECT * FROM mensajes WHERE (usuario1 = '$usuario_activo' AND usuario2 = '$usuario')  OR  (usuario2 = '$usuario_activo' AND usuario1 = '$usuario')");
+      $row_cnt = $query->num_rows;
+
+      if ($row_cnt > 0) {
+        $_SESSION["chat"]=$usuario;
+        header('Location: chat.php');
+      } else {
+        $sql= "INSERT INTO mensajes (usuario1, usuario2) VALUES ('$usuario_activo','$usuario')";
+        $mysql->query($sql) or die ($mysql->error);
+        $_SESSION["chat"]=$usuario;      
+        header('Location: chat.php');
+      }
+
     }
 
-    $mysql = new mysqli ("localhost","root","","electroland");
-
-    if($mysql->connect_error){
-        die("Conexio fallida");
-    }
 
     $consulta1= "SELECT n_usuario, fotoperfil, direccion FROM usuarios WHERE n_usuario = '$usuario'";
     $resultatstaula= $mysql->query($consulta1);
@@ -104,7 +118,7 @@ $usuario=$_SESSION["usuario_elegido"];
       echo "<img src='data:image/jpeg; base64," . base64_encode($fotoperfil) . "' height='150' width='150'>";
     }
 
-echo "<b2>". $n_usuario ."</b2>";
+    echo "<b2>". $n_usuario ."</b2>";
 
     ?>
     <iframe width="400" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>

@@ -33,6 +33,9 @@
     <form action="">
     
     <?php
+        session_start();
+        $usuario_activo = $_SESSION["nombre_usuario"];
+
         if (isset($_REQUEST["atras"])){   //BOTO PARA IR ATRAS
             header('Location: index.php');
         } 
@@ -51,10 +54,38 @@
 
 
     <div id="divmensajes">    
-        <input type="submit" name="escogerchat" value="USUARI 1"><br><br>
-        <input type="submit" name="escogerchat" value="USUARI 2"><br><br>
-        <input type="submit" name="escogerchat" value="USUARI 3"><br><br>
-        <input type="submit" name="escogerchat" value="USUARI 4"><br><br>
+
+        <?php
+
+            $mysql = new mysqli ("localhost","root","","electroland");
+
+            if($mysql->connect_error){
+              die("Conexio fallida");
+            }  
+
+            $consulta= "SELECT usuario2 FROM mensajes WHERE usuario1 = '$usuario_activo'";
+            $resultatstaula= $mysql->query($consulta);
+        
+            while($fila = $resultatstaula->fetch_array()){
+        
+              echo "<input type='submit' name='escogerchat' value='$fila[usuario2]'> <br><br>";
+              
+            }
+
+            $consulta2= "SELECT usuario1 FROM mensajes WHERE usuario2 = '$usuario_activo'";
+            $resultatstaula= $mysql->query($consulta2);
+        
+            while($fila = $resultatstaula->fetch_array()){
+        
+              echo "<input type='submit' name='escogerchat' value='$fila[usuario1]'> <br><br>";
+              
+            }
+        
+        ?>
+
+
+
+
     </div>
 
 

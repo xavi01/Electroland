@@ -101,7 +101,7 @@
         echo "<b>Precio: </b>" . $fila["precio"] . "€ <br>";
         echo "<b>Categoria: </b>" . $fila["categoria"] . "<br>";
         echo "<b>Estado: </b>" . $fila["estado"] . "<br>";
-        echo "<b>Data publicacion: </b>" . $fila["data_publicacion"]."<br>";
+        echo "<b>Fecha publicacion: </b>" . $fila["data_publicacion"]."<br>";
         echo "<b>Direccion: </b><br>";
     } 
 
