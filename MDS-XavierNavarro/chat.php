@@ -6,25 +6,27 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body style="background-color: #cccccc">
+<body >
 
 <style>
 
 
 #divmensajes{
+    text-align: center;
     top: 20;
     position: relative;
     display: inline-block;
-    width: 28%;
+    width: 30%;
     padding: 10;
-    background-color: red; 
+    background-color: white; 
     height: 750;
     overflow: scroll;   
 }
 
 #divchat{
+    padding: 50;
     display: inline-block;
-    width: 67%;
+    width: 67.5%;
     padding: 10;
     background-color: white;
     text-align: center;
