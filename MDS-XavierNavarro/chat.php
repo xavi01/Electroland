@@ -6,25 +6,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body style="text-align: center;">
+<body style="background-color: #cccccc">
 
 <style>
 
 
 #divmensajes{
+    top: 20;
+    position: relative;
     display: inline-block;
     width: 28%;
     padding: 10;
-    background-color: red;
+    background-color: red; 
+    height: 750;
+    overflow: scroll;   
 }
 
 #divchat{
     display: inline-block;
     width: 67%;
     padding: 10;
-    background-color: yellow;
+    background-color: white;
     text-align: center;
+    font-size: 18px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
+
+#chat{
+    height:500;
+    overflow:scroll
+}
+
+
 
 #fotoperfilchat{
     border-radius: 50px;
@@ -39,6 +53,15 @@
     color: transparent;
 }
 
+#botonescogerchat{
+    font-size: 18px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#chatsrecientes{
+    font-size: 25px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
 
 
@@ -95,7 +118,9 @@
 
 
 
-    <div id="divmensajes">    
+    <div id="divmensajes"> 
+
+    <label for="" id="chatsrecientes"><b>CHATS RECIENTES</b></label> <br><br>  
 
         <?php
 
@@ -110,7 +135,7 @@
         
             while($fila = $resultatstaula->fetch_array()){
         
-              echo "<input type='submit' name='escogerchat' value='$fila[usuario2]'> <br><br>";
+              echo "<input type='submit' id='botonescogerchat' name='escogerchat' value='$fila[usuario2]'> <br><br>";
               
             }
 
@@ -119,7 +144,7 @@
         
             while($fila = $resultatstaula->fetch_array()){
         
-              echo "<input type='submit' name='escogerchat' value='$fila[usuario1]'> <br><br>";
+              echo "<input type='submit'  id='botonescogerchat' name='escogerchat' value='$fila[usuario1]'> <br><br>";
               
             }
 
@@ -136,7 +161,7 @@
     <div id="divchat">
         <?php
         if(!isset($_SESSION["chat"])){
-           echo "<label for=''>Selecciona un chat para poder hablar.</label>";
+           echo "<label for=''><b>Selecciona un chat para poder hablar.</b></label>";
         }else{
             $chat= $_SESSION["chat"];
             
@@ -155,11 +180,12 @@
             }
 
 
-            echo "Este es el chat con " . $chat ."<br><br>";
+            echo "<b>Este es el chat con " . $chat ."</b><br><br>";
 
             $consulta= "SELECT c.mensaje, c.fecha, u.fotoperfil , c.id_de FROM chat c INNER JOIN usuarios u ON c.id_de=u.n_usuario WHERE (id_de = '$usuario_activo' AND id_para = '$chat')  OR  (id_para = '$usuario_activo' AND id_de = '$chat')";
             $resultatstaula= $mysql->query($consulta);
         
+            echo "<div id='chat'>";
             while($fila = $resultatstaula->fetch_array()){
 
               echo "<img src='data:image/jpeg; base64," . base64_encode($fila["fotoperfil"]) . "' id='fotoperfilchat' height='40' width='40'>";
@@ -167,6 +193,7 @@
               
             }
 
+            echo "</div>";
             $mysql->close();
             
             echo"<br><br><input type='text' name='textoenviar' id=''>";

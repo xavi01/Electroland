@@ -76,12 +76,12 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "<div id='producto'>";
 
         echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'> . <br>";
-        echo "Nombre: " . $fila["nombre"] . "<br>";
-        echo "Descripcion: " . $fila["descripcion"] . "<br>";
-        echo "Precio: " . $fila["precio"] . "<br>";
-        echo "Categoria: " . $fila["categoria"] . "<br>";
-        echo "Estado: " . $fila["estado"] . "<br>";
-        echo "Data publicacion: " . $fila["data_publicacion"]."<br>";
+        echo "<b>Nombre:</b> " . $fila["nombre"] . "<br>";
+        echo "<b>Descripcion:</b><br> " . $fila["descripcion"] . "<br>";
+        echo "<b>Precio:</b> " . $fila["precio"] . "€<br>";
+        echo "<b>Categoria:</b> " . $fila["categoria"] . "<br>";
+        echo "<b>Estado:</b> " . $fila["estado"] . "<br>";
+        echo "<b>Fecha publicacion:</b> " . $fila["data_publicacion"]."<br>";
       
         echo "</div>";
     }
