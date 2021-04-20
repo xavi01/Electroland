@@ -75,6 +75,7 @@
   font-size: 25;
 }
 
+
 #maps{
   padding-left: 50;
   padding-top: 20;
