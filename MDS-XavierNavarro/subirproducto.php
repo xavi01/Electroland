@@ -84,8 +84,8 @@ if (isset($_REQUEST["botonsubirprod"])){
     }
 
 
-    $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion)
-     VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imgContent', '$n_usuario', '$data')";
+    $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion, Vendido)
+     VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imgContent', '$n_usuario', '$data', 0)";
     $mysql->query($sql) or die ($mysql->error);
     $mysql->close();
 }

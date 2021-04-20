@@ -148,9 +148,9 @@ $mysql = new mysqli ("localhost","root","","electroland");
 
     if(isset($_REQUEST["b2"])){
     $nom_prod=$_REQUEST["buscador"];
-    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' OR descripcion LIKE '%$nom_prod%' ";
+    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0  OR descripcion LIKE '%$nom_prod%' && Vendido=0 ";
     }else{
-    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos";
+    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
     }
     $resultatstaula= $mysql->query($consulta);
 
