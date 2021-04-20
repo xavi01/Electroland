@@ -57,8 +57,34 @@ input[type="radio"]:checked ~ #stars {
 }
 
 
+#ops{
+  background-color: white;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20;
+  position: relative;
+  top: 80;
+  left: -450;
+  width: auto;
+  text-align: left;
+  
+}
 
+#estrelles{
+  color: orange;
+}
 
+#fotoenvia{
+  border-radius: 50px;
+}
+
+.userid{
+    position: absolute;
+    width: 50;
+    height: 50;
+    background: transparent;
+    border: 0;
+    color: transparent;
+}
 
 
 #prod{
@@ -127,6 +153,7 @@ input[type="radio"]:checked ~ #stars {
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20;
   border-radius: 10px;
+ 
 }
 
 
@@ -154,8 +181,10 @@ input[type="radio"]:checked ~ #stars {
 $prod = "todos";
 session_start();
 $usuario=$_SESSION["usuario_elegido"];
+
 if(isset($_SESSION["nombre_usuario"])){
 $usuario_activo = $_SESSION["nombre_usuario"];
+
 }
 
 
@@ -202,6 +231,22 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
     if (isset($_REQUEST["opinar"])){   //BOTO PARA MOSTRAR opinar
       $prod="opinar";
+    } 
+
+    if (isset($_REQUEST["perfilenvia"])){   //BOTO PARA MOSTRAR perfil de opinion
+      $_SESSION["usuario_elegido"] = $_REQUEST["perfilenvia"];   
+      header('Location: usuario.php'); 
+    }
+
+    if (isset($_REQUEST["enviaropinion"])){   //BOTO PARA MOSTRAR opinar
+      $estrellas = $_REQUEST["estrellas"];
+      $comentario = $_REQUEST["comentario"];
+      $data= date("Y-m-d");
+      
+      $sql= "INSERT INTO `valoracion`(`usuario_envia`, `usuario_recibe`, `estrellas`, `comentario`, `fecha`) VALUES ('" . $usuario_activo ."','" . $usuario . "'," . $estrellas . ",'". $comentario . "','". $data . "')";
+      $mysql->query($sql) or die ($mysql->error);
+      $prod="opiniones";
+
     } 
 
 
@@ -336,22 +381,54 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
 
 if($prod == "opiniones"){
-  $consulta3= "SELECT * FROM valoracion WHERE usuario_recibe = '$usuario'";
+  $consulta3= "SELECT v.usuario_envia, v.estrellas, v.comentario, v.fecha, u.fotoperfil FROM valoracion v INNER JOIN usuarios u ON v.usuario_envia = u.n_usuario WHERE usuario_recibe = '$usuario'";
   $resultats= $mysql->query($consulta3);
 
 if(mysqli_num_rows($resultats)>0){
+  echo"<label id='novendido'><b>Estas son las opiniones sobre este usuario.</b></label>";
   while($fila1 = $resultats->fetch_array()){
+    
     echo "<div id='ops'>";
-    
-    
 
 
+    echo "<input type='submit' name='perfilenvia' value='" . $fila1["usuario_envia"] . "' height='50' width='50' class='userid'>"; 
+    echo "<img src='data:image/jpeg; base64," . base64_encode($fila1["fotoperfil"]) . "' id='fotoenvia' name='fotoenvia' height='50' width='50'>" . "     ";
+    
+
+    $stars = $fila1["estrellas"];
+    if($stars==1){
+      echo"<label id='estrelles'>★</label>";
+    }
+    if($stars==2){
+      echo"<label id='estrelles'>★★</label>";
+    }
+    if($stars==3){
+      echo"<label id='estrelles'>★★★</label>";
+    }
+    if($stars==4){
+      echo"<label id='estrelles'>★★★★</label>";
+    }
+    if($stars==5){
+      echo"<label id='estrelles'>★★★★★</label>";
+    }
+
+
+    echo "    " . $fila1['comentario'];
+    echo "    " . $fila1['fecha'];
     echo "</div>";
+
+
+
+    
+
+
+   
   }
 }else{
    echo"<label id='novendido'><b>Este usuario aún no ha recibido ninguna opinion.</b></label>";
-
+   if(isset($_SESSION["user"])){
    echo"<input type='submit' class='buttons' id='opinar' name='opinar' value='Opinar'>";
+   }
 }
 
  $mysql->close();
@@ -379,8 +456,8 @@ if($prod == "opinar"){
 
  
   
- <input id="textcoment" type="text" name="" id="" placeholder="Añade un comentario."><br>
- <input type="submit" class="buttons" id="enviaropinion" value="Enviar opinion">
+ <input id="textcoment" type="text" name="comentario" id="" placeholder="Añade un comentario."><br>
+ <input type="submit" class="buttons" name="enviaropinion" id="enviaropinion" value="Enviar opinion">
 
 <?php
 }

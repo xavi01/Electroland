@@ -7,66 +7,35 @@
     <title>Document</title>
 </head>
 
-<style>
-
-#form {
-  width: 500px;
-  margin: 0 auto;
-  height: 100px;
-}
-
-#form p {
-  text-align: center;
-}
-
-#form label {
-  font-size: 20px;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  color: grey;
-}
-
-.clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-  font-size: 50px;
-}
-
-label:hover,
-label:hover ~ label {
-  color: red;
-}
-
-input[type="radio"]:checked ~ label {
-  color: orange;
-}
-
-
-
-</style>
-
 <body>
 
-<form>
-  <p class="clasificacion">
-    <input id="radio1" type="radio" name="estrellas" value="5"><!--
-    --><label for="radio1">★</label><!--
-    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-    --><label for="radio2">★</label><!--
-    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-    --><label for="radio3">★</label><!--
-    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-    --><label for="radio4">★</label><!--
-    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-    --><label for="radio5">★</label>
-  </p>
-</form>
+<?php
+$prod = "todos";
+session_start();
+$usuario=$_SESSION["usuario_elegido"];
 
+if(isset($_SESSION["nombre_usuario"])){
+$usuario_activo = $_SESSION["nombre_usuario"];
+
+}
+
+$mysql = new mysqli ("localhost","root","","electroland");
+
+    if($mysql->connect_error){
+      die("Conexio fallida");
+    }
+
+  $estrellas = 3;
+   
+      $comentario = "adeu";
+      
+      $data= date("Y-m-d");
+      
+      $sql= "INSERT INTO `valoracion`(`usuario_envia`, `usuario_recibe`, `estrellas`, `comentario`, `fecha`) VALUES ('" . $usuario_activo ."','" . $usuario . "'," . $estrellas . ",'". $comentario . "','". $data . "')";
+      echo $sql;
+      $mysql->query($sql) or die ($mysql->error);
+      $prod="opiniones";
+?>
 
 
 </body>

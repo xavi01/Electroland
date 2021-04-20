@@ -43,7 +43,7 @@
     background-color: white;
     border-radius: 10%;
     width: 400px;
-    height: 100%;
+    height: auto;
 }
 
 #button_usuario{
