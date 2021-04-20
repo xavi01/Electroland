@@ -11,6 +11,56 @@
 <style>
 
 
+
+input[type="radio"] {
+  display: none;
+}
+
+#stars {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 50px;
+  position: relative;
+  left: -250;
+}
+
+#stars:hover,
+#stars:hover ~ #stars {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ #stars {
+  color: orange;
+}
+
+
+#textcoment{
+  position: relative;
+  top:150;
+  left: -600;
+  height: 50;
+  width: 500;
+  font-size: 20;
+
+}
+
+
+#enviaropinion{
+  position: relative;
+  top:220;
+  left: -950;
+  height: 30;
+}
+
+
+
+
+
+
 #prod{
     text-align: center;
     width: 190;
@@ -64,7 +114,7 @@
 #textonombreusuario{
   position: relative;
   top: -35;
-}
+} 
 
 #enviarmensaje{
   position: absolute;
@@ -72,7 +122,11 @@
 }
 
 .buttons{
-  font-size: 25;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20;
+  border-radius: 10px;
 }
 
 
@@ -86,6 +140,12 @@
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   position: relative;
   right: -40;
+}
+
+#opinar{
+  position: relative;
+  right: 530;
+  top:50;
 }
 
 </style>
@@ -122,9 +182,9 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
     if (isset($_REQUEST["producto1"])){   //BOTO PARA ABRIR PRODUCTO
       $productoelegido = $_REQUEST["producto1"];
-      echo $productoelegido;
+     
       $_SESSION["producto"]=$_REQUEST["producto1"];
-      echo $_SESSION["producto"];
+      
       header('Location: producto.php');
     } 
 
@@ -138,6 +198,10 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
     if (isset($_REQUEST["opiniones"])){   //BOTO PARA MOSTRAR opiniones
       $prod="opiniones";
+    } 
+
+    if (isset($_REQUEST["opinar"])){   //BOTO PARA MOSTRAR opinar
+      $prod="opinar";
     } 
 
 
@@ -286,20 +350,41 @@ if(mysqli_num_rows($resultats)>0){
   }
 }else{
    echo"<label id='novendido'><b>Este usuario aún no ha recibido ninguna opinion.</b></label>";
+
+   echo"<input type='submit' class='buttons' id='opinar' name='opinar' value='Opinar'>";
 }
 
  $mysql->close();
 }
 
 
+
+if($prod == "opinar"){
+
+  echo"<label id='novendido'><b>Deja tu opinion sobre este usuario.</b></label>";
   ?>
 
+  <p class="clasificacion">
+  <input id="radio1" type="radio" name="estrellas" value="5"><!--
+  -->    <label id="stars" for="radio1">★</label><!--
+  --><input  id="radio2" type="radio" name="estrellas" value="4"><!--
+  -->    <label id="stars" for="radio2">★</label><!--
+  --><input  id="radio3" type="radio" name="estrellas" value="3"><!--
+  -->    <label id="stars" for="radio3">★</label><!--
+  --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+  -->    <label id="stars" for="radio4">★</label><!--
+  --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+  -->    <label id="stars" for="radio5">★</label>
+  </p>
 
+ 
+  
+ <input id="textcoment" type="text" name="" id="" placeholder="Añade un comentario."><br>
+ <input type="submit" class="buttons" id="enviaropinion" value="Enviar opinion">
 
-<label for=""></label>
-
-
-  <div>
+<?php
+}
+  ?>
 
 
 
