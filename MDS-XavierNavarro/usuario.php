@@ -24,8 +24,6 @@ input[type="radio"] {
   direction: rtl;
   unicode-bidi: bidi-override;
   font-size: 50px;
-  position: relative;
-  left: -250;
 }
 
 #stars:hover,
@@ -39,35 +37,12 @@ input[type="radio"]:checked ~ #stars {
 
 
 #textcoment{
-  position: relative;
-  top:150;
-  left: -600;
   height: 50;
   width: 500;
   font-size: 20;
-
 }
 
 
-#enviaropinion{
-  position: relative;
-  top:220;
-  left: -950;
-  height: 30;
-}
-
-
-#ops{
-  background-color: white;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 20;
-  position: relative;
-  top: 80;
-  left: -450;
-  width: auto;
-  text-align: left;
-  
-}
 
 #estrelles{
   color: orange;
@@ -84,6 +59,19 @@ input[type="radio"]:checked ~ #stars {
     background: transparent;
     border: 0;
     color: transparent;
+}
+
+
+#ops{
+  display:inline-flexbox;
+  text-align: center;
+  width: auto;
+  height: auto;
+  margin: 25;
+  padding: 10;
+  background-color: white;
+  font-size: 17;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 
@@ -108,9 +96,12 @@ input[type="radio"]:checked ~ #stars {
 
 .flex-container {
   display: flex;
+  flex-wrap: wrap;
+
 }
 
 .flex-container > div {
+
   padding: 20;
   width: 10%;
   margin-right: 40px;
@@ -121,6 +112,7 @@ input[type="radio"]:checked ~ #stars {
   display: inline-block;
 
 }
+
 
 #debajoheader{
   
@@ -156,24 +148,40 @@ input[type="radio"]:checked ~ #stars {
  
 }
 
+#novendido{
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20;
+  padding-left: 40;
+}
+
 
 #maps{
   padding-left: 50;
   padding-top: 20;
 }
 
-#novendido{
-  font-size: 25px;
+#ooopinar{
+  padding-left: 40;
+  text-align: left;
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  position: relative;
-  right: -40;
+  font-size: 20;
 }
 
-#opinar{
+#opinar1{
   position: relative;
-  right: 530;
-  top:50;
+  right: 1740;
+  top:200;
+  width: auto;
+  height: 35;
 }
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
 
 </style>
 
@@ -326,9 +334,6 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
   <div class="flex-container">
   
-
-
-
   <?php
 
   if($prod == "todos"){
@@ -352,9 +357,10 @@ $usuario_activo = $_SESSION["nombre_usuario"];
      $mysql->close();
   }
 
+  echo "</div>";
 
 
-
+  echo "<div class='flex-container'>";
   if($prod == "vendidos"){
   
     $consulta2= "SELECT id, imagen, nombre FROM productos WHERE usuario = '$usuario' && Vendido=1";
@@ -377,6 +383,9 @@ $usuario_activo = $_SESSION["nombre_usuario"];
    $mysql->close();
 }
 
+echo "</div>";
+
+
 
 
 
@@ -385,7 +394,15 @@ if($prod == "opiniones"){
   $resultats= $mysql->query($consulta3);
 
 if(mysqli_num_rows($resultats)>0){
-  echo"<label id='novendido'><b>Estas son las opiniones sobre este usuario.</b></label>";
+
+  echo"<label id='novendido'><b>Estas son las opiniones sobre este usuario.                     </b></label>";
+  if(isset($_SESSION["user"])){
+    echo"<input type='submit' class='buttons' id='' name='opinar' value='Opinar'>";
+  }
+
+  echo "<div class='flex-container'>";
+
+
   while($fila1 = $resultats->fetch_array()){
     
     echo "<div id='ops'>";
@@ -417,28 +434,28 @@ if(mysqli_num_rows($resultats)>0){
     echo "    " . $fila1['fecha'];
     echo "</div>";
 
-
-
-    
-
-
-   
   }
+  echo "</div> <br>";
+
+
 }else{
-   echo"<label id='novendido'><b>Este usuario aún no ha recibido ninguna opinion.</b></label>";
+   echo"<label id='novendido'><b>Este usuario aún no ha recibido ninguna opinion.       </b></label>";
    if(isset($_SESSION["user"])){
-   echo"<input type='submit' class='buttons' id='opinar' name='opinar' value='Opinar'>";
+   echo"<input type='submit' class='buttons'  name='opinar' value='Opinar'>";
    }
 }
 
  $mysql->close();
 }
 
+echo "</div>";
 
 
 if($prod == "opinar"){
 
-  echo"<label id='novendido'><b>Deja tu opinion sobre este usuario.</b></label>";
+  echo "<div id='ooopinar'>";
+
+  echo"<label ><b>Deja tu opinion sobre este usuario.</b></label>";
   ?>
 
   <p class="clasificacion">
@@ -456,9 +473,10 @@ if($prod == "opinar"){
 
  
   
- <input id="textcoment" type="text" name="comentario" id="" placeholder="Añade un comentario."><br>
- <input type="submit" class="buttons" name="enviaropinion" id="enviaropinion" value="Enviar opinion">
+ <input type="text" name="comentario" id="textcoment" placeholder="Añade un comentario."><br><br>
+ <input type="submit" class="buttons" name="enviaropinion" value="Enviar opinion">
 
+</div>
 <?php
 }
   ?>
