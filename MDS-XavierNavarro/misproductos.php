@@ -9,7 +9,7 @@
 <style>
 .flex-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .flex-container > div {
@@ -19,6 +19,9 @@
   text-align: center;
   line-height: 40px;
   font-size: 20px;
+  display: inline-block;
+  position: relative;
+
 }
 
 #misprod{
@@ -30,6 +33,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 }
 
 #producto{
+    display:inline-flexbox;
     padding: 15px;
     margin: 20;
     text-align: center;
@@ -37,9 +41,20 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     font-size: 20;
     background-color: white;
     border-radius: 10%;
-    width: 20%;
-    height: 100%;
+    width: 300;
+    height: auto;
+    margin-left: 25;
 }
+
+#borrarproducto{
+    width: 50;
+    height: 50;
+    color: transparent;
+    background-color: red;
+    background-image: url(assets/css/img/eliminar.png);
+}
+
+
 
 </style>
 <form action="misproductos.php">
@@ -68,21 +83,21 @@ $mysql = new mysqli ("localhost","root","","electroland");
         die("Conexio fallida");
     }
 
-    $consulta= "SELECT nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE usuario = '$n_usuario'";
+    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE usuario = '$n_usuario'";
     $resultatstaula= $mysql->query($consulta);
 
     while($fila = $resultatstaula->fetch_array()){
 
         echo "<div id='producto'>";
 
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='250' width='250'> . <br>";
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='150' width='150'> . <br>";
         echo "<b>Nombre:</b> " . $fila["nombre"] . "<br>";
         echo "<b>Descripcion:</b><br> " . $fila["descripcion"] . "<br>";
         echo "<b>Precio:</b> " . $fila["precio"] . "€<br>";
         echo "<b>Categoria:</b> " . $fila["categoria"] . "<br>";
         echo "<b>Estado:</b> " . $fila["estado"] . "<br>";
         echo "<b>Fecha publicacion:</b> " . $fila["data_publicacion"]."<br>";
-      
+        echo "<input type='submit' id='borrarproducto' value='".  $fila["id"] ."'>";
         echo "</div>";
     }
    
