@@ -10,7 +10,9 @@
 <form action="usuario.php">
 <style>
 
-
+#botons{
+  padding-left: 40;
+}
 
 input[type="radio"] {
   display: none;
@@ -42,7 +44,11 @@ input[type="radio"]:checked ~ #stars {
   font-size: 20;
 }
 
-
+#starsvaloracio{
+  color: orange;
+  position: absolute;
+  left: 5%;
+}
 
 #estrelles{
   color: orange;
@@ -121,6 +127,7 @@ input[type="radio"]:checked ~ #stars {
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   padding-left:40;
 
+
 }
 
 #fotoperf{
@@ -136,7 +143,7 @@ input[type="radio"]:checked ~ #stars {
 
 #enviarmensaje{
   position: absolute;
-  right: 4%;
+  right: 5%;
 }
 
 .buttons{
@@ -311,10 +318,47 @@ $usuario_activo = $_SESSION["nombre_usuario"];
     echo"<br>";
     echo "<label id='textonombreusuario' for=''><b>". $n_usuario."</b></label>";
 
+
+    $consulta1= "SELECT AVG(estrellas) FROM valoracion WHERE usuario_recibe = '$usuario'";
+    $resultatstaula= $mysql->query($consulta1);
+
+    
+      while($fila = $resultatstaula->fetch_array()){
+        $n_estrellas = $fila["AVG(estrellas)"];
+       
+        $n_stars=(int)$n_estrellas;
+        
+        if($n_stars==1){
+          echo "<label id='starsvaloracio' for=''>★</label>";
+        }
+        else if($n_stars==2){
+          echo "<label id='starsvaloracio' for=''>★★</label>";
+        }
+        else if($n_stars==3){
+          echo "<label id='starsvaloracio' for=''>★★★</label>";
+        }
+        else if($n_stars==4){
+          echo "<label id='starsvaloracio' for=''>★★★★</label>";
+        }
+        else if($n_stars==5){
+          echo "<label id='starsvaloracio' for=''>★★★★★</label>";
+        }
+
+      }
+
+
+
+
+
+
     ?>
   
+  </div>
   <br>
 
+
+   <div id='botons'>
+     <br>
     <input type="submit" name="productos" value="Productos" class="buttons">
     <input type="submit" name="vendidos" value="Vendidos" class="buttons">
     <input type="submit" name="opiniones" value="Opiniones" class="buttons">
@@ -326,7 +370,7 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
     ?>
 
-    <br><br>
+    <br><br><br>
 
   </div>
   

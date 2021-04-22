@@ -149,6 +149,8 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
 <br>
 <h id="textcorreo">contactoelectroland@gmail.com</h>
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
 
 </footer>
 

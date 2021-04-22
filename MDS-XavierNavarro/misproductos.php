@@ -50,8 +50,31 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     width: 50;
     height: 50;
     color: transparent;
-    background-color: red;
-    background-image: url(assets/css/img/eliminar.png);
+    background-image: url(assets/img/borrar.png);
+    background-color: transparent;
+    margin-right: 10;
+    border: none;
+}
+
+
+#venderproducto{
+    width: 50;
+    height: 50;
+    color: transparent;
+    background-color: transparent;
+    background-image: url(assets/img/vender.png);
+    border: none;
+    margin-right: 10;
+}
+
+
+#editarproducto{
+    width: 50;
+    height: 50;
+    color: transparent;
+    background-image: url(assets/img/editar.png);
+    background-color: transparent;
+    border: none;
 }
 
 
@@ -68,9 +91,48 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
    session_start();
    $n_usuario = $_SESSION["nombre_usuario"];
 
-   if (isset($_REQUEST["atras"])){
+    if (isset($_REQUEST["atras"])){  //BOTO TIRAR ATRAS
        header('Location: index.php'); 
-   }
+    }
+
+    if (isset($_REQUEST["venderproducto"])){    //BOTON PARA VENDER PRODUCTO
+      echo '<BODY onLoad="Vender()">';
+    }
+
+    if (isset($_REQUEST["borrarproducto"])){    //BOTON PARA BORRAR PRODUCTO
+        $id_prod = $_REQUEST["borrarproducto"];
+        
+        $mysql = new mysqli ("localhost","root","","electroland");
+  
+        if($mysql->connect_error){
+          die("Conexio fallida");
+        }
+  
+        $sql= "DELETE FROM productos WHERE id=" . $id_prod;
+        
+        $mysql->query($sql) or die ($mysql->error);
+    }
+
+    if (isset($_REQUEST["editarproducto"])){    //BOTON PARA EDITAR PRODUCTO
+
+      
+
+      
+          $id_prod = $_REQUEST["venderproducto"];
+     
+          $mysql = new mysqli ("localhost","root","","electroland");
+    
+          if($mysql->connect_error){
+            die("Conexio fallida");
+          }
+    
+          $sql= "UPDATE productos SET Vendido=1 WHERE id=" . $id_prod;
+          
+          $mysql->query($sql) or die ($mysql->error);
+
+      }
+
+
 ?>
 
 <div class="flex-container">
@@ -83,7 +145,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         die("Conexio fallida");
     }
 
-    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE usuario = '$n_usuario'";
+    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE usuario = '$n_usuario' && Vendido=0";
     $resultatstaula= $mysql->query($consulta);
 
     while($fila = $resultatstaula->fetch_array()){
@@ -97,7 +159,9 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "<b>Categoria:</b> " . $fila["categoria"] . "<br>";
         echo "<b>Estado:</b> " . $fila["estado"] . "<br>";
         echo "<b>Fecha publicacion:</b> " . $fila["data_publicacion"]."<br>";
-        echo "<input type='submit' id='borrarproducto' value='".  $fila["id"] ."'>";
+        echo "<input type='submit' id='borrarproducto' name='borrarproducto' value='".  $fila["id"] ."'>";
+        echo "<input type='submit' id='venderproducto' name='venderproducto' value='".  $fila["id"] ."'>";
+        echo "<input type='submit' id='editarproducto' name='editarproducto' value='".  $fila["id"] ."'>";
         echo "</div>";
     }
    
@@ -109,7 +173,18 @@ $mysql = new mysqli ("localhost","root","","electroland");
 </div>
    
 
+<script>
+function Vender() {
+     if (confirm('Estas seguro que quieres vender este producto?')){
 
+      header("Location: misproductos.php");
+          
+        
+      } 
+
+    
+}
+</script>
 
 
 </form>

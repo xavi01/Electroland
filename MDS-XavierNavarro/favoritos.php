@@ -42,6 +42,13 @@
 
 }
 
+#misfavs{
+position: absolute;
+left: 8%;
+top: 2%;
+font-size: 30px;
+font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
 
 
@@ -69,6 +76,7 @@
 
     <header>
        <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
+       <h1 id="misfavs">MIS FAVORITOS</h1>
     </header>
 
 

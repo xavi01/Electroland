@@ -14,6 +14,7 @@
 #prod{
     display:inline-flexbox;
     width: 10%;
+    height: auto;
     margin: 25;
     padding: 10;
     background-color: white;
@@ -51,6 +52,21 @@
 }
 
 
+
+#cat{
+    width: 250;
+    top: 30;
+    left: 200;
+    border-radius: 50%;
+}
+
+#cat-values{
+  font-size: 20;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: black;
+  color: white;
+}
+
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
   .flex-container {
@@ -69,6 +85,7 @@ if(isset($_SESSION["user"])){
 }else{
     echo '<BODY onLoad="mostrarBoton2()">';  //INICIAR SESION
 }
+$categoria="";
 
 ?>
 
@@ -78,24 +95,23 @@ if(isset($_SESSION["user"])){
 <button id="atras" name="recargar"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
 
 
-<nav id="cat" >
-<ul>
-    <li><a href="#">Categorias</a>
-        <ul>
-        <li><a href="">Moviles</a></li>
-        <li><a href="">Videojuegos</a></li>
-        <li><a href="">Ordenadores</a></li>
-        <li><a href="">Hogar</a></li>
-        </ul>
-    </li>
-</ul>
-</nav>
+<div id="cat" style="width:500px;">
+  <select Id="cat-values" name="categorias">
+    <option value="0">CATEGORIAS:</option>
+    <option value="Ordenadores">Ordenadors</option>
+    <option value="Moviles">Moviles</option>
+    <option value="Hogar">Hogar</option>
+
+  </select>
+</div>
+
 
 <input type="submit" name="zona" value="Mi zona" id="zona">
 <input type="submit" name="iniciar" value="Inicia sesión o Registrate" id="iniciar">
 <input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">
 
-<input type="text" name="buscador" id="buscador" placeholder="Que quieres buscar" >
+
+<input type="text" name="buscador" id="buscador" placeholder="Que quieres buscar?">
 
 <input type="submit" name="b2" value="" id="b2" >
 
@@ -135,7 +151,6 @@ if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
 </header>
 
 
-
 <div class="flex-container">
 
 <?php
@@ -148,12 +163,24 @@ $mysql = new mysqli ("localhost","root","","electroland");
 
     if(isset($_REQUEST["b2"])){
     $nom_prod=$_REQUEST["buscador"];
-    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0  OR descripcion LIKE '%$nom_prod%' && Vendido=0 ";
+
+    $cat = $_REQUEST["categorias"];
+  
+
+      if($cat!="0" && $nom_prod!=""){
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 && Categoria='$cat' OR descripcion LIKE '%$nom_prod%' && Vendido=0  && Categoria='$cat' ";
+      }else if($cat=="0" && $nom_prod!=""){
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 OR descripcion LIKE '%$nom_prod%' && Vendido=0 ";
+      }else if($cat!="0" && $nom_prod==""){
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Categoria='$cat' && Vendido=0 ";
+      }
+    
+
+
     }else{
     $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
     }
     $resultatstaula= $mysql->query($consulta);
-
     
 
     while($fila = $resultatstaula->fetch_array()){
@@ -165,7 +192,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
      
         echo "</div>";
     }
-   
+    
     $mysql->close();
 
 ?>
@@ -175,11 +202,13 @@ $mysql = new mysqli ("localhost","root","","electroland");
 
 <footer id="f1">
 
+
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
 <a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
 <br>
 Correo: contactoelectroland@gmail.com
-
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
 
 </form>
