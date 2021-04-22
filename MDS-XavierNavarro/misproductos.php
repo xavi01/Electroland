@@ -96,6 +96,19 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     }
 
     if (isset($_REQUEST["venderproducto"])){    //BOTON PARA VENDER PRODUCTO
+
+      $id_prod = $_REQUEST["venderproducto"];
+     
+      $mysql = new mysqli ("localhost","root","","electroland");
+
+      if($mysql->connect_error){
+        die("Conexio fallida");
+      }
+
+      $sql= "UPDATE productos SET Vendido=1 WHERE id=" . $id_prod;
+      
+      $mysql->query($sql) or die ($mysql->error);
+
       echo '<BODY onLoad="Vender()">';
     }
 
@@ -111,26 +124,71 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
         $sql= "DELETE FROM productos WHERE id=" . $id_prod;
         
         $mysql->query($sql) or die ($mysql->error);
+
+        echo '<BODY onLoad="Eliminar()">';
     }
 
     if (isset($_REQUEST["editarproducto"])){    //BOTON PARA EDITAR PRODUCTO
-
+      $_SESSION["producto_editar"]= $_REQUEST["editarproducto"];
       
-
-      
-          $id_prod = $_REQUEST["venderproducto"];
-     
-          $mysql = new mysqli ("localhost","root","","electroland");
-    
-          if($mysql->connect_error){
-            die("Conexio fallida");
-          }
-    
-          $sql= "UPDATE productos SET Vendido=1 WHERE id=" . $id_prod;
-          
-          $mysql->query($sql) or die ($mysql->error);
-
+      $mysql = new mysqli ("localhost","root","","electroland");
+  
+      if($mysql->connect_error){
+        die("Conexio fallida");
       }
+
+      $sql= "SELECT * FROM productos WHERE id=" . $_SESSION["producto_editar"];
+      
+      $resultatstaula= $mysql->query($sql);
+
+      while($fila = $resultatstaula->fetch_array()){
+
+        echo "<div id='producto'>";
+        echo "<b>PRODUCTO A EDITAR</b><br><br>";
+        echo "<b>IMAGEN: </b>";
+        echo"<input type='file'  name='fotoproducto'/>";
+        echo "<b>Nombre:</b> <input type='text' name='nombre' value='" . $fila["nombre"] ."' id=''><br>";
+        echo "<b>Descripcion:</b><br>  <input type='text' name='descripcion' value='" . $fila["descripcion"] ."' id=''><br>";
+        echo "<b>Precio:</b>  <input type='text' name='precio' value='" . $fila["precio"] ."' id=''><br>";
+        echo "<b>Categorias:</b><br>";
+        ?>
+        <select  name="categorias">
+        <option value="Informática">Informática</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Accesorios de informática">Accesorios de informática</option>
+        <option value="Telefonía">Telefonía</option>
+        <option value="Televisión">Televisión</option>
+        <option value="Audio y Hifi">Audio y Hifi</option>
+        <option value="Smart Home">Smart Home</option>
+        <option value="Consolas y Videojuegos">Consolas y Videojuegos</option>
+        <option value="Electrodomésticos">Electrodomésticos</option>
+        <option value="Belleza y Salud">Belleza y Salud</option>
+        <option value="Climatización y Calefacción">Climatización y Calefacción</option>
+        <option value="Deporte">Deporte</option>
+        <option value="Fotografía">Fotografía</option>
+        <option value="Cine, musica y libros">Cine, musica y libros</option>
+        </select><br>
+        <?php
+        echo "<b>Estado:</b><br>";
+        ?>
+        <select name="estado" >
+        <option value="Nuevo">Nuevo</option> 
+        <option value="Como nuevo">Como nuevo</option> 
+        <option value="Bueno">Bueno</option>
+        <option value="Aceptable">Aceptable</option> 
+        <option value="Dañado">Dañado</option> 
+        </select><br><br>
+        <input type="submit" name="buttoneditarproducto" class='botons' value="ACTUALIZAR">
+
+       <?php
+
+
+        echo "</div>";
+    }
+   
+
+
+    }
 
 
 ?>
@@ -171,19 +229,47 @@ $mysql = new mysqli ("localhost","root","","electroland");
 ?>
 
 </div>
+
+<?php
+
+if(isset($_REQUEST["buttoneditarproducto"])){
+  $nombre=$_REQUEST["nombre"];
+  $descripcion=$_REQUEST["descripcion"];
+  $precio=$_REQUEST["precio"];
+  $categoria=$_REQUEST["categorias"];
+  $estado=$_REQUEST["estado"];
+
+  $mysql = new mysqli ("localhost","root","","electroland");
+
+  if($mysql->connect_error){
+    die("Conexio fallida");
+  }
+
+  $sql= "UPDATE productos SET nombre='" . $nombre . "', descripcion='" . $descripcion . "',  precio=" . $precio . ", categoria='" . $categoria . "',  estado='" . $estado . "'  WHERE id=" . $_SESSION["producto_editar"];
+  $mysql->query($sql) or die ($mysql->error);
+  
+  echo '<BODY onLoad="Editar()">';
+  
+}
+
+
+?>
    
 
 <script>
 function Vender() {
-     if (confirm('Estas seguro que quieres vender este producto?')){
-
-      header("Location: misproductos.php");
-          
-        
-      } 
-
-    
+  alert("El producto se ha marcado como vendido.");   
 }
+
+function Eliminar() {
+  alert("El producto se ha eliminado correctamente.");   
+}
+
+function Editar() {
+  alert("El producto se ha actualizado correctamente.");   
+}
+
+
 </script>
 
 

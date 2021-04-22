@@ -57,7 +57,7 @@
     width: 250;
     top: 30;
     left: 150;
-    border-radius: 50%;
+  
 }
 
 #cat-values{
@@ -65,6 +65,7 @@
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: black;
   color: white;
+  border-radius: 10px;
 }
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
