@@ -34,10 +34,20 @@
 <input type="number" name="precio" id="" class="borderodo" width="10"><br><br>
 <b>Categoria:</b> <br>
 <select name="categorias" class="borderodo">
-   <option value="Moviles">Moviles</option> 
-   <option value="Videojuegos">Videojuegos</option> 
-   <option value="Ordenadores">Ordenadores</option>
-   <option value="Hogar">Hogar</option> 
+    <option value="Informática">Informática</option>
+    <option value="Gaming">Gaming</option>
+    <option value="Accesorios de informática">Accesorios de informática</option>
+    <option value="Telefonía">Telefonía</option>
+    <option value="Televisión">Televisión</option>
+    <option value="Audio y Hifi">Audio y Hifi</option>
+    <option value="Smart Home">Smart Home</option>
+    <option value="Consolas y Videojuegos">Consolas y Videojuegos</option>
+    <option value="Electrodomésticos">Electrodomésticos</option>
+    <option value="Belleza y Salud">Belleza y Salud</option>
+    <option value="Climatización y Calefacción">Climatización y Calefacción</option>
+    <option value="Deporte">Deporte</option>
+    <option value="Fotografía">Fotografía</option>
+    <option value="Cine, musica y libros">Cine, musica y libros</option>
 
 </select> <br><br>
 <b>Estado:</b> <br>

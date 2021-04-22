@@ -56,7 +56,7 @@
 #cat{
     width: 250;
     top: 30;
-    left: 200;
+    left: 150;
     border-radius: 50%;
 }
 
@@ -98,10 +98,20 @@ $categoria="";
 <div id="cat" style="width:500px;">
   <select Id="cat-values" name="categorias">
     <option value="0">CATEGORIAS:</option>
-    <option value="Ordenadores">Ordenadors</option>
-    <option value="Moviles">Moviles</option>
-    <option value="Hogar">Hogar</option>
-
+    <option value="Informática">Informática</option>
+    <option value="Gaming">Gaming</option>
+    <option value="Accesorios de informática">Accesorios de informática</option>
+    <option value="Telefonía">Telefonía</option>
+    <option value="Televisión">Televisión</option>
+    <option value="Audio y Hifi">Audio y Hifi</option>
+    <option value="Smart Home">Smart Home</option>
+    <option value="Consolas y Videojuegos">Consolas y Videojuegos</option>
+    <option value="Electrodomésticos">Electrodomésticos</option>
+    <option value="Belleza y Salud">Belleza y Salud</option>
+    <option value="Climatización y Calefacción">Climatización y Calefacción</option>
+    <option value="Deporte">Deporte</option>
+    <option value="Fotografía">Fotografía</option>
+    <option value="Cine, musica y libros">Cine, musica y libros</option>
   </select>
 </div>
 
@@ -163,9 +173,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
 
     if(isset($_REQUEST["b2"])){
     $nom_prod=$_REQUEST["buscador"];
-
     $cat = $_REQUEST["categorias"];
-  
 
       if($cat!="0" && $nom_prod!=""){
         $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 && Categoria='$cat' OR descripcion LIKE '%$nom_prod%' && Vendido=0  && Categoria='$cat' ";
@@ -173,12 +181,12 @@ $mysql = new mysqli ("localhost","root","","electroland");
         $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 OR descripcion LIKE '%$nom_prod%' && Vendido=0 ";
       }else if($cat!="0" && $nom_prod==""){
         $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Categoria='$cat' && Vendido=0 ";
+      }else{
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
       }
-    
-
-
+  
     }else{
-    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
+      $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
     }
     $resultatstaula= $mysql->query($consulta);
     

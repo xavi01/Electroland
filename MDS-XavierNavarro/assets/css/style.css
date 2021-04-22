@@ -3,7 +3,9 @@ header{
     height: 100;
     background-color: white;
     left: 0%;
-    top: 0%;
+    top:0;
+    border: 10px black;
+    
 }
 
 #zona{    /*mi zona*/
@@ -78,7 +80,7 @@ header{
 #buscador{
     position: absolute;
     top: 30;
-    left: 405;
+    left: 450;
     width: 700;
     height: 35;
     padding: 3;
@@ -90,7 +92,7 @@ header{
 #b2{  /*lupa*/
     position: absolute;
     top: 30;
-    left: 1115;
+    left: 1170;
     height: 37px;
     width: 37px;  
     background-image: url(../img/lupaa.png);
