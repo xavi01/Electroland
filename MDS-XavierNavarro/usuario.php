@@ -202,13 +202,23 @@ $usuario_activo = $_SESSION["nombre_usuario"];
 
 }
 
+if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
+  header('Location: mizona.php');
+} 
+
+
+if (isset($_REQUEST["subirproducto"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
+
+  header('Location: subirproducto.php');
+}
 
 ?>
 
 
   <header>
     <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
-    
+        <input type="submit" name="zona" value="Mi zona" id="zona">
+        <input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">
   </header>
 
     
@@ -247,6 +257,7 @@ $usuario_activo = $_SESSION["nombre_usuario"];
     if (isset($_REQUEST["opinar"])){   //BOTO PARA MOSTRAR opinar
       $prod="opinar";
     } 
+
 
     if (isset($_REQUEST["perfilenvia"])){   //BOTO PARA MOSTRAR perfil de opinion
       $_SESSION["usuario_elegido"] = $_REQUEST["perfilenvia"];   

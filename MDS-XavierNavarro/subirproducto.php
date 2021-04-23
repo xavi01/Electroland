@@ -13,7 +13,7 @@
     <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/logosinfondo.png" alt="" width="180" height="180">-->
-   
+    <input type="submit" name="zona" value="Mi zona" id="zona">
 </header>
      
    <?php
@@ -23,6 +23,12 @@
    if (isset($_REQUEST["atras"])){
        header('Location: index.php'); 
    }
+
+       
+if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
+    header('Location: mizona.php');
+} 
+
    ?>
    
 
@@ -68,7 +74,6 @@
 
 <?php
     
-
 if (isset($_REQUEST["botonsubirprod"])){
     
     $mysql = new mysqli ("localhost","root","","electroland");

@@ -10,6 +10,10 @@
 
 <style>
 
+#textoenviar{
+
+}
+
 
 #divmensajes{
     text-align: center;
@@ -37,7 +41,10 @@
 
 #chat{
     height:500;
-    overflow:scroll
+    overflow:scroll;
+    background-image: url(assets/img/fondochat.jpg);
+    background-size: cover;
+    padding-top: 10;
 }
 
 
@@ -65,7 +72,27 @@
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+#buttonmisprod{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 8%;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
 
+#buttonfav{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 17%;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
 
 
 
@@ -90,6 +117,21 @@
             header('Location: usuario.php');
         }
 
+        if (isset($_REQUEST["favoritos"])){
+
+            header('Location: favoritos.php');
+        }
+
+        if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
+            header('Location: mizona.php');
+        }
+        
+        
+    if (isset($_REQUEST["misproductos"])){
+        header('Location: misproductos.php');
+      }
+          
+      
 
 
         if(isset($_REQUEST["enviar"])){ //BOTON PARA ENVIAR MENSAJE
@@ -116,6 +158,10 @@
 
     <header>
     <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button> 
+
+    <input type="submit" name="misproductos" value="Mis productos" id="buttonmisprod">
+    <input type="submit" name="favoritos" value="Favoritos" id="buttonfav">
+    <input type="submit" name="zona" value="Mi zona" id="zona">
     </header>
 
 
@@ -198,8 +244,8 @@
             echo "</div>";
             $mysql->close();
             
-            echo"<br><br><input type='text' name='textoenviar' id=''>";
-            echo "<input type='submit' name='enviar' value='ENVIAR' id=''>";
+            echo"<br><br><input type='text' name='textoenviar' id='textoenviar'>";
+            echo "<input type='submit' name='enviar' value='ENVIAR' class='botons'>";
         }
 
        ?>   

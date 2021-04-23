@@ -1,22 +1,17 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-
-<select name="transporte">
-
-<option>Coche</option>
-
-<option>Avión</option>
-
-<option>Tren</option>
-
-</select>
-
-</body>
-</html>
+<?php
+$mail = "Prueba de mensaje";
+//Titulo
+$titulo = "PRUEBA DE TITULO";
+//cabecera
+$headers = "MIME-Version: 1.0\r\n"; 
+$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+//dirección del remitente 
+$headers .= "From: Geeky Theory < tu_dirección_email >\r\n";
+//Enviamos el mensaje a tu_dirección_email 
+$bool = mail("contactoelectroland@gmail.com",$titulo,$mail,$headers);
+if($bool){
+    echo "Mensaje enviado";
+}else{
+    echo "Mensaje no enviado";
+}
+?>

@@ -268,10 +268,12 @@ nav li:hover>ul{
     background-color: #000;
     color: white;
     padding: 10;
+    
     margin: 0;
     width: 98.97%;
     position: absolute;
-    top: 950;
+    top: 120%;
+    
     left: 0;
 }
 

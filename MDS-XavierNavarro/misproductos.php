@@ -77,6 +77,27 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     border: none;
 }
 
+#buttonfavs{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 8%;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
+
+#buttonmensajes{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 14%;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
 
 
 </style>
@@ -85,6 +106,9 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 <header>
 <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button> 
 <h1 id="misprod">MIS PRODUCTOS</h1>
+<input type="submit" name="mensajes" value="Mensajes" id="buttonmensajes">
+<input type="submit" name="favoritos" value="Favoritos" id="buttonfavs">
+<input type="submit" name="zona" value="Mi zona" id="zona">
 </header>
 
 <?php
@@ -94,6 +118,21 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     if (isset($_REQUEST["atras"])){  //BOTO TIRAR ATRAS
        header('Location: index.php'); 
     }
+
+    if (isset($_REQUEST["favoritos"])){
+
+      header('Location: favoritos.php');
+    }
+    
+    if (isset($_REQUEST["mensajes"])){
+    
+      header('Location: chat.php');
+    }
+
+    
+if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
+  header('Location: mizona.php');
+} 
 
     if (isset($_REQUEST["venderproducto"])){    //BOTON PARA VENDER PRODUCTO
 
@@ -250,6 +289,7 @@ if(isset($_REQUEST["buttoneditarproducto"])){
   
   echo '<BODY onLoad="Editar()">';
   
+  echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=misproductos.php'>";
 }
 
 

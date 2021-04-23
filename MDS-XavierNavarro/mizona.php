@@ -48,7 +48,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         die("Conexio fallida");
     }
 
-    $consulta= "SELECT nombre, apellidos, data_n, direccion, n_usuario, email, contraseña, fotoperfil FROM usuarios WHERE email = '$useractivo'";
+    $consulta= "SELECT nombre, apellidos, data_n, direccion, n_usuario, email, contraseña, fotoperfil, provincia FROM usuarios WHERE email = '$useractivo'";
     $resultatstaula= $mysql->query($consulta);
 
     while($valores = $resultatstaula->fetch_array()){
@@ -56,6 +56,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         $apellidos = $valores["apellidos"];
         $data_n = $valores["data_n"];
         $direccion = $valores["direccion"];
+        $provincia = $valores["provincia"];
         $n_usuario = $valores["n_usuario"];
         $email = $valores["email"];
         $contraseña = $valores["contraseña"];
@@ -98,6 +99,61 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <input type="text" name="apellidos"value="<?php echo $apellidos; ?>"  id="" class="bordeRodo"><br><br>
 <b>Direccion:</b> <br>
 <input type="text" name="direccion" value="<?php echo $direccion; ?>" id="" class="bordeRodo"><br><br>
+<b>Provincia:</b> <br>
+<select  name="provincia" class="bordeRodo">
+    <option value="Álava/Araba">Álava/Araba</option>
+    <option value="Albacete">Albacete</option>
+    <option value="Alicante">Alicante</option>
+    <option value="Almería">Almería</option>
+    <option value="Asturias">Asturias</option>
+    <option value="Ávila">Ávila</option>
+    <option value="Badajoz">Badajoz</option>
+    <option value="Baleares">Baleares</option>
+    <option value="Barcelona">Barcelona</option>
+    <option value="Burgos">Burgos</option>
+    <option value="Cáceres">Cáceres</option>
+    <option value="Cádiz">Cádiz</option>
+    <option value="Cantabria">Cantabria</option>
+    <option value="Castellón">Castellón</option>
+    <option value="Ceuta">Ceuta</option>
+    <option value="Ciudad Real">Ciudad Real</option>
+    <option value="Córdoba">Córdoba</option>
+    <option value="Cuenca">Cuenca</option>
+    <option value="Gerona/Girona">Gerona/Girona</option>
+    <option value="Granada">Granada</option>
+    <option value="Guadalajara">Guadalajara</option>
+    <option value="Guipúzcoa/Gipuzkoa">Guipúzcoa/Gipuzkoa</option>
+    <option value="Huelva">Huelva</option>
+    <option value="Huesca">Huesca</option>
+    <option value="Jaén">Jaén</option>
+    <option value="La Coruña/A Coruña">La Coruña/A Coruña</option>
+    <option value="La Rioja">La Rioja</option>
+    <option value="Las Palmas">Las Palmas</option>
+    <option value="León">León</option>
+    <option value="Lérida/Lleida">Lérida/Lleida</option>
+    <option value="Lugo">Lugo</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Málaga">Málaga</option>
+    <option value="Melilla">Melilla</option>
+    <option value="Murcia">Murcia</option>
+    <option value="Navarra">Navarra</option>
+    <option value="Orense/Ourense">Orense/Ourense</option>
+    <option value="Palencia">Palencia</option>
+    <option value="Pontevedra">Pontevedra</option>
+    <option value="Salamanca">Salamanca</option>
+    <option value="Segovia">Segovia</option>
+    <option value="Sevilla">Sevilla</option>
+    <option value="Soria">Soria</option>
+    <option value="Tarragona">Tarragona</option>
+    <option value="Tenerife">Tenerife</option>
+    <option value="Teruel">Teruel</option>
+    <option value="Toledo">Toledo</option>
+    <option value="Valencia">Valencia</option>
+    <option value="Valladolid">Valladolid</option>
+    <option value="Vizcaya/Bizkaia">Vizcaya/Bizkaia</option>
+    <option value="Zamora">Zamora</option>
+    <option value="Zaragoza">Zaragoza</option>
+  </select><br><br>
 <b>Data de nacimiento:</b> <br> 
 <input type="date" name="data"  value="<?php echo $data_n; ?>" class="bordeRodo"><br><br>
 </div>
@@ -134,7 +190,9 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 </div>
 
 <div class="editar" id ="edit4" style="display:inline-block">
-<b>Data de nacimiento:</b> <br>
+<b>Provincia:</b> <br>
+<?php echo $provincia; ?> <br><br>
+<b>Fecha de nacimiento:</b> <br>
 <?php echo $data_n; ?> <br><br>
 <b>Usuario:</b> <br>
 <?php echo $n_usuario; ?> <br><br>
@@ -168,6 +226,7 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
     $apellidos = $_REQUEST["apellidos"];
     $direccion = $_REQUEST["direccion"];
     $data = $_REQUEST["data"];
+    $provincia = $_REQUEST["provincia"];
     $contraseña = $_REQUEST["contraseña"];
 
     $hashcontraseñanova=password_hash($contraseña, PASSWORD_DEFAULT);
@@ -186,12 +245,12 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
         die("Conexio fallida");
     }
 
-    $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', contraseña='$hashcontraseñanova', fotoperfil = '$imgContent' WHERE email = '$useractivo'";
+    $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', contraseña='$hashcontraseñanova', fotoperfil = '$imgContent' , provincia = '$provincia' WHERE email = '$useractivo'";
 
     if ($mysql->query($consulta) === TRUE) {
-     
+      
     } else {
-      echo "Error updating record: " . $mysql->error;
+      
     }
  
 
@@ -222,6 +281,11 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
     contenedor3.style.display = "none";		
     contenedor4.style.display = "none";	
   } 
+
+
+
+
+
 
 </script>
 

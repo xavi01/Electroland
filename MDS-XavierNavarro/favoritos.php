@@ -50,6 +50,27 @@ font-size: 30px;
 font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+#buttonmisprod{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 8%;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
+
+#buttonmensajes{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 17%;
+    top: 30;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+    border-radius: 10px;
+}
 
 
 
@@ -64,6 +85,23 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
       header('Location: index.php');
     } 
 
+
+    if (isset($_REQUEST["misproductos"])){
+      header('Location: misproductos.php');
+    }
+    
+    if (isset($_REQUEST["mensajes"])){
+    
+      header('Location: chat.php');
+    }
+
+    
+if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
+  header('Location: mizona.php');
+} 
+
+
+
     if (isset($_REQUEST["producto1"])){   //BOTO PARA ABRIR PRODUCTO
       $productoelegido = $_REQUEST["producto1"];
       echo $productoelegido;
@@ -77,6 +115,9 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     <header>
        <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
        <h1 id="misfavs">MIS FAVORITOS</h1>
+       <input type="submit" name="misproductos" value="Mis productos" id="buttonmisprod">
+       <input type="submit" name="mensajes" value="Mensajes" id="buttonmensajes">
+       <input type="submit" name="zona" value="Mi zona" id="zona">
     </header>
 
 
