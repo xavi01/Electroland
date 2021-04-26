@@ -212,13 +212,38 @@ if (isset($_REQUEST["subirproducto"])){   //BOTO PARA INICIAR SESION O REGISTRAR
   header('Location: subirproducto.php');
 }
 
+
+if (isset($_REQUEST["zonarepartidores"])){   //BOTO PARA IR A ZONA REPARTIDORES
+  header('Location: zonarepartidores.php');
+} 
+
+if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
+
+    header('Location: iniciar_sesion_reg.php');
+} 
+
+
 ?>
 
 
-  <header>
+<header>
     <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
-        <input type="submit" name="zona" value="Mi zona" id="zona">
-        <input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">
+    <?php
+    if(isset($_SESSION["user"])){
+    ?>
+    <input type="submit" name="zona" value="Mi zona" id="zona">
+    <input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">   
+    <?php
+       }else if(isset($_SESSION["repartidor"])){
+    ?>
+        <input type="submit" name="zonarepartidores" value="Zona repartidores" id="zonarepartidores">
+    <?php
+        }else{
+    ?>
+      <input type="submit" name="iniciar" value="Inicia sesión o Registrate" id="iniciar">
+    <?php
+        }
+    ?>
   </header>
 
     

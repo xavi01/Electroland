@@ -10,8 +10,21 @@
 
 <style>
 
-#textoenviar{
+footer{
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10;
+    margin-top: 15;
+    width: 100%;
+    
+    
+}
 
+#textoenviar{
+    font-size: 18px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-right: 15;
 }
 
 
@@ -24,7 +37,9 @@
     padding: 10;
     background-color: white; 
     height: 750;
-    overflow: scroll;   
+    overflow: scroll;  
+    background-image: url(assets/img/fondo.png);
+    background-size: cover; 
 }
 
 #divchat{
@@ -42,7 +57,7 @@
 #chat{
     height:500;
     overflow:scroll;
-    background-image: url(assets/img/fondochat.jpg);
+    background-image: url(assets/img/fondo.png);
     background-size: cover;
     padding-top: 10;
 }
@@ -252,6 +267,16 @@
     </div>
 
     
+<footer>
+
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
+</footer>
     
     
     

@@ -81,8 +81,12 @@
 <?php
 
 session_start();
+//$_SESSION["repartidor"]="hola";
+
 if(isset($_SESSION["user"])){
     echo '<BODY onLoad="mostrarBoton1()">'; //MI ZONA - SUBIR PRODUCTOS
+}else if(isset($_SESSION["repartidor"])){
+  echo '<BODY onLoad="mostrarBoton3()">'; // ZONA REPARTIDOR
 }else{
     echo '<BODY onLoad="mostrarBoton2()">';  //INICIAR SESION
 }
@@ -118,6 +122,7 @@ $categoria="";
 
 
 <input type="submit" name="zona" value="Mi zona" id="zona">
+<input type="submit" name="zonarepartidores" value="Zona repartidores" id="zonarepartidores">
 <input type="submit" name="iniciar" value="Inicia sesión o Registrate" id="iniciar">
 <input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">
 
@@ -134,6 +139,10 @@ if (isset($_REQUEST["recargar"])){   //BOTO RECARGAR
 
 if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     header('Location: mizona.php');
+} 
+
+if (isset($_REQUEST["zonarepartidores"])){   //BOTO PARA IR A ZONA REPARTIDORES
+  header('Location: zonarepartidores.php');
 } 
 
 if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
@@ -226,17 +235,27 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
         var zona = document.getElementById('zona');
         var iniciar = document.getElementById('iniciar');
         var subirproducto = document.getElementById('subirproducto');
+        var zonarepartidores = document.getElementById('zonarepartidores');
         
         function mostrarBoton2 () {
             zona.style.display = 'none';
             subirproducto.style.display = 'none';
             iniciar.style.display = 'inline';
+            zonarepartidores.style.display = 'none';
         }
 
         function mostrarBoton1 () {
             zona.style.display = 'inline';
             subirproducto.style.display = 'inline';
             iniciar.style.display = 'none';
+            zonarepartidores.style.display = 'none';
+        }
+
+        function mostrarBoton3 () {
+            zona.style.display = 'none';
+            subirproducto.style.display = 'none';
+            iniciar.style.display = 'none';
+            zonarepartidores.style.display = 'inline';
         }
 
 </script>
