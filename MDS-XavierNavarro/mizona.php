@@ -168,7 +168,7 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <b>Contraseña:</b> <br>
 <input type="password" name="contraseña"  value="<?php echo $_SESSION["contraseña"]; ?>"  class="bordeRodo"><br><br>
 <b>Foto de perfil:</b> <br>
-<input type="file"  name="imageperfil"/>
+<input type="file"  name="imageperfil"/><br><br>
 <input type="submit" name="guardar" value="Guardar" class="botons" id="guardar">
 </div>
 
