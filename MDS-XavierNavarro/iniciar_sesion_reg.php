@@ -446,9 +446,9 @@ if (isset($_REQUEST["iniciar2"])){   //INICIAR REPARTIDOR
 
     while($valores = $consulta->fetch_array()){
       $hashcontraseña = $valores["contraseña"];
-      echo $hashcontraseña . "<br>";
+
       $nombr_usuario = $valores["n_repartidor"];
-      echo $nombr_usuario;
+   
     }
 
   if (password_verify($contraseña2, $hashcontraseña)){

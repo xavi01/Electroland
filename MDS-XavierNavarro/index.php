@@ -97,6 +97,7 @@ $categoria="";
 
 <header>
 
+
 <button id="atras" name="recargar"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
 
 
@@ -130,6 +131,7 @@ $categoria="";
 <input type="text" name="buscador" id="buscador" placeholder="Que quieres buscar?">
 
 <input type="submit" name="b2" value="" id="b2" >
+
 
 <?php
 
@@ -169,6 +171,7 @@ if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
 ?>
 
 </header>
+
 
 
 <div class="flex-container">
