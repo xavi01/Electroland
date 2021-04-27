@@ -99,6 +99,10 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     border-radius: 10px;
 }
 
+#fotocomprador{
+  border-radius: 50px;
+}
+
 
 </style>
 <form action="misproductos.php">
@@ -114,6 +118,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 <?php
    session_start();
    $n_usuario = $_SESSION["nombre_usuario"];
+   
 
     if (isset($_REQUEST["atras"])){  //BOTO TIRAR ATRAS
        header('Location: index.php'); 
@@ -129,6 +134,28 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
       header('Location: chat.php');
     }
 
+    if (isset($_REQUEST["escogercomprador"])){
+
+      $comprador = $_REQUEST["escogercomprador"];
+      $prod_vender = $_SESSION["producto_vender"];
+    
+      $mysql = new mysqli ("localhost","root","","electroland");
+ 
+      if($mysql->connect_error){
+          die("Conexio fallida");
+      }else{
+       
+      }
+  
+      $sql = "INSERT INTO ventas (usuario_vende, usuario_compra, id_producto, completado)
+       VALUES ('$n_usuario','$comprador', '$prod_vender', 0)";
+      $mysql->query($sql) or die ($mysql->error);
+      $mysql->close();
+
+      echo '<BODY onLoad="Vender()">';
+    }
+
+
     
 if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
   header('Location: mizona.php');
@@ -136,19 +163,41 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
 
     if (isset($_REQUEST["venderproducto"])){    //BOTON PARA VENDER PRODUCTO
 
-      $id_prod = $_REQUEST["venderproducto"];
-     
+      $_SESSION["producto_vender"]= $_REQUEST["venderproducto"];
+      
+      
       $mysql = new mysqli ("localhost","root","","electroland");
-
+  
       if($mysql->connect_error){
         die("Conexio fallida");
       }
 
-      $sql= "UPDATE productos SET Vendido=1 WHERE id=" . $id_prod;
+      $sql= "SELECT m.usuario1, u.fotoperfil FROM mensajes m INNER JOIN usuarios u ON u.n_usuario=m.usuario1 WHERE usuario2='".$n_usuario."'";
       
-      $mysql->query($sql) or die ($mysql->error);
+      $resultatstaula= $mysql->query($sql);
 
-      echo '<BODY onLoad="Vender()">';
+      echo "<div id='producto'>";
+      echo "<b>SELECCIONA A QUE USUARIO QUIERES VENDER</b><br><br>";
+
+      while($fila = $resultatstaula->fetch_array()){
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["fotoperfil"]) . "' id='fotocomprador' height='50' width='50'>";
+        echo "<input type='submit' id='escogercomprador' name='escogercomprador' value='$fila[usuario1]'> <br><br>";
+ 
+      }
+
+      $sql1= "SELECT m.usuario2, u.fotoperfil FROM mensajes m INNER JOIN usuarios u ON u.n_usuario=m.usuario2 WHERE usuario1='".$n_usuario."'";
+      
+      $resultatstaula= $mysql->query($sql1);
+
+      while($fila = $resultatstaula->fetch_array()){
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["fotoperfil"]) . "' id='fotocomprador' height='50' width='50'>";
+        echo "<input type='submit' id='escogercomprador' name='escogercomprador' value='$fila[usuario2]'> <br><br>";
+ 
+      }
+
+
+      echo "</div>";
+      
     }
 
     if (isset($_REQUEST["borrarproducto"])){    //BOTON PARA BORRAR PRODUCTO
@@ -298,7 +347,7 @@ if(isset($_REQUEST["buttoneditarproducto"])){
 
 <script>
 function Vender() {
-  alert("El producto se ha marcado como vendido.");   
+  alert("En breve se pondra en contacto contigo un repartidor.");   
 }
 
 function Eliminar() {
