@@ -48,11 +48,12 @@ $mysql = new mysqli ("localhost","root","","electroland");
         die("Conexio fallida");
     }
 
-    $consulta= "SELECT nombre, apellidos, data_n, direccion, n_usuario, email, contraseña, fotoperfil, provincia FROM usuarios WHERE email = '$useractivo'";
+    $consulta= "SELECT nombre, apellidos, data_n, direccion, telefono, n_usuario, email, contraseña, fotoperfil, provincia FROM usuarios WHERE email = '$useractivo'";
     $resultatstaula= $mysql->query($consulta);
 
     while($valores = $resultatstaula->fetch_array()){
         $nombre = $valores["nombre"];
+        $telefono = $valores["telefono"];
         $apellidos = $valores["apellidos"];
         $data_n = $valores["data_n"];
         $direccion = $valores["direccion"];
@@ -161,6 +162,8 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 
 
 <div class="editar" id="edit2" style="display:none">
+<b>Telefono:</b> <br>
+<input type="text" name="telefono" value="<?php echo $telefono; ?>" id="" class="bordeRodo"><br><br>
 <b>Usuario:</b> <br>
 <?php echo $n_usuario; ?> <br><br>
 <b>Email:</b> <br>
@@ -190,6 +193,8 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 </div>
 
 <div class="editar" id ="edit4" style="display:inline-block">
+<b>Telefono:</b> <br>
+<?php echo $telefono; ?> <br><br>
 <b>Provincia:</b> <br>
 <?php echo $provincia; ?> <br><br>
 <b>Fecha de nacimiento:</b> <br>
@@ -225,6 +230,7 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
     $nombre = $_REQUEST["nombre"];
     $apellidos = $_REQUEST["apellidos"];
     $direccion = $_REQUEST["direccion"];
+    $telefono = $_REQUEST["telefono"];
     $data = $_REQUEST["data"];
     $provincia = $_REQUEST["provincia"];
     $contraseña = $_REQUEST["contraseña"];
@@ -245,7 +251,7 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
         die("Conexio fallida");
     }
 
-    $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', contraseña='$hashcontraseñanova', fotoperfil = '$imgContent' , provincia = '$provincia' WHERE email = '$useractivo'";
+    $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', telefono='$telefono', contraseña='$hashcontraseñanova', fotoperfil = '$imgContent' , provincia = '$provincia' WHERE email = '$useractivo'";
 
     if ($mysql->query($consulta) === TRUE) {
       

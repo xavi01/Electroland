@@ -235,6 +235,7 @@ Direccion: <br>
 Provincia: <br>
 <select  name="provincia" class="bordeRodo">
 
+
     <option value="Álava/Araba">Álava/Araba</option>
     <option value="Albacete">Albacete</option>
     <option value="Alicante">Alicante</option>
@@ -288,8 +289,11 @@ Provincia: <br>
     <option value="Zamora">Zamora</option>
     <option value="Zaragoza">Zaragoza</option>
   </select><br><br>
-Nombre usuario: <br>
+
+  Nombre usuario: <br>
 <input type="text" name="usuario" id="" class="bordeRodo"><br><br>
+Teléfono: <br>
+<input type="number" name="telefono" id="" class="bordeRodo"><br><br>
 Email: <br>
 <input type="email" name="email2" id="" class="bordeRodo"> <br><br>
 Contraseña: <br>
@@ -402,12 +406,14 @@ if (isset($_REQUEST["iniciar"])){   //INICIAR USUARIO
      
     }
 
-    $sql1 = "SELECT contraseña, n_usuario FROM usuarios WHERE email = '$email1'";
+    $sql1 = "SELECT contraseña, n_usuario, telefono, direccion FROM usuarios WHERE email = '$email1'";
     $consulta = mysqli_query($mysql, $sql1);
 
     while($valores = $consulta->fetch_array()){
       $hashcontraseña = $valores["contraseña"];
       $nombr_usuario = $valores["n_usuario"];
+      $telefono = $valores["telefono"];
+      $direccion= $valores["direccion"];
     }
 
     if (password_verify($contraseña1, $hashcontraseña)){
@@ -416,6 +422,9 @@ if (isset($_REQUEST["iniciar"])){   //INICIAR USUARIO
     $_SESSION["user"]=$email1;
     $_SESSION["nombre_usuario"]=$nombr_usuario;
     $_SESSION["contraseña"]=$contraseña1;
+    $_SESSION["telefono"]=$telefono;
+    $_SESSION["direccion"]= $direccion;
+    
 
     header('Location: mizona.php');
     
@@ -524,14 +533,15 @@ if (isset($_REQUEST["registrar"])){   //Registrar usuario
   $data_n=$_REQUEST["data"];
   $direccion=$_REQUEST["direccion"];
   $n_usuario=$_REQUEST["usuario"];
+  $telefono=$_REQUEST["telefono"];
   $email2=$_REQUEST["email2"];
   $contraseña2=$_REQUEST["contraseña2"];
   $hash=password_hash("$contraseña2", PASSWORD_DEFAULT);
   $provincia2=$_REQUEST["provincia"];
 
 
-  $sql = "INSERT INTO usuarios (nombre, apellidos, data_n, direccion, n_usuario, email, contraseña, provincia)
-   VALUES ('$nombre','$apellidos','$data_n', '$direccion', '$n_usuario', '$email2', '$hash' , '$provincia2')";
+  $sql = "INSERT INTO usuarios (nombre, apellidos, data_n, direccion,telefono, n_usuario, email, contraseña, provincia)
+   VALUES ('$nombre','$apellidos','$data_n', '$direccion', '$telefono' '$n_usuario', '$email2', '$hash' , '$provincia2')";
   $mysql->query($sql) or die ($mysql->error);
   $mysql->close();
   echo '<BODY onLoad="RegistroCorrecto()">';

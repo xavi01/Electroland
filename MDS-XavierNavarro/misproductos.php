@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,7 +124,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 </header>
 
 <?php
-   session_start();
+   
    $n_usuario = $_SESSION["nombre_usuario"];
    
 
@@ -136,6 +144,9 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
     if (isset($_REQUEST["escogercomprador"])){
 
+
+      $telefono = $_SESSION["telefono"];
+      $localidad = $_SESSION["direccion"];
       $comprador = $_REQUEST["escogercomprador"];
       $prod_vender = $_SESSION["producto_vender"];
     
@@ -146,9 +157,20 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
       }else{
        
       }
+
+      $consulta2= "SELECT * FROM usuarios WHERE n_usuario = '$comprador'";
+      $resultats= $mysql->query($consulta2);
+    
+      while($fila1 = $resultats->fetch_array()){
+          $telefonocomprador= $fila1["telefono"];
+          $localidadcomprador = $fila1["direccion"];
+      }
+
+
+
   
-      $sql = "INSERT INTO ventas (usuario_vende, usuario_compra, id_producto, completado)
-       VALUES ('$n_usuario','$comprador', '$prod_vender', 0)";
+      $sql = "INSERT INTO ventas (usuario_vende, telefono_vende, vende_localidad, usuario_compra, telefono_compra, compra_localidad, id_producto, completado)
+       VALUES ('$n_usuario', '$telefono' , '$localidad','$comprador', '$telefonocomprador', '$localidadcomprador', '$prod_vender', 0)";
       $mysql->query($sql) or die ($mysql->error);
       $mysql->close();
 
@@ -365,3 +387,6 @@ function Editar() {
 </form>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
