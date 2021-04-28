@@ -20,7 +20,7 @@ session_start();
 
 #misrepartos{
     margin: 0;
-    width: 100%;
+    width: 98%;
     height: auto;
     text-align: center;
     padding: 20;
@@ -30,10 +30,19 @@ session_start();
     padding: 20;
     margin-top: 50;
     position:relative;
-    width: 100%;
+    width: 98%;
     height: auto;
     left: 0;
+    text-align: center;
+}
 
+#repartosrealizados{
+    padding: 20;
+    margin-top: 50;
+    position:relative;
+    width: 98%;
+    height: auto;
+    left: 0;
     text-align: center;
 }
 
@@ -65,6 +74,7 @@ session_start();
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 98%;
+  margin-left: 15;
 }
 
 #tablapendientes td, #tablapendientes th {
@@ -83,6 +93,37 @@ session_start();
   background-color: #4CAF50;
   color: white;
 }
+
+
+#aceptar{
+  width: 35;
+  height: 35;
+  border: none;
+  color: transparent;
+  background-color: transparent;
+  background-image: url(assets/img/aceptar.png);
+}
+
+
+#rechazar{
+  width: 35;
+  height: 35;
+  border: none;
+  color: transparent;
+  background-color: transparent;
+  background-image: url(assets/img/rechazar.png);
+  margin-right: 20;
+}
+
+#entregar{
+  width: 35;
+  height: 35;
+  border: none;
+  color: transparent;
+  background-color: transparent;
+  background-image: url(assets/img/entregar.png);
+}
+
 </style>
     <form action="repartos.php" method="post" enctype="multipart/form-data">
     
@@ -123,13 +164,39 @@ session_start();
             
             
             echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=repartos.php'>";
-
-
-
-
-
-
         }
+
+        if (isset($_REQUEST["rechazar"])){   //BOTO PARA rechazar
+
+          $rechazar = $_REQUEST["rechazar"];
+          $mysql = new mysqli ("localhost","root","","electroland");
+
+          if($mysql->connect_error){
+            die("Conexio fallida");
+          }
+        
+          $sql= "UPDATE ventas SET repartidor=NULL WHERE id_producto=" . $rechazar;
+          $mysql->query($sql) or die ($mysql->error);
+          
+          
+          echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=repartos.php'>";
+      }
+
+      if (isset($_REQUEST["entregar"])){   //BOTO PARA rechazar
+
+        $entregar = $_REQUEST["entregar"];
+        $mysql = new mysqli ("localhost","root","","electroland");
+
+        if($mysql->connect_error){
+          die("Conexio fallida");
+        }
+      
+        $sql= "UPDATE ventas SET completado=1 WHERE id_producto=" . $entregar;
+        $mysql->query($sql) or die ($mysql->error);
+        
+        
+        echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=repartos.php'>";
+    }
 
     ?>
 
@@ -155,7 +222,7 @@ session_start();
   
 
      echo"<div id='misrepartos'>";
-     echo" <label id='labelrepartos'><b>MIS REPARTOS</b></label><br><br><br>";
+     echo" <label id='labelrepartos'><b>MIS REPARTOS ACTIVOS</b></label><br><br><br>";
 
      echo " <table id='tablapendientes'>
      <tr>
@@ -178,7 +245,7 @@ session_start();
  
    </tr>";
 
-     $consulta1= "SELECT * FROM ventas v INNER JOIN usuarios u ON v.usuario_vende = u.n_usuario INNER JOIN productos p ON v.id_producto = p.id WHERE repartidor='$repartidornombre'";
+     $consulta1= "SELECT * FROM ventas v INNER JOIN usuarios u ON v.usuario_vende = u.n_usuario INNER JOIN productos p ON v.id_producto = p.id WHERE repartidor='$repartidornombre' && completado=0";
      $resultatstaula= $mysql->query($consulta1);
  
      
@@ -191,18 +258,16 @@ session_start();
          echo "<td>".$fila["telefono_compra"]. "</td>";
          echo "<td>".$fila["compra_localidad"]. "</td>";
          echo "<td><input type='submit' name='producto' value='" . $fila["id_producto"] . "'class='fotoprod'> <img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='50' width='50'></td>"; 
-         echo "<td><input type='submit' value='RECHAZAR'><input type='submit' value='MARCAR COMO ENTREGADO'></td>";
+         echo "<td><input type='submit' name='rechazar' id ='rechazar' value='".$fila["id_producto"]."'><input type='submit' name='entregar' id='entregar' value='".$fila["id_producto"]."'></td>";
          echo "</tr>";
- 
        }
 
      echo "</table>";
-     
-
-
-
-
      echo"</div>";
+
+
+
+
 
      echo"<div id='repartospendientes'>";
 
@@ -229,7 +294,7 @@ session_start();
  
    </tr>";
 
-     $consulta1= "SELECT * FROM ventas v INNER JOIN usuarios u ON v.usuario_vende = u.n_usuario INNER JOIN productos p ON v.id_producto = p.id WHERE u.provincia = '$provincia' && repartidor IS NULL";
+     $consulta1= "SELECT * FROM ventas v INNER JOIN usuarios u ON v.usuario_vende = u.n_usuario INNER JOIN productos p ON v.id_producto = p.id WHERE u.provincia = '$provincia' && repartidor IS NULL  && completado=0";
      $resultatstaula= $mysql->query($consulta1);
  
      
@@ -242,7 +307,58 @@ session_start();
          echo "<td>".$fila["telefono_compra"]. "</td>";
          echo "<td>".$fila["compra_localidad"]. "</td>";
          echo "<td><input type='submit' name='producto' value='" . $fila["id_producto"] . "'class='fotoprod'> <img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='50' width='50'></td>"; 
-         echo "<td><input type='submit'name='aceptar' value='" . $fila["id_producto"] . "'></td>";
+         echo "<td><input type='submit'name='aceptar' id='aceptar' value='" . $fila["id_producto"] . "'></td>";
+         echo "</tr>";
+ 
+       }
+
+     echo "</table>";
+     echo"</div>";
+
+
+
+
+
+
+
+
+     echo"<div id='repartosrealizados'>";
+
+     echo" <label id='labelrepartos'><b>REPARTOS REALIZADOS</b></label><br><br><br>";
+
+     echo " <table id='tablapendientes'>
+     <tr>
+   
+     <td><b>USUARIO VENDE</b></td>
+ 
+     <td><b>TELEFONO</b></td>
+ 
+     <td><b>LOCALIDAD</b></td>
+
+     <td><b>USUARIO COMPRA</b></td>
+ 
+     <td><b>TELEFONO</b></td>
+ 
+     <td><b>LOCALIDAD</b></td>
+
+     <td><b>PRODUCTO</b></td>
+
+ 
+   </tr>";
+
+     $consulta1= "SELECT * FROM ventas v INNER JOIN usuarios u ON v.usuario_vende = u.n_usuario INNER JOIN productos p ON v.id_producto = p.id WHERE repartidor='$repartidornombre'  && completado=1";
+     $resultatstaula= $mysql->query($consulta1);
+ 
+     
+       while($fila = $resultatstaula->fetch_array()){
+           echo "<tr>";
+         echo "<td><input type='submit' name='usuario' value='". $fila["usuario_vende"] ."' id='botonusuario'></td>";
+         echo "<td>" . $fila["telefono_vende"] . "</td>";
+         echo "<td>" .$fila["vende_localidad"] . "</td>";
+         echo "<td><input type='submit' name='usuario' value='". $fila["usuario_compra"] ."' id='botonusuario'></td>";
+         echo "<td>".$fila["telefono_compra"]. "</td>";
+         echo "<td>".$fila["compra_localidad"]. "</td>";
+         echo "<td><input type='submit' name='producto' value='" . $fila["id_producto"] . "'class='fotoprod'> <img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='50' width='50'></td>"; 
          echo "</tr>";
  
        }

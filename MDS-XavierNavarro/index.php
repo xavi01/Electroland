@@ -12,6 +12,7 @@
 
     
 #prod{
+  
     display:inline-flexbox;
     width: 10%;
     height: auto;
@@ -30,7 +31,8 @@
 }
 
 .flex-container > div {
-
+  position: relative;
+  top: auto;
   padding: 20;
   width: 10%;
   margin-right: 40px;
