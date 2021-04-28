@@ -81,6 +81,9 @@
 <?php
 
 session_start();
+if(isset($_SESSION["nombre_usuario"])){
+$nombreusuario= $_SESSION["nombre_usuario"];
+}
 //$_SESSION["repartidor"]="hola";
 
 if(isset($_SESSION["user"])){
@@ -188,18 +191,35 @@ $mysql = new mysqli ("localhost","root","","electroland");
     $nom_prod=$_REQUEST["buscador"];
     $cat = $_REQUEST["categorias"];
 
+      if(isset($_SESSION["nombre_usuario"])){
+
       if($cat!="0" && $nom_prod!=""){
-        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 && Categoria='$cat' OR descripcion LIKE '%$nom_prod%' && Vendido=0  && Categoria='$cat' ";
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 && Categoria='$cat' && usuario!='$nombreusuario' OR descripcion LIKE '%$nom_prod%' && Vendido=0  && Categoria='$cat' && usuario!='$nombreusuario' ";
       }else if($cat=="0" && $nom_prod!=""){
-        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 OR descripcion LIKE '%$nom_prod%' && Vendido=0 ";
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 && usuario!='$nombreusuario' OR descripcion LIKE '%$nom_prod%' && Vendido=0 && usuario!='$nombreusuario'";
       }else if($cat!="0" && $nom_prod==""){
-        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Categoria='$cat' && Vendido=0 ";
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE Categoria='$cat' && Vendido=0 && usuario!='$nombreusuario'";
       }else{
-        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE Vendido=0 && usuario!='$nombreusuario'";
       }
+    }else{
+      if($cat!="0" && $nom_prod!=""){
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 && Categoria='$cat' OR descripcion LIKE '%$nom_prod%' && Vendido=0  && Categoria='$cat'";
+      }else if($cat=="0" && $nom_prod!=""){
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE nombre LIKE '%$nom_prod%' && Vendido=0 OR descripcion LIKE '%$nom_prod%' && Vendido=0 ";
+      }else if($cat!="0" && $nom_prod==""){
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE Categoria='$cat' && Vendido=0 ";
+      }else{
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, usuario, estado, imagen, data_publicacion FROM productos WHERE Vendido=0 ";
+      }
+    }
   
     }else{
-      $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0";
+      if(isset($_SESSION["nombre_usuario"])){
+      $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0 && usuario!='$nombreusuario'";
+      }else{
+        $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, data_publicacion FROM productos WHERE Vendido=0 ";
+      }
     }
     $resultatstaula= $mysql->query($consulta);
     
