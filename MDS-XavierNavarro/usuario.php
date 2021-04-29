@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -194,7 +202,7 @@ input[type="radio"]:checked ~ #stars {
 
 <?php
 $prod = "todos";
-session_start();
+
 $usuario=$_SESSION["usuario_elegido"];
 
 if(isset($_SESSION["nombre_usuario"])){
@@ -401,7 +409,9 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
 
     <?php
       if(isset($_SESSION["nombre_usuario"])){
+        if($_SESSION["usuario_elegido"] !=  $_SESSION["nombre_usuario"]){
          echo"<input type='submit' id='enviarmensaje' name='enviarmensaje' value='Enviar mensaje' class='buttons'>";
+        }
       }
 
     ?>
@@ -521,8 +531,10 @@ if(mysqli_num_rows($resultats)>0){
 }else{
    echo"<label id='novendido'><b>Este usuario aún no ha recibido ninguna opinion.       </b></label>";
    if(isset($_SESSION["user"])){
-   echo"<input type='submit' class='buttons'  name='opinar' value='Opinar'>";
-   }
+      if($_SESSION["usuario_elegido"] !=  $_SESSION["nombre_usuario"]){
+        echo"<input type='submit' class='buttons'  name='opinar' value='Opinar'>";
+      }
+    }
 }
 
  $mysql->close();
@@ -568,3 +580,6 @@ if($prod == "opinar"){
   </form>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

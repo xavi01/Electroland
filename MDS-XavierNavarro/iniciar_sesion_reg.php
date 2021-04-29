@@ -162,8 +162,21 @@ $tipouser = $_REQUEST["tipousuario"];
          $consulta= "UPDATE usuarios SET contraseña='$hashrecuperar' WHERE email = '$recupemail' AND n_usuario= '$recupuser'";
     
             if ($mysql->query($consulta) === TRUE) {
+
+              $consulta= "SELECT direccion, telefono, contraseña FROM usuarios WHERE n_usuario= '$recupuser'";
+              $resultatstaula= $mysql->query($consulta);
+
+              while($valores = $resultatstaula->fetch_array()){
+                $tlf= $valores["telefono"];
+                $direcc= $valores["direccion"];
+                $contra= $valores["contraseña"];
+              }
                 session_start();
                 $_SESSION["user"]=$recupemail;
+                $_SESSION["nombre_usuario"]=$recupuser;
+                $_SESSION["contraseña"]=$newpass1;
+                $_SESSION["telefono"]=$tlf;
+                $_SESSION["direccion"]= $direcc;
                 header('Location: mizona.php');
                 echo '<BODY onLoad="myFunction3()">';
             } else {

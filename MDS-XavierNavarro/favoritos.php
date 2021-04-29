@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -78,7 +86,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     <form action="">
 
     <?php
-    session_start();
+    
     $usuari = $_SESSION["nombre_usuario"];
 
     if (isset($_REQUEST["atras"])){   //BOTO PARA IR ATRAS
@@ -153,12 +161,9 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
 
 
 
-
-
-
-
-
-
-    </form>
+</form>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

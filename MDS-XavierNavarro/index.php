@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -82,7 +90,6 @@
 
 <?php
 
-session_start();
 if(isset($_SESSION["nombre_usuario"])){
 $nombreusuario= $_SESSION["nombre_usuario"];
 }
@@ -287,3 +294,6 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
 
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

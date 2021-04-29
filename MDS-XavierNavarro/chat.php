@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,7 +124,7 @@ footer{
     <form action="chat.php">
     
     <?php
-        session_start();
+        
         $usuario_activo = $_SESSION["nombre_usuario"];
 
         if (isset($_REQUEST["atras"])){   //BOTO PARA IR ATRAS
@@ -279,14 +287,11 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
     
     
+
     
-    
- 
-    
-    
-    
-    
-    
-    </form>
+</form>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

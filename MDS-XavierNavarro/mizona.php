@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +20,7 @@
 
 <?php
 
-session_start();
+
 $useractivo =  $_SESSION["user"];
 
 if (isset($_REQUEST["atras"])){
@@ -31,12 +39,16 @@ if (isset($_REQUEST["mensajes"])){
 }
 
 
-
 if (isset($_REQUEST["cerrar"])){
   session_destroy();
   header('Location: index.php');
 }
 
+if (isset($_REQUEST["miperfil"])){
+
+  $_SESSION["usuario_elegido"]=  $_SESSION["nombre_usuario"];
+  header('Location: usuario.php');
+}
 
 if (isset($_REQUEST["misproductos"])){
   header('Location: misproductos.php');
@@ -81,6 +93,7 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
+    <input type="submit" name="miperfil" value="Mi perfil" id="miperfil">
     <input type="submit" name="mensajes" value="Mensajes" id="mensajes">
     <input type="submit" name="favoritos" value="Favoritos" id="favoritos">
     <input type="submit" name="misproductos" value="Mis productos" id="misproductos">
@@ -299,3 +312,6 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
 
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

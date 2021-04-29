@@ -1,3 +1,11 @@
+<?php
+ob_start();
+?>
+<?php
+if( !headers_sent() && '' == session_id() ) {
+session_start();
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +70,7 @@
     
 <?php
 
-session_start();
+
 $id_producto = $_SESSION["producto"];
 ?>
 
@@ -142,6 +150,7 @@ $id_producto = $_SESSION["producto"];
         echo "<b>Estado: </b>" . $fila["estado"] . "<br>";
         echo "<b>Fecha publicacion: </b>" . $fila["data_publicacion"]."<br>";
         echo "<b>Direccion: </b><br>";
+        $dequieneselproducto = $fila["usuario"];
     } 
 
     while($fila = $resultatdireccio->fetch_array()){
@@ -157,7 +166,10 @@ $id_producto = $_SESSION["producto"];
     
     <?php
 
-    if(isset($_SESSION["user"])){
+    if(isset($_SESSION["nombre_usuario"])){
+        
+        if($_SESSION["nombre_usuario"] != $dequieneselproducto){
+
         $n_usuario = $_SESSION["nombre_usuario"];
         $query= mysqli_query ($mysql,"SELECT * FROM productos_megusta WHERE n_usuario = '$n_usuario' AND id_prod = '$id_producto' ");
         $row_cnt = $query->num_rows;
@@ -168,6 +180,8 @@ $id_producto = $_SESSION["producto"];
         } else {
             echo "<input type='submit' id='corazon' name='corazon' value=''>";
         }
+
+    }
 
     }
 
@@ -217,3 +231,6 @@ $id_producto = $_SESSION["producto"];
 </form>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
