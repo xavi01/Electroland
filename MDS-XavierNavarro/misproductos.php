@@ -75,6 +75,16 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     margin-right: 10;
 }
 
+#novender{
+    width: 50;
+    height: 50;
+    color: transparent;
+    background-color: transparent;
+    background-image: url(assets/img/novender.png);
+    border: none;
+    margin-right: 10;
+}
+
 
 #editarproducto{
     width: 50;
@@ -111,6 +121,19 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
   border-radius: 50px;
 }
 
+#titulovender{
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30;
+}
+
+#linkusers{
+  color: grey;
+  background-color: transparent;
+  border: none;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20;
+}
+
 
 </style>
 <form action="misproductos.php">
@@ -140,6 +163,44 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
     if (isset($_REQUEST["mensajes"])){
     
       header('Location: chat.php');
+    }
+
+    if (isset($_REQUEST["repartidor"])){
+
+      $repartidor=$_REQUEST["repartidor"];
+      $_SESSION["repartidor"] = $repartidor;
+    
+      header('Location: repartidor.php');
+    }
+
+    if (isset($_REQUEST["usuario_compra"])){
+      $user_compra=$_REQUEST["usuario_compra"];
+      $_SESSION["usuario_elegido"] = $user_compra;
+      header('Location: usuario.php');
+    }
+
+    if (isset($_REQUEST["novender"])){
+
+      $idprodnovender= $_REQUEST["novender"];
+
+      $mysql = new mysqli ("localhost","root","","electroland");
+ 
+      if($mysql->connect_error){
+          die("Conexio fallida");
+      }else{
+       
+      }
+
+      $sql1 = "UPDATE productos SET Vendido=0 WHERE id=$idprodnovender";
+      $mysql->query($sql1) or die ($mysql->error);
+
+      $sql = "DELETE FROM ventas WHERE id_producto=$idprodnovender";
+      $mysql->query($sql) or die ($mysql->error);
+
+      $mysql->close();
+
+      echo '<BODY onLoad="NoVender()">';
+      echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=misproductos.php'>";
     }
 
     if (isset($_REQUEST["escogercomprador"])){
@@ -172,6 +233,11 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
       $sql = "INSERT INTO ventas (usuario_vende, telefono_vende, vende_localidad, usuario_compra, telefono_compra, compra_localidad, id_producto, completado)
        VALUES ('$n_usuario', '$telefono' , '$localidad','$comprador', '$telefonocomprador', '$localidadcomprador', '$prod_vender', 0)";
       $mysql->query($sql) or die ($mysql->error);
+
+
+      $sql1 = "UPDATE productos SET Vendido=2 WHERE id=$prod_vender";
+      $mysql->query($sql1) or die ($mysql->error);
+
       $mysql->close();
 
       echo '<BODY onLoad="Vender()">';
@@ -317,9 +383,8 @@ $mysql = new mysqli ("localhost","root","","electroland");
     $resultatstaula= $mysql->query($consulta);
 
     while($fila = $resultatstaula->fetch_array()){
-
         echo "<div id='producto'>";
-
+        $idproducto = $fila["id"];
         echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='150' width='150'> . <br>";
         echo "<b>Nombre:</b> " . $fila["nombre"] . "<br>";
         echo "<b>Descripcion:</b><br> " . $fila["descripcion"] . "<br>";
@@ -329,11 +394,38 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "<b>Fecha publicacion:</b> " . $fila["data_publicacion"]."<br>";
         echo "<input type='submit' id='borrarproducto' name='borrarproducto' value='".  $fila["id"] ."'>";
         echo "<input type='submit' id='venderproducto' name='venderproducto' value='".  $fila["id"] ."'>";
-        echo "<input type='submit' id='editarproducto' name='editarproducto' value='".  $fila["id"] ."'>";
+        echo "<input type='submit' id='editarproducto' name='editarproducto' value='".  $fila["id"] ."'><br>";    
         echo "</div>";
     }
-   
 
+    
+    $consulta= "SELECT p.id, p.nombre, p.descripcion, p.precio, p.categoria, p.estado, p.imagen, p.data_publicacion, v.repartidor, v.usuario_compra FROM productos p INNER JOIN ventas v ON p.id = v.id_producto WHERE usuario = '$n_usuario' && Vendido=2";
+    $resultatstaula= $mysql->query($consulta);
+
+    while($fila = $resultatstaula->fetch_array()){
+        echo "<div id='producto'>";
+        echo "<label id='titulovender'><b>VENDIENDO PRODUCTO...</b></label>";
+        $idproducto = $fila["id"];
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='150' width='150'> . <br>";
+        echo "<b>Nombre:</b> " . $fila["nombre"] . "<br>";
+        echo "<b>Descripcion:</b><br> " . $fila["descripcion"] . "<br>";
+        echo "<b>Precio:</b> " . $fila["precio"] . "€<br>";
+        echo "<b>Categoria:</b> " . $fila["categoria"] . "<br>";
+        echo "<b>Estado:</b> " . $fila["estado"] . "<br>";
+        echo "<b>Fecha publicacion:</b> " . $fila["data_publicacion"]."<br>";
+        echo "<b>Repartidor: </b> <input type='submit' id='linkusers' name='repartidor' value='".  $fila["repartidor"] ."'><br>";
+        echo "<b>Comprador: </b> <input type='submit' id='linkusers' name='usuario_compra' value='".  $fila["usuario_compra"] ."'><br>";
+        echo "<input type='submit' id='novender' name='novender' value='".  $fila["id"] ."'>";
+        echo "<input type='submit' id='editarproducto' name='editarproducto' value='".  $fila["id"] ."'><br>";    
+        echo "</div>";
+    }
+
+
+
+
+
+
+    
     $mysql->close();
 
 ?>
@@ -370,6 +462,10 @@ if(isset($_REQUEST["buttoneditarproducto"])){
 <script>
 function Vender() {
   alert("En breve se pondra en contacto contigo un repartidor.");   
+}
+
+function NoVender() {
+  alert("El producto se ha quitado del proceso de venta.");   
 }
 
 function Eliminar() {

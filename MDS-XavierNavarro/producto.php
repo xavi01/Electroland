@@ -132,7 +132,7 @@ $id_producto = $_SESSION["producto"];
         die("Conexio fallida");
     }
 
-    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion FROM productos where ID = $id_producto";
+    $consulta= "SELECT id, nombre, descripcion, precio, categoria, estado, imagen, usuario, data_publicacion, vendido FROM productos where ID = $id_producto";
     $consulta2= "SELECT u.direccion FROM usuarios u INNER JOIN productos p ON u.n_usuario = p.usuario where p.ID = $id_producto";
     $resultatstaula= $mysql->query($consulta);
 
@@ -151,6 +151,7 @@ $id_producto = $_SESSION["producto"];
         echo "<b>Fecha publicacion: </b>" . $fila["data_publicacion"]."<br>";
         echo "<b>Direccion: </b><br>";
         $dequieneselproducto = $fila["usuario"];
+        $vendido = $fila["vendido"];
     } 
 
     while($fila = $resultatdireccio->fetch_array()){
@@ -168,7 +169,7 @@ $id_producto = $_SESSION["producto"];
 
     if(isset($_SESSION["nombre_usuario"])){
         
-        if($_SESSION["nombre_usuario"] != $dequieneselproducto){
+        if($_SESSION["nombre_usuario"] != $dequieneselproducto AND $vendido!=1){
 
         $n_usuario = $_SESSION["nombre_usuario"];
         $query= mysqli_query ($mysql,"SELECT * FROM productos_megusta WHERE n_usuario = '$n_usuario' AND id_prod = '$id_producto' ");
@@ -181,7 +182,9 @@ $id_producto = $_SESSION["producto"];
             echo "<input type='submit' id='corazon' name='corazon' value=''>";
         }
 
-    }
+       }else{
+
+       }
 
     }
 

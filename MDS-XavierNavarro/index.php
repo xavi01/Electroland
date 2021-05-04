@@ -237,7 +237,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "<div id='prod' height='200' width='200'>";
          
         echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='180' width='180' class='prodid'>"; 
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='180'>";
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='93%'>";
         echo $fila["nombre"];
      
         echo "</div>";

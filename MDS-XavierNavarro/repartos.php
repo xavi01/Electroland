@@ -193,6 +193,9 @@ session_start();
       
         $sql= "UPDATE ventas SET completado=1 WHERE id_producto=" . $entregar;
         $mysql->query($sql) or die ($mysql->error);
+
+        $sql= "UPDATE productos SET Vendido=1 WHERE id=" . $entregar;
+        $mysql->query($sql) or die ($mysql->error);
         
         
         echo "<META HTTP-EQUIV='REFRESH' CONTENT='1;URL=repartos.php'>";
