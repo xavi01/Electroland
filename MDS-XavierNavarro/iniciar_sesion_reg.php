@@ -175,7 +175,7 @@ $newpass2 = $_REQUEST["recuppass2"];
 $tipouser = $_REQUEST["tipousuario"];
 
 
-  $mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
     if($mysql->connect_error){
         die("Conexio fallida");
@@ -448,7 +448,7 @@ if (isset($_REQUEST["iniciar"])){   //INICIAR USUARIO
     $email1 = $_REQUEST["email1"];
     $contraseña1 = $_REQUEST["contraseña1"];
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+    $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
     if($mysql->connect_error){
         die("Conexio fallida");
@@ -492,7 +492,7 @@ if (isset($_REQUEST["iniciar2"])){   //INICIAR REPARTIDOR
     $email2 = $_REQUEST["email_repartidor"];
     $contraseña2 = $_REQUEST["contraseña_repartidor"];
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+    $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
     if($mysql->connect_error){
         die("Conexio fallida");
@@ -532,7 +532,7 @@ if (isset($_REQUEST["iniciar2"])){   //INICIAR REPARTIDOR
 
 if (isset($_REQUEST["registrar2"])){   //Registrar repartidor
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+  $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
     if($mysql->connect_error){
         die("Conexio fallida");
@@ -570,7 +570,7 @@ if (isset($_REQUEST["registrar2"])){   //Registrar repartidor
 
 if (isset($_REQUEST["registrar"])){   //Registrar usuario
   
-  $mysql = new mysqli ("localhost","root","","electroland");
+  $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
   if($mysql->connect_error){
       die("Conexio fallida");

@@ -21,6 +21,11 @@ session_start();
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
  
+ #headins{
+   width: 100%;
+    height: 20%;
+
+ }
 
  #f3{
    top:auto;
@@ -74,29 +79,38 @@ session_start();
 
 
  #miperfil{
-   top: 10%;
-   left: 34%;
+   top: 40%;
+   left: 75%;
+   font-size: 16;
+   
  }
  
  #mensajes{
-  top: 10%;
-   left: 65%;
+  top: 40%;
+   left: 51%;
+   font-size: 16;
  }
 
  #favoritos{
    top: 40%;
-   left: 34%;
+   left: 28%;
+   font-size: 16;
  }
 
  #misproductos{
-    top: 40%;
-   left: 60%;
+    top: 10%;
+   left: 30%;
+   font-size: 16;
  }
 
  #cerrar{
-  top: 70%;
-   left: 60%;
+  top: 10%;
+   left: 65%;
+   width: auto;
+   font-size: 16;
  }
+
+
 
 
 
@@ -164,7 +178,7 @@ if (isset($_REQUEST["misproductos"])){
   header('Location: misproductos.php');
 }
 
-$mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
         die("Conexio fallida");
@@ -357,7 +371,7 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
         $imgContent = addslashes(file_get_contents($image));
     }
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+    $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
     
     if($mysql->connect_error){
         die("Conexio fallida");

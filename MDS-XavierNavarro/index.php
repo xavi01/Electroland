@@ -80,7 +80,7 @@ session_start();
   }
 
   header{
-    height: 25%;
+    height: 30%;
     width: 100%;
   }
 
@@ -114,7 +114,11 @@ session_start();
 
   #cat{
     top: 40%;
-    left: 27%;
+    left: 30%;
+  }
+
+  #cat-values {
+    font-size: 18;
   }
 
   #subirproducto{
@@ -123,7 +127,7 @@ session_start();
   }
 
   #iniciar{
-    left: 40%;
+    left: 38%;
     top:10%
   }
 
@@ -249,7 +253,7 @@ if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
 
 <?php
 
-$mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
         die("Conexio fallida");

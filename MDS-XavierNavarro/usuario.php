@@ -55,7 +55,7 @@ input[type="radio"]:checked ~ #stars {
 #starsvaloracio{
   color: orange;
   position: absolute;
-  left: 5%;
+  left: 2%;
 }
 
 #estrelles{
@@ -111,6 +111,7 @@ input[type="radio"]:checked ~ #stars {
 .flex-container {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20;
 
 }
 
@@ -176,8 +177,7 @@ input[type="radio"]:checked ~ #stars {
 }
 
 #ooopinar{
-  position: absolute;
-  top: 450;
+  margin-bottom: 20;
   padding-left: 40;
   text-align: left;
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -200,9 +200,14 @@ input[type="radio"]:checked ~ #stars {
 
 header{
   width:100%;
-  height: 15%;
+  height: 100;
 }
 
+#fotoperf{
+  width: 130;
+  height: 130;
+   margin-top: 40;  
+}
   .flex-container {
     flex-direction: column;
   }
@@ -210,11 +215,13 @@ header{
   #maps{
     width: 300;
     height: 150;
-    
+    position: relative;
+    right: 15%;
+
   }
 
   #zona{
-    left:70%;
+    left:75%;
   }
 
   #subirproducto{
@@ -241,8 +248,23 @@ header{
   #zonarepartidores{
     top: 20%;
     left: 55%;
-}
+  }
 
+  #textcoment{
+    width: 300;
+  }
+
+  #starsvaloracio{
+    position: absolute;
+    top: 80;
+    left: 50%;
+  }
+
+  #textonombreusuario{
+    position: absolute;
+    top: 50;
+    left: 50%;
+  }
 }
 
 
@@ -306,7 +328,7 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
     
   <?php
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
       die("Conexio fallida");

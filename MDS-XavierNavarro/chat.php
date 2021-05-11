@@ -18,6 +18,10 @@ session_start();
 
 <style>
 
+    header{
+        width: 100%;
+    }
+
 footer{
     text-align: center;
     background-color: black;
@@ -25,6 +29,7 @@ footer{
     padding: 10;
     margin-top: 15;
     width: 100%;
+    left: 0%;
 }
 
 #textoenviar{
@@ -49,6 +54,7 @@ footer{
 }
 
 #divchat{
+    margin-top: 40;
     padding: 50;
     display: inline-block;
     width: 67.5%;
@@ -57,7 +63,8 @@ footer{
     text-align: center;
     font-size: 18px;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+    vertical-align: top;
+    margin-bottom: 20;
 }
 
 #chat{
@@ -203,7 +210,7 @@ width: 100%;
             $texto = $_REQUEST["textoenviar"];
             $fecha = $data= date("Y-m-d H:i:s");
 
-            $mysql = new mysqli ("localhost","root","","electroland");
+            $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
             if($mysql->connect_error){
                 die("Conexio fallida");
@@ -236,7 +243,7 @@ width: 100%;
 
         <?php
 
-            $mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
             if($mysql->connect_error){
               die("Conexio fallida");
@@ -277,7 +284,7 @@ width: 100%;
         }else{
             $chat= $_SESSION["chat"];
             
-            $mysql = new mysqli ("localhost","root","","electroland");
+            $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
             if($mysql->connect_error){
               die("Conexio fallida");

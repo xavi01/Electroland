@@ -188,7 +188,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
 
   <?php
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
       die("Conexio fallida");

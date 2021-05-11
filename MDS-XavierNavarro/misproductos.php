@@ -231,7 +231,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
       $idprodnovender= $_REQUEST["novender"];
 
-      $mysql = new mysqli ("localhost","root","","electroland");
+      $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
       if($mysql->connect_error){
           die("Conexio fallida");
@@ -259,7 +259,7 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
       $comprador = $_REQUEST["escogercomprador"];
       $prod_vender = $_SESSION["producto_vender"];
     
-      $mysql = new mysqli ("localhost","root","","electroland");
+      $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
       if($mysql->connect_error){
           die("Conexio fallida");
@@ -302,7 +302,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
       $_SESSION["producto_vender"]= $_REQUEST["venderproducto"];
       
       
-      $mysql = new mysqli ("localhost","root","","electroland");
+      $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
   
       if($mysql->connect_error){
         die("Conexio fallida");
@@ -339,7 +339,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     if (isset($_REQUEST["borrarproducto"])){    //BOTON PARA BORRAR PRODUCTO
         $id_prod = $_REQUEST["borrarproducto"];
         
-        $mysql = new mysqli ("localhost","root","","electroland");
+        $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
   
         if($mysql->connect_error){
           die("Conexio fallida");
@@ -355,7 +355,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     if (isset($_REQUEST["editarproducto"])){    //BOTON PARA EDITAR PRODUCTO
       $_SESSION["producto_editar"]= $_REQUEST["editarproducto"];
       
-      $mysql = new mysqli ("localhost","root","","electroland");
+      $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
   
       if($mysql->connect_error){
         die("Conexio fallida");
@@ -423,7 +423,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
 
 <?php
 
-$mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
         die("Conexio fallida");
@@ -458,7 +458,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "<div id='producto'>";
         echo "<label id='titulovender'><b>VENDIENDO PRODUCTO...</b></label>";
         $idproducto = $fila["id"];
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='150' width='150'> . <br>";
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' height='150' width='150'> <br>";
         echo "<b>Nombre:</b> " . $fila["nombre"] . "<br>";
         echo "<b>Descripcion:</b><br> " . $fila["descripcion"] . "<br>";
         echo "<b>Precio:</b> " . $fila["precio"] . "€<br>";
@@ -494,7 +494,7 @@ if(isset($_REQUEST["buttoneditarproducto"])){
   $categoria=$_REQUEST["categorias"];
   $estado=$_REQUEST["estado"];
 
-  $mysql = new mysqli ("localhost","root","","electroland");
+  $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
   if($mysql->connect_error){
     die("Conexio fallida");

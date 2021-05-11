@@ -198,7 +198,7 @@ session_start();
         if (isset($_REQUEST["aceptar"])){   //BOTO PARA aceptar
             
             $aceptar = $_REQUEST["aceptar"];
-            $mysql = new mysqli ("localhost","root","","electroland");
+            $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
             if($mysql->connect_error){
               die("Conexio fallida");
@@ -214,7 +214,7 @@ session_start();
         if (isset($_REQUEST["rechazar"])){   //BOTO PARA rechazar
 
           $rechazar = $_REQUEST["rechazar"];
-          $mysql = new mysqli ("localhost","root","","electroland");
+          $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
           if($mysql->connect_error){
             die("Conexio fallida");
@@ -230,7 +230,7 @@ session_start();
       if (isset($_REQUEST["entregar"])){   //BOTO PARA rechazar
 
         $entregar = $_REQUEST["entregar"];
-        $mysql = new mysqli ("localhost","root","","electroland");
+        $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
         if($mysql->connect_error){
           die("Conexio fallida");
@@ -252,7 +252,7 @@ session_start();
 
     <?php
 
-       $mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
         if($mysql->connect_error){
            die("Conexio fallida");

@@ -31,12 +31,13 @@ session_start();
     left: 0;
 }
 
-
+@media (max-width: 800px) {
+ 
 #subirproducto1{
-    background-color: red;
-    height: 700;
+    margin-bottom: 0;
 }
 
+}
 
 
 
@@ -113,7 +114,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     
 if (isset($_REQUEST["botonsubirprod"])){
     
-    $mysql = new mysqli ("localhost","root","","electroland");
+    $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
  
     if($mysql->connect_error){
         die("Conexio fallida");

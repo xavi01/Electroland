@@ -178,7 +178,7 @@ $id_producto = $_SESSION["producto"];
               header('Location: iniciar_sesion_reg.php');
           } 
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+          $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
         die("Conexio fallida");

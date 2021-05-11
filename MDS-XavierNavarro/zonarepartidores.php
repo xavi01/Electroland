@@ -108,7 +108,7 @@ session_start();
 
         $repartidoractivo =  $_SESSION["repartidor"];
 
-        $mysql = new mysqli ("localhost","root","","electroland");
+        $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
         if($mysql->connect_error){
             die("Conexio fallida");
@@ -315,7 +315,7 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
         $imgContent1 = addslashes(file_get_contents($image));
     }
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+    $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
     
     if($mysql->connect_error){
         die("Conexio fallida");

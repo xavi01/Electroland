@@ -176,8 +176,7 @@ input[type="radio"]:checked ~ #stars {
 }
 
 #ooopinar{
-  position: absolute;
-  top: 450;
+  margin-bottom: 20;
   padding-left: 40;
   text-align: left;
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -191,6 +190,8 @@ input[type="radio"]:checked ~ #stars {
   width: auto;
   height: 35;
 }
+
+
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
@@ -208,19 +209,31 @@ input[type="radio"]:checked ~ #stars {
   top: 22%;
 }
 
+
 header{
   width:100%;
-  height: 15%;
+  height: 100;
 }
 
+
+#fotoperf{
+   margin-top: 40;  
+}
   #zona{
-    left:70%;
+    left:75%;
   }
 
   #subirproducto{
     left:30%;
   }
 
+  #maps{
+    width: 300;
+    height: 150;
+    position: relative;
+    right: 15%;
+
+  }
 
   #enviarmensaje{
     left:55%;
@@ -230,6 +243,22 @@ header{
   #textonombreusuario{
     left:25%;
     top:0%; 
+  }
+
+  #textcoment{
+    width: 300;
+  }
+
+  #starsvaloracio{
+    position: absolute;
+    top: 40;
+    left: 55%;
+  }
+
+  #textonombreusuario{
+    position: absolute;
+    top: 0;
+    left: 55%;
   }
 }
 
@@ -296,7 +325,7 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
 
   <?php
 
-    $mysql = new mysqli ("localhost","root","","electroland");
+$mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
 
     if($mysql->connect_error){
       die("Conexio fallida");
