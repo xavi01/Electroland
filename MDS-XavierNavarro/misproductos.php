@@ -15,6 +15,9 @@ session_start();
 </head>
 <body style="background-color: #cccccc">
 <style>
+
+
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -135,6 +138,49 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 }
 
 
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+
+  header{
+     width: 100%;
+     height: 20%;
+   }
+
+  #misprod{
+    top:0%;
+    left: 35%;
+    font-size: 25px;
+  }
+
+  #buttonfavs{
+    top: 40%;
+    left: 35%;
+  }
+
+  #buttonmensajes{
+    top: 65%;
+    left: 35%;
+  }
+
+  #zona{
+    top: 40%;
+    left: 75%;
+  }
+
+
+  #sotaheader{
+    text-align: center;
+    top: 21%;
+  }
+
+
+}
+
+
+
+
+
 </style>
 <form action="misproductos.php">
 
@@ -145,6 +191,8 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 <input type="submit" name="favoritos" value="Favoritos" id="buttonfavs">
 <input type="submit" name="zona" value="Mi zona" id="zona">
 </header>
+
+<div id="sotaheader">
 
 <?php
    
@@ -369,6 +417,8 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
 
 ?>
 
+
+
 <div class="flex-container">
 
 <?php
@@ -402,6 +452,8 @@ $mysql = new mysqli ("localhost","root","","electroland");
     $consulta= "SELECT p.id, p.nombre, p.descripcion, p.precio, p.categoria, p.estado, p.imagen, p.data_publicacion, v.repartidor, v.usuario_compra FROM productos p INNER JOIN ventas v ON p.id = v.id_producto WHERE usuario = '$n_usuario' && Vendido=2";
     $resultatstaula= $mysql->query($consulta);
 
+     
+
     while($fila = $resultatstaula->fetch_array()){
         echo "<div id='producto'>";
         echo "<label id='titulovender'><b>VENDIENDO PRODUCTO...</b></label>";
@@ -421,7 +473,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
     }
 
 
-
+  
 
 
 
@@ -431,6 +483,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
 ?>
 
 </div>
+
 
 <?php
 
@@ -457,6 +510,18 @@ if(isset($_REQUEST["buttoneditarproducto"])){
 
 
 ?>
+
+<footer id='f4'>
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
+</footer>
+    
+</div>
    
 
 <script>

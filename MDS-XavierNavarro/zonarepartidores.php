@@ -16,9 +16,93 @@ session_start();
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<style>
+
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+ 
+
+ #f3{
+   top:auto;
+ }
+ 
+ 
+ #frame{
+   width: 350;
+   height: 200;
+ }
+
+ #edit1{
+    width: 100%;
+    text-align: center;
+  }
+ 
+
+  #edit2{
+    width: 100%;
+    text-align: center;
+  }
+
+  #edit3{
+    width: 100%;
+    text-align: center;
+  }
+
+  #edit4{
+    width: 100%;
+    text-align: center;
+  }
+
+ #fotoperfil{
+   display: none;
+ }
+
+ 
+ #bienvenido{
+   display: none;
+ }
+
+ #buttonedit{
+   top: 10%;
+ }
+
+
+ #guardar{
+   top: 10%;
+   left: 80%;
+ }
+
+
+ #repartos{
+   top: 15%;
+   left: 32%;
+ }
+ 
+
+ #cerrar{
+  top: 15%;
+   left: 60%;
+ }
+
+
+ 
+ }
+
+
+
+</style>
+
 <body>
     <form action="zonarepartidores.php" method="post" enctype="multipart/form-data">
 
+    <header id="headins">
+            <button id="atras" name="atras"><img src="assets/img/logosinfondo.png" / width="95" height="95"></button>
+            <input type="submit" name="repartos" value="Repartos" id="repartos">
+            <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
+        </header>
+
+        <div id="sotaheader">
 
     <?php
 
@@ -72,11 +156,7 @@ session_start();
     ?>
 
 
-        <header id="headins">
-            <button id="atras" name="atras"><img src="assets/img/logosinfondo.png" / width="95" height="95"></button>
-            <input type="submit" name="repartos" value="Repartos" id="repartos">
-            <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
-        </header>
+
 
         <input type="submit" value="Editar" name="edit" id="buttonedit" class="botons"><br><br>
 
@@ -172,7 +252,7 @@ session_start();
 <?php echo $provincia; ?> <br><br>
 <div>
 
-<iframe width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $provincia; ?>
+<iframe id="frame" width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $provincia; ?>
 +(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
 </iframe>
 
@@ -188,17 +268,19 @@ session_start();
 <?php echo $email; ?> <br><br>
 </div>
 
+<footer id='f3'>
 
-<footer id="f1">
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
 <a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
 <br>
-<h id="textcorreo">contactoelectroland@gmail.com</h>
+Correo: contactoelectroland@gmail.com
 <br>
 Copyright © 2021 Electroland © de sus respectivos propietarios
-
 </footer>
+    
+</div>
+
 
 
 
@@ -257,6 +339,8 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
 
 
 ?>
+
+
 
 </form>
 

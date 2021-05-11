@@ -17,6 +17,13 @@ session_start();
 <body style="background-color: #cccccc">
 <style>
 
+#tot{
+width: 100%;
+margin-bottom: 20;
+text-align: center;
+}
+
+
 #corazon{
     width: 60px;
     height: 60px;
@@ -24,7 +31,6 @@ session_start();
     background-color: white;
     border: 0;
     border-radius: 15px;
-
 }
 
 #corazonrojo{
@@ -62,6 +68,48 @@ session_start();
     color: grey;
 }
 
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+#f6{
+    top: auto;
+  }
+
+
+#zonarepartidores{
+    top: 20%;
+    left: 55%;
+}
+
+#iniciar{
+    top: 20%;
+    left: 40%;
+}
+
+#subirproducto{
+    top: 25%;
+    left: 35%;
+}
+
+#zona{
+    left: 75%;
+    top:25%
+}
+
+
+#producto{
+    left: 3%;
+    width: 80%;
+}
+
+#frame{
+    width: 320;
+}
+
+#fotoproducto{
+    width: 300;
+}
+
+}
 
 </style>
 
@@ -94,6 +142,10 @@ $id_producto = $_SESSION["producto"];
     ?>
   </header>
 
+<div id="sotaheader">
+
+
+  <div id="tot">
 
     <?php
 
@@ -141,7 +193,7 @@ $id_producto = $_SESSION["producto"];
     while($fila = $resultatstaula->fetch_array()){
            
         echo "<div id='producto'>";
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='350' width='350'> . <br>";   
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' id='fotoproducto' height='350' width='350'>  <br>";   
         echo "<b>Usuario: </b><input type='submit' value='". $fila['usuario'] ."' name='nombre_usuario' id='button_usuario'> <br>";       
         echo "<b>Nombre: </b>" . $fila["nombre"] . "<br>";
         echo "<b>Descripcion: </b>" . $fila["descripcion"] . "<br>";
@@ -161,7 +213,7 @@ $id_producto = $_SESSION["producto"];
     ?>
 
     
-    <iframe width="400" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccio; ?>
+    <iframe id="frame" width="400" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccio; ?>
         +(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">";
     </iframe> <br><br>
     
@@ -211,6 +263,24 @@ $id_producto = $_SESSION["producto"];
     $mysql->close();
     ?>
     </div>
+
+    
+
+
+    
+
+<footer id='f4'>
+
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
+</footer>
+    
+</div>
 
 <script>
 

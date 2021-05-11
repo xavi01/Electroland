@@ -14,8 +14,118 @@ session_start();
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <style>
+
+
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+ 
+
+ #f3{
+   top:auto;
+ }
+ 
+ 
+ #frame{
+   width: 350;
+   height: 200;
+ }
+
+ #edit1{
+    width: 100%;
+    text-align: center;
+  }
+ 
+
+  #edit2{
+    width: 100%;
+    text-align: center;
+  }
+
+  #edit3{
+    width: 100%;
+    text-align: center;
+  }
+
+  #edit4{
+    width: 100%;
+    text-align: center;
+  }
+
+ #fotoperfil{
+   display: none;
+ }
+
+ 
+ #bienvenido{
+   display: none;
+ }
+
+ #buttonedit{
+   top: 10%;
+ }
+
+
+ #guardar{
+   top: 10%;
+   left: 80%;
+ }
+
+
+ #miperfil{
+   top: 10%;
+   left: 34%;
+ }
+ 
+ #mensajes{
+  top: 10%;
+   left: 65%;
+ }
+
+ #favoritos{
+   top: 40%;
+   left: 34%;
+ }
+
+ #misproductos{
+    top: 40%;
+   left: 60%;
+ }
+
+ #cerrar{
+  top: 70%;
+   left: 60%;
+ }
+
+
+
+ }
+
+
+
+
+
+
+
+</style>
 
 <form action="mizona.php" method="post" enctype="multipart/form-data">
+
+
+<header id="headins"> 
+    <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
+    <!--<input type="submit" name="atras" value="Atras" id="atras">-->
+    <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
+    <input type="submit" name="miperfil" value="Mi perfil" id="miperfil">
+    <input type="submit" name="mensajes" value="Mensajes" id="mensajes">
+    <input type="submit" name="favoritos" value="Favoritos" id="favoritos">
+    <input type="submit" name="misproductos" value="Mis productos" id="misproductos">
+    <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
+</header>
+
+<div id="sotaheader">
+
 
 
 <?php
@@ -89,18 +199,7 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 
 
 
-<header id="headins">
-<button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
-    <!--<input type="submit" name="atras" value="Atras" id="atras">-->
-    <!--<img src="assets/img/1.JPG" alt="" width="150" height="150">-->
-    <input type="submit" name="miperfil" value="Mi perfil" id="miperfil">
-    <input type="submit" name="mensajes" value="Mensajes" id="mensajes">
-    <input type="submit" name="favoritos" value="Favoritos" id="favoritos">
-    <input type="submit" name="misproductos" value="Mis productos" id="misproductos">
-    <input type="submit" name="cerrar" value="Cerrar sesión" id="cerrar">
 
-
-</header>
 
 <input type="submit" value="Editar" name="edit" id="buttonedit" class="botons"><br><br>
 
@@ -197,11 +296,9 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 <b>Direccion:</b> <br>
 <!--<?php echo $direccion; ?> <br><br>-->
 <div>
-
-<iframe width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>
+<iframe id="frame" width="500" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<?php echo $direccion; ?>
 +(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
 </iframe>
-
 </div>
 </div>
 
@@ -219,17 +316,19 @@ echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br
 </div>
 
 
-<footer id="f1">
+
+<footer id='f3'>
+
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
 <a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
 <br>
-<h id="textcorreo">contactoelectroland@gmail.com</h>
+Correo: contactoelectroland@gmail.com
 <br>
 Copyright © 2021 Electroland © de sus respectivos propietarios
-
 </footer>
-
+    
+</div>
 
 
 <?php

@@ -124,8 +124,53 @@ session_start();
   background-image: url(assets/img/entregar.png);
 }
 
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+
+  #tablapendientes {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 98%;
+  margin-left: 2;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15;
+}
+
+#tablapendientes td, #tablapendientes th {
+  border: 1px solid #ddd;
+  padding: 2px;
+}
+
+#tablapendientes th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#zonarepartidores{
+  left: 50%;
+}
+
+}
+
+
+
+
+
+
+
 </style>
     <form action="repartos.php" method="post" enctype="multipart/form-data">
+
+    <header id="headins">
+        <button id="atras" name="atras"><img src="assets/img/logosinfondo.png" / width="95" height="95"></button>
+        <input type="submit" name="zonarepartidores" value="Zona repartidores" id="zonarepartidores">
+    </header>
+    
+    <div id="sotaheader">
     
     <?php
 
@@ -203,11 +248,8 @@ session_start();
 
     ?>
 
-    <header id="headins">
-        <button id="atras" name="atras"><img src="assets/img/logosinfondo.png" / width="95" height="95"></button>
-        <input type="submit" name="zonarepartidores" value="Zona repartidores" id="zonarepartidores">
-    </header>
-    
+
+
     <?php
 
        $mysql = new mysqli ("localhost","root","","electroland");
@@ -370,8 +412,23 @@ session_start();
      echo"</div>";
 
     ?>
-    
-    </form>
+
+
+
+
+<footer id="f4">
+
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
+</footer>
+</div>
+
+</form>
 </body>
 </html>
 <?php

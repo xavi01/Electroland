@@ -14,15 +14,44 @@ session_start();
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body  background="assets/img/fondo.png">
+<style>
+
+
+#f8{
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    background-color: #000;
+    color: white;
+    padding: 10;
+    margin: 0;
+    width: 98.97%;
+    position: absolute;
+    top: 88.9%;
+    left: 0;
+}
+
+
+#subirproducto1{
+    background-color: red;
+    height: 700;
+}
+
+
+
+
+</style>
 <form action="subirproducto.php" method="post" enctype="multipart/form-data">
 
 <header id="headsubir">
-
     <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
     <!--<input type="submit" name="atras" value="Atras" id="atras">-->
     <!--<img src="assets/img/logosinfondo.png" alt="" width="180" height="180">-->
     <input type="submit" name="zona" value="Mi zona" id="zona">
 </header>
+
+
+<div id="sotaheader">
      
    <?php
    
@@ -103,7 +132,7 @@ if (isset($_REQUEST["botonsubirprod"])){
 
     if($check !== false){
         $image = $_FILES['imageperfil']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));  
+        $imgContent = addslashes(file_get_contents($image));         
     }
 
 
@@ -111,21 +140,43 @@ if (isset($_REQUEST["botonsubirprod"])){
      VALUES ('$nombre','$descripcion','$precio', '$categoria', '$estado', '$imgContent', '$n_usuario', '$data', 0)";
     $mysql->query($sql) or die ($mysql->error);
     $mysql->close();
+    echo '<BODY onLoad="SubidoCorrectamente()">';
 }
 
 ?>
 
-<footer id="f1">
+<footer id='f4'>
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
 <a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
 <br>
-contactoelectroland@gmail.com
+Correo: contactoelectroland@gmail.com
 <br>
 Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
+    
+</div>
+
 
 </form>
+
+
+<script type="text/javascript">
+
+  function SubidoCorrectamente() {
+  alert("El producto se ha subido correctamente.");
+  }
+
+  function SubidoError() {
+  alert("Ha ocurrido un error con la imagen.");
+  }
+
+</script>
+
+
+
+
+
 
 </body>
 </html>

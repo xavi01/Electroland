@@ -16,22 +16,24 @@ session_start();
 </head>
 <body style="background-color: #cccccc;">
 <style>
+
 #prod{
-  width: 10%;
-  margin: 25;
-  padding: 10;
-  background-color: white;
-  border-radius: 8%;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 190;
+    margin: 25;
+    padding: 10;
+    background-color: white;
+    border-radius: 8%;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .prodid{
-  position: absolute;
-  width: 180;
-  height: 180;
-  background: transparent;
-  border: 0;
-  color: transparent;
+    position: absolute;
+    width: 180;
+    height: 180;
+    background: transparent;
+    border: 0;
+    color: transparent;
 }
 
 .flex-container {
@@ -82,6 +84,57 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
 
 
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  #f5{
+    top: auto;
+  }
+
+   header{
+     width: 100%;
+     height: 20%;
+   }
+
+  #misfavs{
+    top:0%;
+    left: 35%;
+    font-size: 25px;
+  }
+
+  #buttonmisprod{
+    top: 40%;
+    left: 35%;
+  }
+
+  #buttonmensajes{
+    top: 65%;
+    left: 35%;
+  }
+
+  #zona{
+    top: 40%;
+    left: 75%;
+  }
+
+
+  #sotaheader{
+    text-align: center;
+    top: 21%;
+    left: 10%;
+  }
+
+}
+
+
+
+
+
+
+
 </style>
     <form action="">
 
@@ -128,7 +181,7 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
        <input type="submit" name="zona" value="Mi zona" id="zona">
     </header>
 
-
+    <div id="sotaheader">
 
     <div class="flex-container">
   
@@ -157,9 +210,20 @@ if (isset($_REQUEST["zona"])){   //BOTO PARA IR A MI ZONA
     $mysql->close();
   ?>
 
-  <div>
+    </div>
+
+  <footer id='f5'>
 
 
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
+</footer>
+    
+</div>
 
 </form>
 </body>

@@ -18,15 +18,38 @@ session_start();
 </head>
 <body>
 <form action="iniciar_sesion_reg.php" method="post" enctype="multipart/form-data">
+<style>
+
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+
+
+  #ins{
+    width: 100%;
+    text-align: center;
+  }
+
+  #reg{
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+
+
+
+
+
+</style>
 
 <header id="headins">
     
-
  <button id="atras" name="atras"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
-
-
-
 </header>
+
+<div id="sotaheader">
 
 <?php
  $registro='users';
@@ -53,6 +76,14 @@ if (isset($_REQUEST["inusuario"])){
 
 if (isset($_REQUEST["inrepartidor"])){
   $inicio='repartidores';
+}
+
+if (isset($_REQUEST["olvi"])){
+  $inicio='olv';
+}
+
+if (isset($_REQUEST["tornariniciar"])){
+  $inicio='users';
 }
 ?>
 
@@ -98,12 +129,11 @@ Contraseña: <br>
 
 
 <?php
-}
-
-
+}else if($inicio == 'olv'){
 ?>
 
-<div id="olv">     <!--RECUPERAR CONTRASEÑA-->
+
+<div id="ins">     <!--RECUPERAR CONTRASEÑA-->
 <h1>Recuperar Acceso</h1> <br>
 <select Id="tipousuario" name="tipousuario">
     <option value="0">USUARIO</option>
@@ -119,14 +149,21 @@ Contraseña nueva: <br>
 <input type="password" name="recuppass2" id="" class="bordeRodo"><br><br>
 
 <input type="submit" name="recupiniciar" value="Iniciar sesión" class="botons"><br><br>
+<input type="submit" name="tornariniciar" value="Iniciar sesión"  id="olvidarcontraseña">
 </div>
+
+<?php
+}
+
+
+?>
+
+
 
 
 
 <?php
-if(isset($_REQUEST['olvi'])){   
-    echo '<BODY onLoad="showContent()">';
-}
+
 
 if(isset($_REQUEST['recupiniciar'])){  
 
@@ -235,7 +272,7 @@ $tipouser = $_REQUEST["tipousuario"];
 if($registro == 'users'){
 
 ?>
-<div id="reg"}>  <!--REGISTRAR-SE COMO USUARIO-->
+<div id="reg">  <!--REGISTRAR-SE COMO USUARIO-->
 <h1>Registrate como Usuario</h1> <br>
 Nombre: <br>
 <input type="text" name="nombre" id="" class="bordeRodo"><br><br>
@@ -322,7 +359,7 @@ Contraseña: <br>
 
 ?>
 
-<div id="reg"}>  <!--REGISTRAR-SE COMO REPARTIDOR-->
+<div id="reg">  <!--REGISTRAR-SE COMO REPARTIDOR-->
 <h1>Registrate como Repartidor</h1> <br>
 Nombre: <br>
 <input type="text" name="nombre2" id="" class="bordeRodo"><br><br>
@@ -570,7 +607,7 @@ if (isset($_REQUEST["registrar"])){   //Registrar usuario
 ?>
 
 
-<footer id="f2">
+<footer id="f4">
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
 <a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
@@ -580,18 +617,11 @@ Correo: contactoelectroland@gmail.com
 Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
 
+</div>
+
 </form>
 
 <script type="text/javascript">
-  function showContent() {
-    iniciar = document.getElementById("ins");
-    registrar = document.getElementById("reg");
-    olv = document.getElementById("olv");
-
-   iniciar.style.display='none';
-   registrar.style.display='none';
-   olv.style.display='inline';        
-  }
 
   function myFunction() {
   alert("El email o la contraseña son incorrectos.");
@@ -618,6 +648,8 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
   }
 
 </script>
+
+
 
 </body>
 </html>

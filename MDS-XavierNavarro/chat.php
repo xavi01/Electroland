@@ -25,8 +25,6 @@ footer{
     padding: 10;
     margin-top: 15;
     width: 100%;
-    
-    
 }
 
 #textoenviar{
@@ -65,7 +63,8 @@ footer{
 #chat{
     height:500;
     overflow:scroll;
-    background-image: url(assets/img/fondo.png);
+    /*background-image: url(assets/img/fondo.png);*/
+    background-color: #cccccc;
     background-size: cover;
     padding-top: 10;
 }
@@ -116,6 +115,48 @@ footer{
     font-size: 20;
     border-radius: 10px;
 }
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+ 
+
+#divchat{
+width: 100%;
+
+}
+
+#divmensajes{
+width: 100%;
+}
+
+
+  #buttonmisprod{
+    top: 98%;
+    left: 35%;
+  }
+
+  #buttonfav{
+    top: 60%;
+    left: 38%;
+  }
+
+  #zona{
+    top: 20%;
+    left: 40%;
+  }
+
+
+  #sotaheader{
+    text-align: center;
+    top: 21%;
+  }
+
+}
+
+
+
+
+
 
 
 
@@ -187,7 +228,7 @@ footer{
     <input type="submit" name="zona" value="Mi zona" id="zona">
     </header>
 
-
+    <div id="sotaheader">
 
     <div id="divmensajes"> 
 
@@ -274,8 +315,7 @@ footer{
        ?>   
     </div>
 
-    
-<footer>
+<footer id='f4'>
 
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
@@ -286,7 +326,7 @@ Correo: contactoelectroland@gmail.com
 Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
     
-    
+</div>
 
     
 </form>

@@ -1,16 +1,27 @@
 header{
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100;
     background-color: white;
     left: 0%;
-    top:0;
+    top:0;   
+}
+
+#sotaheader{
+    position: absolute;
+    top: 100;
+    width: 100%;
+    left: 0%;
+    
+  
     
     
 }
 
 #zona{    /*mi zona*/
     position: absolute;
-    left: 1800;
+    right: 2%;
     top: 30;
     background-color: rgb(0, 0, 0);
     color: white;
@@ -46,7 +57,7 @@ header{
 
 #subirproducto{    /*subir producto*/
     position: absolute;
-    left: 1620;
+    right: 7%;
     top: 30;
     background-color: rgb(0, 0, 0);
     color: white;
@@ -268,24 +279,29 @@ nav li:hover>ul{
 
 
 #ins{
-    position: absolute;
-    top: 160;
-    left: 0;
-    width: 45%;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 20px;
     text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+    background-color: white; 
+    left: 0;
+    font-size: 18px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 #reg{
-    padding: 5;
-    position: absolute;
-    top: 160;
-    left: 50%;
-    width: 45%;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 20px;
+    right: 0;
+    padding: 50;
+    display: inline-block;
+    width: 48%;
+    padding: 10;
+    background-color: white;
     text-align: center;
+    font-size: 18px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 
@@ -306,7 +322,7 @@ nav li:hover>ul{
 
 
 
-#f1{  /*footer index i mi zona*/
+#f1{  /*footer que es mouen*/
     text-align: center;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 15px;
@@ -316,23 +332,76 @@ nav li:hover>ul{
     margin-top: 100;
     width: 98.97%;
     position: absolute;
-    left: 0;
-    bottom: 0%;
+    left:0px;
+    top:auto;
 }
 
-#f2{  /*footer iniciar sesion*/
+#f2{  /*footer iniciar sesio*/
     text-align: center;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 15px;
     background-color: #000;
     color: white;
     padding: 10;
-    
     margin: 0;
     width: 98.97%;
     position: absolute;
-    top: 120%;
-    
+    top: 120%; 
+    left: 0;
+}
+
+#f3{  /*footer fixos*/
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    background-color: #000;
+    color: white;
+    padding: 10;
+    margin: 0;
+    width: 98.97%;
+    position: absolute;
+    top: 149%; 
+    left: 0;
+}
+
+#f4{  /* mis productos*/
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    background-color: #000;
+    color: white;
+    padding: 10;
+    margin: 0;
+    width: 98.97%;
+    position: absolute;
+    left: 0;
+}
+
+#f5{  /*footer fixos*/
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    background-color: #000;
+    color: white;
+    padding: 10;
+    margin: 0;
+    width: 98.97%;
+    position: absolute;
+    top: 253%;
+    left: 0;
+}
+
+#f6{  /*producto*/
+    text-align: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    background-color: #000;
+    color: white;
+    padding: 10;
+    margin: 0;
+    width: 98.97%;
+    position: absolute;
+    top: 117%;
     left: 0;
 }
 
@@ -392,13 +461,15 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
 #subirproducto1{
   position: absolute;
-  left: 25%;
+    left: 0;
     top: 15%;
-    width: 48.4%;
+    width: 98%;
     text-align: center;
     padding: 15;
     font-size: 22;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    margin-bottom: 200;
    
 
 }

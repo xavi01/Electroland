@@ -67,12 +67,12 @@ input[type="radio"]:checked ~ #stars {
 }
 
 .userid{
-    position: absolute;
-    width: 50;
-    height: 50;
-    background: transparent;
-    border: 0;
-    color: transparent;
+  position: absolute;
+  width: 50;
+  height: 50;
+  background: transparent;
+  border: 0;
+  color: transparent;
 }
 
 
@@ -176,6 +176,8 @@ input[type="radio"]:checked ~ #stars {
 }
 
 #ooopinar{
+  position: absolute;
+  top: 450;
   padding-left: 40;
   text-align: left;
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -194,6 +196,40 @@ input[type="radio"]:checked ~ #stars {
 @media (max-width: 800px) {
   .flex-container {
     flex-direction: column;
+  }
+
+
+  #maps{
+    width: 300;
+    height: 150;
+  }
+
+  #sotaheader{
+  top: 22%;
+}
+
+header{
+  width:100%;
+  height: 15%;
+}
+
+  #zona{
+    left:70%;
+  }
+
+  #subirproducto{
+    left:30%;
+  }
+
+
+  #enviarmensaje{
+    left:55%;
+    top:0%; 
+  }
+
+  #textonombreusuario{
+    left:25%;
+    top:0%; 
   }
 }
 
@@ -254,7 +290,10 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
     ?>
   </header>
 
-    
+  <div id="sotaheader">
+
+  <div id="tot">
+
   <?php
 
     $mysql = new mysqli ("localhost","root","","electroland");
@@ -302,7 +341,6 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
       $sql= "INSERT INTO `valoracion_repartidores`(`usuario`, `repartidor`, `estrellas`, `comentario`, `fecha`) VALUES ('" . $usuario_activo ."','" . $repartidor . "'," . $estrellas . ",'". $comentario . "','". $data . "')";
       $mysql->query($sql) or die ($mysql->error);
       $prod="opiniones";
-
     } 
   
   ?>
@@ -384,7 +422,6 @@ if (isset($_REQUEST["iniciar"])){   //BOTO PARA INICIAR SESION O REGISTRAR-SE
      <br>
     <input type="submit" name="repartidos" value="Repartidos" class="buttons">
     <input type="submit" name="opiniones" value="Opiniones" class="buttons">
-
 
     <br><br><br>
 
@@ -484,7 +521,7 @@ if(mysqli_num_rows($resultats)>0){
  $mysql->close();
 }
 
-echo "</div>";
+
 
 
 if($prod == "opinar"){
@@ -516,6 +553,27 @@ if($prod == "opinar"){
 <?php
 }
   ?>
+
+
+
+
+
+
+
+<footer id="f4">
+
+
+<a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
+<a title="Instagram" href="https://www.instagram.com/electrolandspain/"><img src="assets/img/instagram.png" alt="" width="40" height="40"></a>
+<br>
+Correo: contactoelectroland@gmail.com
+<br>
+Copyright © 2021 Electroland © de sus respectivos propietarios
+</footer>
+</div>
+
+
+
 
 
 

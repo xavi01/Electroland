@@ -15,20 +15,24 @@ session_start();
 </head>
 <body style="background-color: #cccccc">
 
-<style>
-
-
-    
+<style> 
 #prod{
-  
-    display:inline-flexbox;
-    width: 10%;
-    height: auto;
+    text-align: center;
+    width: 190;
     margin: 25;
     padding: 10;
     background-color: white;
     border-radius: 8%;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.prodid{
+    position: absolute;
+    width: 180;
+    height: 180;
+    background: transparent;
+    border: 0;
+    color: transparent;
 }
 
 .flex-container {
@@ -50,15 +54,6 @@ session_start();
   position: relative;
   display: inline-block;
 
-}
-
-.prodid{
-    position: absolute;
-    width: 180;
-    height: 180;
-    background: transparent;
-    border: 0;
-    color: transparent;
 }
 
 
@@ -83,7 +78,57 @@ session_start();
   .flex-container {
     flex-direction: column;
   }
+
+  header{
+    height: 25%;
+    width: 100%;
+  }
+
+  #sotaheader{
+    top: 30%;
+  }
+
+
+  #buscador{
+    top:70%;
+    left: 5%;
+    width: 250;
+
+  }
+
+  #b2{
+    top:70%;
+    left:75%;
+
+  }
+
+  #zona{
+    left: 30%;
+    top:10%
+  }
+
+  #zonarepartidores{
+    left: 30%;
+    top:10%
+  }
+
+  #cat{
+    top: 40%;
+    left: 27%;
+  }
+
+  #subirproducto{
+    left: 55%;
+    top:10%
+  }
+
+  #iniciar{
+    left: 40%;
+    top:10%
+  }
+
 }
+
 
 </style>
 <form action="index.php">
@@ -110,10 +155,11 @@ $categoria="";
 <header>
 
 
+
 <button id="atras" name="recargar"><img src="assets/img/logosinfondo.png"/ width="95" height="95"></button>
 
 
-<div id="cat" style="width:500px;">
+<div id="cat" style="width:500px;" class="divss">
   <select Id="cat-values" name="categorias">
     <option value="0">CATEGORIAS:</option>
     <option value="Informática">Informática</option>
@@ -135,15 +181,28 @@ $categoria="";
 
 
 <input type="submit" name="zona" value="Mi zona" id="zona">
+
+
+
 <input type="submit" name="zonarepartidores" value="Zona repartidores" id="zonarepartidores">
+
+
+
 <input type="submit" name="iniciar" value="Inicia sesión o Registrate" id="iniciar">
+
+
+
 <input type="submit" name="subirproducto" value="+ Subir producto" id="subirproducto">
+
 
 
 <input type="text" name="buscador" id="buscador" placeholder="Que quieres buscar?">
 
+
 <input type="submit" name="b2" value="" id="b2" >
 
+
+</header>
 
 <?php
 
@@ -182,9 +241,9 @@ if (isset($_REQUEST["producto"])){   //BOTO PARA ABRIR PRODUCTO
 
 ?>
 
-</header>
 
 
+<div id="sotaheader">
 
 <div class="flex-container">
 
@@ -237,7 +296,7 @@ $mysql = new mysqli ("localhost","root","","electroland");
         echo "<div id='prod' height='200' width='200'>";
          
         echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='180' width='180' class='prodid'>"; 
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='93%'>";
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='93%'><br>";
         echo $fila["nombre"];
      
         echo "</div>";
@@ -250,7 +309,8 @@ $mysql = new mysqli ("localhost","root","","electroland");
 </div>
 
 
-<footer id="f1">
+
+<footer id='f4'>
 
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
@@ -260,6 +320,8 @@ Correo: contactoelectroland@gmail.com
 <br>
 Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
+    
+</div>
 
 </form>
 
