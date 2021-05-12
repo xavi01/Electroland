@@ -195,10 +195,6 @@ input[type="radio"]:checked ~ #stars {
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
-
 
   #maps{
     width: 300;
@@ -207,7 +203,8 @@ input[type="radio"]:checked ~ #stars {
 
   #sotaheader{
   top: 22%;
-}
+  width: 100%;
+  }
 
 
 header{
@@ -216,9 +213,11 @@ header{
 }
 
 
-#fotoperf{
-   margin-top: 40;  
-}
+  .flex-container {
+    padding:5;
+    text-align: center;
+  }
+
   #zona{
     left:75%;
   }
@@ -259,6 +258,18 @@ header{
     position: absolute;
     top: 0;
     left: 55%;
+  }
+
+  #prod{
+    margin:5;
+    width: 150;
+    height: auto;
+    font-size: 15;
+  }
+
+  #fotoprod{
+    width: 130;
+    height: 130;
   }
 }
 
@@ -472,8 +483,8 @@ $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwb
       
       echo "<div id='prod'>";
    
-      echo "<input type='submit' name='producto1' value='" . $fila1["id_producto"] . "' class='prodid'>"; 
-      echo "<img src='data:image/jpeg; base64," . base64_encode($fila1["imagen"]) . "' name='producto' height='180' width='180'> <br>";
+      echo "<input type='submit' name='producto1' value='" . $fila1["id_producto"] . "' class='prodid' id='fotoprod'>"; 
+      echo "<img src='data:image/jpeg; base64," . base64_encode($fila1["imagen"]) . "' name='producto' height='180' width='180' id='fotoprod'> <br>";
       echo $fila1["nombre"];
 
       echo "</div>";

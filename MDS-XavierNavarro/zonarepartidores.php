@@ -18,9 +18,15 @@ session_start();
 
 <style>
 
-
+#sotaheader{
+  text-align: center;
+}
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
+
+  #f7{
+    top: auto;
+  }
  
 
  #f3{
@@ -268,7 +274,7 @@ session_start();
 <?php echo $email; ?> <br><br>
 </div>
 
-<footer id='f3'>
+<footer id='f7'>
 
 
 <a title="Facebook" href="https://www.facebook.com/electrolandspain"> <img src="assets/img/facebook.png" alt="" width="40" height="40"></a>
@@ -280,7 +286,6 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
 </footer>
     
 </div>
-
 
 
 

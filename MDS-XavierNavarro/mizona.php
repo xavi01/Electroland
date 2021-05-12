@@ -17,15 +17,18 @@ session_start();
   <style>
 
 
-
+#sotaheader{
+  text-align: center;
+}
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
  
+
+
  #headins{
    width: 100%;
     height: 20%;
-
- }
+  }
 
  #f3{
    top:auto;
@@ -207,7 +210,7 @@ $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwb
     }
 
   
-echo "<h1 id='bienvenido'>    Bienvenido " . $n_usuario. ".</h1>" . "<br><br><br>";
+echo "<h1 id='bienvenido'>    Bienvenido/a " . $n_usuario. ".</h1>" . "<br><br><br>";
 
 ?>
 
@@ -360,15 +363,16 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
     $data = $_REQUEST["data"];
     $provincia = $_REQUEST["provincia"];
     $contraseña = $_REQUEST["contraseña"];
-
+    $foto = $_FILES["imageperfil"];
+    echo $foto;
     $hashcontraseñanova=password_hash($contraseña, PASSWORD_DEFAULT);
 
  
     $check = getimagesize($_FILES["imageperfil"]["tmp_name"]);
 
     if($check !== false){
-        $image = $_FILES['imageperfil']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
+      $image = $_FILES['imageperfil']['tmp_name'];
+      $imgContent = addslashes(file_get_contents($image));
     }
 
     $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
@@ -377,12 +381,18 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
         die("Conexio fallida");
     }
 
-    $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', telefono='$telefono', contraseña='$hashcontraseñanova', fotoperfil = '$imgContent' , provincia = '$provincia' WHERE email = '$useractivo'";
+    if($_FILES["imageperfil"]['error']== 0){
+      $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', telefono='$telefono', contraseña='$hashcontraseñanova', fotoperfil = '$imgContent' , provincia = '$provincia' WHERE email = '$useractivo'";
+
+    }else {
+      
+      $consulta= "UPDATE usuarios SET nombre='$nombre',  apellidos='$apellidos', data_n='$data',   direccion='$direccion', telefono='$telefono', contraseña='$hashcontraseñanova', provincia = '$provincia' WHERE email = '$useractivo'";
+    }
 
     if ($mysql->query($consulta) === TRUE) {
-      
+      //echo '<BODY onLoad="EditadoCorrecto()">';
     } else {
-      
+      //echo '<BODY onLoad="EditadoIncorrecto()">';
     }
  
 
@@ -416,6 +426,13 @@ Copyright © 2021 Electroland © de sus respectivos propietarios
 
 
 
+  function EditadoCorrecto() {
+  alert("Tu perfil se ha actualizado correctamente.");
+  }
+
+  function EditadoIncorrecto() {
+  alert("Ha ocurrido un error, intentalo de nuevo.");
+  }
 
 
 

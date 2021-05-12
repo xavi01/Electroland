@@ -97,16 +97,20 @@ text-align: center;
 
 
 #producto{
+    padding-top: 15;
+
     left: 3%;
     width: 80%;
+    font-size: 16;
 }
 
 #frame{
-    width: 320;
+    width: 300;
 }
 
 #fotoproducto{
-    width: 300;
+    width: 250;
+    height: 250;
 }
 
 }

@@ -35,12 +35,16 @@ session_start();
     border: 0;
     color: transparent;
 }
-
 .flex-container {
   display: flex;
+  flex-wrap: wrap;
+
+  padding-left: 45;
 }
 
 .flex-container > div {
+  position: relative;
+  top: auto;
   padding: 20;
   width: 10%;
   margin-right: 40px;
@@ -86,8 +90,11 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
+
   .flex-container {
-    flex-direction: column;
+    padding:2;
+    text-align: center;
+    margin-left: 0;
   }
 
   #f5{
@@ -97,6 +104,9 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
    header{
      width: 100%;
      height: 20%;
+   }
+   footer{
+     left: 0;
    }
 
   #misfavs{
@@ -124,9 +134,21 @@ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubunt
   #sotaheader{
     text-align: center;
     top: 21%;
-    left: 10%;
+    left: 0%;
   }
 
+
+  #prod{
+    margin:5;
+    width: 150;
+    height: auto;
+    font-size: 15;
+  }
+
+  #fotoprod{
+    width: 130;
+    height: 130;
+  }
 }
 
 
@@ -200,8 +222,8 @@ $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwb
   while($fila1 = $resultats->fetch_array()){
     echo "<div id='prod'>";
      
-    echo "<input type='submit' name='producto1' value='" . $fila1["id"] . "' class='prodid'>"; 
-    echo "<img src='data:image/jpeg; base64," . base64_encode($fila1["imagen"]) . "' name='producto' height='180' width='180'> <br>";
+    echo "<input type='submit' name='producto1' value='" . $fila1["id"] . "' class='prodid' id='fotoprod'>"; 
+    echo "<img src='data:image/jpeg; base64," . base64_encode($fila1["imagen"]) . "' name='producto' height='180' width='180' id='fotoprod'> <br>";
     echo $fila1["nombre"];
  
     echo "</div>";

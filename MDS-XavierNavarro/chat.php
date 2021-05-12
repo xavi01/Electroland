@@ -22,6 +22,15 @@ session_start();
         width: 100%;
     }
 
+    #borrarchat{
+      border: none;
+      color: transparent;
+      background-color: transparent;
+      background-image: url(assets/img/borrarpetit1.png);
+      width: 25;
+      height: 25;
+    }
+
 footer{
     text-align: center;
     background-color: black;
@@ -92,8 +101,15 @@ footer{
 }
 
 #botonescogerchat{
-    font-size: 18px;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /*background-color: #4CAF50;  */
+    background-color: black;
+  border:0;
+  color: white;
+  padding: 15px 28px;
+  text-align: center;
+  text-decoration: none;
+
+  font-size: 18px;
 }
 
 #chatsrecientes{
@@ -200,9 +216,35 @@ width: 100%;
         
     if (isset($_REQUEST["misproductos"])){
         header('Location: misproductos.php');
-      }
+    }
           
-      
+           
+    if (isset($_REQUEST["borrarchat"])){
+        $chatborrar = $_REQUEST["borrarchat"];
+
+
+        $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwblcfhdgmvbfeos","lmNPuWe4qfOaYyeAyb7c","b7lgw1cojiripwuqndeg");
+
+        if($mysql->connect_error){
+            die("Conexio fallida");
+        }else{
+         
+        }
+        $sql1 = "DELETE FROM chat WHERE id_de='$chatborrar' && id_para='$usuario_activo'  OR  id_de='$usuario_activo' && id_para='$chatborrar'";
+        $mysql->query($sql1) or die ($mysql->error);
+    
+        $sql = "DELETE FROM mensajes WHERE usuario1='$chatborrar' && usuario2='$usuario_activo'  OR  usuario1='$usuario_activo' && usuario2='$chatborrar'";
+        $mysql->query($sql) or die ($mysql->error);
+
+
+        $mysql->close();
+
+        unset($_SESSION["chat"]);
+  
+
+
+    }
+         
 
 
         if(isset($_REQUEST["enviar"])){ //BOTON PARA ENVIAR MENSAJE
@@ -254,7 +296,7 @@ $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwb
         
             while($fila = $resultatstaula->fetch_array()){
         
-              echo "<input type='submit' id='botonescogerchat' name='escogerchat' value='$fila[usuario2]'> <br><br>";
+              echo "<input type='submit' id='botonescogerchat' name='escogerchat' value='$fila[usuario2]'> <input type='submit' id='borrarchat' name='borrarchat' value='$fila[usuario2]'> <br><br>";
               
             }
 
@@ -263,7 +305,7 @@ $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwb
         
             while($fila = $resultatstaula->fetch_array()){
         
-              echo "<input type='submit'  id='botonescogerchat' name='escogerchat' value='$fila[usuario1]'> <br><br>";
+              echo "<input type='submit'  id='botonescogerchat' name='escogerchat' value='$fila[usuario1]'> <input type='submit' id='borrarchat' name='borrarchat' value='$fila[usuario1]'><br><br>";
               
             }
 

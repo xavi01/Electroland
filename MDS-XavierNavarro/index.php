@@ -53,7 +53,6 @@ session_start();
   font-size: 20px; 
   position: relative;
   display: inline-block;
-
 }
 
 
@@ -76,7 +75,10 @@ session_start();
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
   .flex-container {
-    flex-direction: column;
+    
+    padding:5;
+    text-align: center;
+   
   }
 
   header{
@@ -129,6 +131,18 @@ session_start();
   #iniciar{
     left: 38%;
     top:10%
+  }
+
+  #prod{
+    margin:5;
+    width: 150;
+    height: auto;
+    font-size: 15;
+  }
+
+  #fotoprod{
+    width: 130;
+    height: 130;
   }
 
 }
@@ -299,8 +313,8 @@ $mysql = new mysqli ("b7lgw1cojiripwuqndeg-mysql.services.clever-cloud.com","uwb
     while($fila = $resultatstaula->fetch_array()){
         echo "<div id='prod' height='200' width='200'>";
          
-        echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='180' width='180' class='prodid'>"; 
-        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' height='180' width='93%'><br>";
+        echo "<input type='submit' name='producto' value='" . $fila["id"] . "' height='180' width='180' class='prodid' id='fotoprod'>"; 
+        echo "<img src='data:image/jpeg; base64," . base64_encode($fila["imagen"]) . "' name='producto' id='fotoprod' height='180' width='93%'><br>";
         echo $fila["nombre"];
      
         echo "</div>";

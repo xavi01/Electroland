@@ -590,10 +590,11 @@ if (isset($_REQUEST["registrar"])){   //Registrar usuario
   $provincia2=$_REQUEST["provincia"];
 
 
-  $sql = "INSERT INTO usuarios (nombre, apellidos, data_n, direccion,telefono, n_usuario, email, contraseña, provincia)
-   VALUES ('$nombre','$apellidos','$data_n', '$direccion', '$telefono' '$n_usuario', '$email2', '$hash' , '$provincia2')";
+  $sql = "INSERT INTO usuarios (nombre, apellidos, data_n, direccion, telefono, n_usuario, email, contraseña, provincia)
+   VALUES ('$nombre','$apellidos','$data_n', '$direccion', '$telefono', '$n_usuario', '$email2', '$hash' , '$provincia2')";
   $mysql->query($sql) or die ($mysql->error);
   $mysql->close();
+  echo $sql;
   echo '<BODY onLoad="RegistroCorrecto()">';
 }
 
