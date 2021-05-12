@@ -111,7 +111,7 @@ input[type="radio"]:checked ~ #stars {
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  padding-left: 62;
+  padding-left: 40;
 }
 
 .flex-container > div {

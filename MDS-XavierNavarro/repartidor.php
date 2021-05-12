@@ -55,7 +55,7 @@ input[type="radio"]:checked ~ #stars {
 #starsvaloracio{
   color: orange;
   position: absolute;
-  left: 5%;
+  left: 2%;
 }
 
 #estrelles{
@@ -111,6 +111,7 @@ input[type="radio"]:checked ~ #stars {
 .flex-container {
   display: flex;
   flex-wrap: wrap;
+  padding-left: 40;
 
 }
 
