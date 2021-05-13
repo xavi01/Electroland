@@ -231,7 +231,6 @@ $id_producto = $_SESSION["producto"];
         $query= mysqli_query ($mysql,"SELECT * FROM productos_megusta WHERE n_usuario = '$n_usuario' AND id_prod = '$id_producto' ");
         $row_cnt = $query->num_rows;
 
-
         if ($row_cnt > 0) {
             echo "<input type='submit' id='corazonrojo' name='corazonrojo' value=''>";
         } else {
